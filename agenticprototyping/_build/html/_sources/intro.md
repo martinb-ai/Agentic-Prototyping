@@ -1,11 +1,25 @@
-# Welcome to your Jupyter Book
+# Welcome to Agentic Prototyping
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This comprehensive guide introduces you to the world of agentic AI development using OpenAI's API and agents SDK. Whether you're a beginner or an experienced developer, this book provides practical examples and best practices for building intelligent, autonomous agents.
 
-Check out the content pages bundled with this sample book to see more.
+## What You'll Learn
+
+This book is structured to take you from basic concepts to production-ready implementations:
+
+- **Core Concepts**: Start with the fundamentals of agentic AI and get up and running quickly
+- **Agent Development**: Explore different types of agents and their capabilities using OpenAI's agents SDK
+- **Best Practices**: Learn industry-standard practices for deploying and maintaining AI agents in production
+
+## Key Technologies
+
+This guide focuses on:
+- **OpenAI API**: Leverage the latest language models for natural language understanding and generation
+- **OpenAI Agents SDK**: Build sophisticated agents with tools, memory, and reasoning capabilities
+- **Python**: All examples are written in Python with practical, runnable code
+
+## Getting Started
+
+Check out the content pages bundled with this book to dive deeper into each topic. Each section includes hands-on examples and real-world use cases to help you build your own agentic applications.
 
 ```{tableofcontents}
 ```
