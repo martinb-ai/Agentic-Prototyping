@@ -3,8 +3,13 @@
 
 format: jb-book
 root: intro
-
-chapters:
-  - file: dev_quick_start
-  - file: agents_overview
-  - file: production_best_practices
+parts:
+  - caption: Core Concepts
+    chapters:
+      - file: dev_quick_start
+  - caption: Agents
+    chapters:
+      - file: agents_overview
+  - caption: Best Practices
+    chapters:
+      - file: production_best_practices
