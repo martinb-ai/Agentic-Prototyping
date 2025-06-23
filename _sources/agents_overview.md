@@ -1,5 +1,4 @@
 # Agents Overview
-======
 
 Learn how to build agents with the OpenAI API.
 
@@ -86,6 +85,6 @@ Python
 pip install openai-agents
 ```
 
-[View python documentation](https://openai.github.io/openai-agents-python/)[
+[View python documentation](https://openai.github.io/openai-agents-python/)
 
 [View the Python repository](https://github.com/openai/openai-agents-python)
