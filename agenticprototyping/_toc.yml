@@ -3,8 +3,12 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
-- file: agentic_intro
+- part: Core Concepts
+  chapters:
+    - file: dev_quick_start
+- part: Agents
+  chapters:
+    - file: agents_overview
+- part: Best Practices
+  chapters:
+    - file: production_best_practices
