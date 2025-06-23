@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Content with notebooks &#8212; Agentic Prototyping</title>
+    <title>Agents Overview &#8212; Agentic Prototyping</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'agents_overview';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Production best practices" href="production_best_practices.html" />
+    <link rel="prev" title="Developer Quickstart" href="dev_quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -181,9 +179,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="dev_quick_start.html">Developer Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Agents Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="production_best_practices.html">Production best practices</a></li>
 </ul>
 
@@ -256,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fagents_overview.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +284,7 @@
       
       
       
-      <li><a href="_sources/notebooks.ipynb" target="_blank"
+      <li><a href="_sources/agents_overview.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +294,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -370,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Content with notebooks</h1>
+    <h1>Agents Overview</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -380,9 +378,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models">Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools">Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-and-memory">Knowledge and memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardrails">Guardrails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orchestration">Orchestration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">Get started</a></li>
 </ul>
             </nav>
         </div>
@@ -394,83 +396,164 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="content-with-notebooks">
-<h1>Content with notebooks<a class="headerlink" href="#content-with-notebooks" title="Link to this heading">#</a></h1>
-<p>You can also create content with Jupyter Notebooks. This means that you can include
-code blocks and their outputs in your book.</p>
-<section id="markdown-notebooks">
-<h2>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Link to this heading">#</a></h2>
-<p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
-<p><img alt="" src="https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg" /></p>
-<p>You can also <span class="math notranslate nohighlight">\(add_{math}\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-math^{blocks}
-\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mbox{mean} la_{tex} \\ \\
-math blocks
-\end{aligned}
-\end{split}\]</div>
-<p>But make sure you $Escape $your $dollar signs $you want to keep!</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="agents-overview">
+<h1>Agents Overview<a class="headerlink" href="#agents-overview" title="Link to this heading">#</a></h1>
+<p>======</p>
+<p>Learn how to build agents with the OpenAI API.</p>
+<p>Agents represent <strong>systems that intelligently accomplish tasks</strong>, ranging from executing simple workflows to pursuing complex, open-ended objectives.</p>
+<p>OpenAI provides a <strong>rich set of composable primitives that enable you to build agents</strong>. This guide walks through those primitives, and how they come together to form a robust agentic platform.</p>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Building agents involves assembling components across several domains—such as <strong>models, tools, knowledge and memory, audio and speech, guardrails, and orchestration</strong>—and OpenAI provides composable primitives for each.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Domain</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>OpenAI Primitives</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Models</p></td>
+<td><p>Core intelligence capable of reasoning, making decisions, and processing different modalities.</p></td>
+<td><p>o1, o3-mini, GPT-4.5, GPT-4o, GPT-4o-mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tools</p></td>
+<td><p>Interface to the world, interact with environment, function calling, built-in tools, etc.</p></td>
+<td><p>Function calling, Web search, File search, Computer use</p></td>
+</tr>
+<tr class="row-even"><td><p>Knowledge and memory</p></td>
+<td><p>Augment agents with external and persistent knowledge.</p></td>
+<td><p>Vector stores, File search, Embeddings</p></td>
+</tr>
+<tr class="row-odd"><td><p>Audio and speech</p></td>
+<td><p>Create agents that can understand audio and respond back in natural language.</p></td>
+<td><p>Audio generation, realtime, Audio agents</p></td>
+</tr>
+<tr class="row-even"><td><p>Guardrails</p></td>
+<td><p>Prevent irrelevant, harmful, or undesirable behavior.</p></td>
+<td><p>Moderation, Instruction hierarchy (Python), Instruction hierarchy (TypeScript)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Orchestration</p></td>
+<td><p>Develop, deploy, monitor, and improve agents.</p></td>
+<td><p>Python Agents SDK, TypeScript Agents SDK, Tracing, Evaluations, Fine-tuning</p></td>
+</tr>
+<tr class="row-even"><td><p>Voice agents</p></td>
+<td><p>Create agents that can understand audio and respond back in natural language.</p></td>
+<td><p>Realtime API, Voice support in the Python Agents SDK, Voice support in the TypeScript Agents SDK</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="myst-markdown">
-<h2>MyST markdown<a class="headerlink" href="#myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-out <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST guide in Jupyter Book</a>,
-or see <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">the MyST markdown documentation</a>.</p>
+<section id="models">
+<h2>Models<a class="headerlink" href="#models" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Agentic Strengths</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>o3 and o4-mini</p></td>
+<td><p>Best for long-term planning, hard tasks, and reasoning.</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPT-4.1</p></td>
+<td><p>Best for agentic execution.</p></td>
+</tr>
+<tr class="row-even"><td><p>GPT-4.1-mini</p></td>
+<td><p>Good balance of agentic capability and latency.</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPT-4.1-nano</p></td>
+<td><p>Best for low-latency.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Large language models (LLMs) are at the core of many agentic systems, responsible for making decisions and interacting with the world. OpenAI’s models support a wide range of capabilities:</p>
+<ul class="simple">
+<li><p><strong>High intelligence:</strong> Capable of <a class="reference internal" href="#/docs/guides/reasoning"><span class="xref myst">reasoning</span></a> and planning to tackle the most difficult tasks.</p></li>
+<li><p><strong>Tools:</strong> <a class="reference internal" href="#/docs/guides/function-calling"><span class="xref myst">Call your functions</span></a> and leverage OpenAI’s <a class="reference internal" href="#/docs/guides/tools"><span class="xref myst">built-in tools</span></a>.</p></li>
+<li><p><strong>Multimodality:</strong> Natively understand text, images, audio, code, and documents.</p></li>
+<li><p><strong>Low-latency:</strong> Support for <a class="reference internal" href="#/docs/guides/realtime"><span class="xref myst">real-time audio</span></a> conversations and smaller, faster models.</p></li>
+</ul>
+<p>For detailed model comparisons, visit the <a class="reference internal" href="#/docs/models"><span class="xref myst">models</span></a> page.</p>
 </section>
-<section id="code-blocks-and-outputs">
-<h2>Code blocks and outputs<a class="headerlink" href="#code-blocks-and-outputs" title="Link to this heading">#</a></h2>
-<p>Jupyter Book will also embed your code blocks and output in your book.
-For example, here’s some sample Matplotlib code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Tools enable agents to interact with the world. OpenAI supports <a class="reference internal" href="#/docs/guides/function-calling"><span class="xref myst"><strong>function calling</strong></span></a> to connect with your code, and <a class="reference internal" href="#/docs/guides/tools"><span class="xref myst"><strong>built-in tools</strong></span></a> for common tasks like web searches and data retrieval.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Function calling</p></td>
+<td><p>Interact with developer-defined code.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Web search</p></td>
+<td><p>Fetch up-to-date information from the web.</p></td>
+</tr>
+<tr class="row-even"><td><p>File search</p></td>
+<td><p>Perform semantic search across your documents.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Computer use</p></td>
+<td><p>Understand and control a computer or browser.</p></td>
+</tr>
+<tr class="row-even"><td><p>Local shell</p></td>
+<td><p>Execute commands on a local machine.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="knowledge-and-memory">
+<h2>Knowledge and memory<a class="headerlink" href="#knowledge-and-memory" title="Link to this heading">#</a></h2>
+<p>Knowledge and memory help agents store, retrieve, and utilize information beyond their initial training data. <strong>Vector stores</strong> enable agents to search your documents semantically and retrieve relevant information at runtime. Meanwhile, <strong>embeddings</strong> represent data efficiently for quick retrieval, powering dynamic knowledge solutions and long-term agent memory. You can integrate your data using OpenAI’s <a class="reference internal" href="#/docs/guides/retrieval#vector-stores"><span class="xref myst">vector stores</span></a> and <a class="reference internal" href="#/docs/guides/embeddings"><span class="xref myst">Embeddings API</span></a>.</p>
+</section>
+<section id="guardrails">
+<h2>Guardrails<a class="headerlink" href="#guardrails" title="Link to this heading">#</a></h2>
+<p>Guardrails ensure your agents behave safely, consistently, and within your intended boundaries—critical for production deployments. Use OpenAI’s free <a class="reference internal" href="#/docs/guides/moderation"><span class="xref myst">Moderation API</span></a> to automatically filter unsafe content. Further control your agent’s behavior by leveraging the <a class="reference external" href="https://openai.github.io/openai-agents-python/guardrails/">instruction hierarchy</a>, which prioritizes developer-defined prompts and mitigates unwanted agent behaviors.</p>
+</section>
+<section id="orchestration">
+<h2>Orchestration<a class="headerlink" href="#orchestration" title="Link to this heading">#</a></h2>
+<p>Building agents is a process. OpenAI provides tools to effectively build, deploy, monitor, evaluate, and improve agentic systems.</p>
+<p><img alt="Agent Traces UI in OpenAI Dashboard" src="https://cdn.openai.com/API/docs/images/orchestration.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Phase</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>OpenAI Primitives</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Build and deploy</p></td>
+<td><p>Rapidly build agents, enforce guardrails, and handle conversational flows using the Agents SDK.</p></td>
+<td><p>Agents SDK Python, Agents SDK TypeScript</p></td>
+</tr>
+<tr class="row-odd"><td><p>Monitor</p></td>
+<td><p>Observe agent behavior in real-time, debug issues, and gain insights through tracing.</p></td>
+<td><p>Tracing</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluate and improve</p></td>
+<td><p>Measure agent performance, identify areas for improvement, and refine your agents.</p></td>
+<td><p>EvaluationsFine-tuning</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="get-started">
+<h2>Get started<a class="headerlink" href="#get-started" title="Link to this heading">#</a></h2>
+<p>Python</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openai-agents
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;contextlib.ExitStack at 0x1a4ff8a2750&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
-
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Cold&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Hot&#39;</span><span class="p">]);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/a52e09eb4523633319b825597306cb0c693039f4c690c536efac8ee3447202fc.png" src="_images/a52e09eb4523633319b825597306cb0c693039f4c690c536efac8ee3447202fc.png" />
-</div>
-</div>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+<p><a class="reference external" href="https://openai.github.io/openai-agents-python/">View python documentation</a>[</p>
+<p><a class="reference external" href="https://github.com/openai/openai-agents-python">View the Python repository</a></p>
 </section>
 </section>
 
@@ -504,6 +587,24 @@ with your book. For more information about this, see <a class="reference externa
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="dev_quick_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Developer Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="production_best_practices.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Production best practices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -520,9 +621,13 @@ with your book. For more information about this, see <a class="reference externa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models">Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools">Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-and-memory">Knowledge and memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardrails">Guardrails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orchestration">Orchestration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">Get started</a></li>
 </ul>
   </nav></div>
 
