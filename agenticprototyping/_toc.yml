@@ -6,10 +6,18 @@ root: intro
 parts:
   - caption: Core Concepts
     chapters:
-      - file: dev_quick_start
+      - file: 1_0_dev_quick_start
   - caption: Agents
     chapters:
-      - file: agents_overview
+      - file: 2_0_agents_overview
+      - file: 2_1_agent_design_foundations
+      - file: 2_2_guardrails
   - caption: Best Practices
     chapters:
-      - file: production_best_practices
+      - file: 3_0_production_best_practices
+  - caption: Case Studies
+    chapters:
+      - file: 4_legal_qa
+      - file: 4_pharma_rd
+      - file: 4_insurance_claims
+      - file: 4_financial_portfolio_analysis

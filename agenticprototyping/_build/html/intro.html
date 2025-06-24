@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Developer Quickstart" href="dev_quick_start.html" />
+    <link rel="next" title="Developer Quickstart" href="1_0_dev_quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,15 +182,17 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="production_best_practices.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_0_production_best_practices.html">Production best practices</a></li>
 </ul>
 
     </div>
@@ -341,7 +343,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies">Key Technologies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-development-guide">Agent Development Guide</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
 </ul>
@@ -379,23 +382,36 @@ document.write(`
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>Check out the content pages bundled with this book to dive deeper into each topic. Each section includes hands-on examples and real-world use cases to help you build your own agentic applications.</p>
+</section>
+<section id="agent-development-guide">
+<h2>Agent Development Guide<a class="headerlink" href="#agent-development-guide" title="Link to this heading">#</a></h2>
+<p>Our agent development chapters provide a comprehensive overview of building effective AI agents:</p>
+<ul class="simple">
+<li><p><strong>Agents Overview</strong>: Learn the fundamentals of agent systems, when to use them, and their core components including models, tools, knowledge, memory, and orchestration.</p></li>
+<li><p><strong>Agent Design Foundations</strong>: Master the essential building blocks of agents, including model selection, tool definition, instruction configuration, and orchestration patterns like single-agent and multi-agent systems.</p></li>
+<li><p><strong>Guardrails</strong>: Implement robust safety mechanisms to ensure your agents operate within appropriate boundaries, including relevance classifiers, safety checks, PII filters, and human intervention protocols.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="production_best_practices.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_0_production_best_practices.html">Production best practices</a></li>
 </ul>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 </section>
@@ -431,7 +447,7 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="dev_quick_start.html"
+       href="1_0_dev_quick_start.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -457,7 +473,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-technologies">Key Technologies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-development-guide">Agent Development Guide</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
 </ul>

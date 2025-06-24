@@ -21,5 +21,13 @@ This guide focuses on:
 
 Check out the content pages bundled with this book to dive deeper into each topic. Each section includes hands-on examples and real-world use cases to help you build your own agentic applications.
 
+## Agent Development Guide
+
+Our agent development chapters provide a comprehensive overview of building effective AI agents:
+
+- **Agents Overview**: Learn the fundamentals of agent systems, when to use them, and their core components including models, tools, knowledge, memory, and orchestration.
+- **Agent Design Foundations**: Master the essential building blocks of agents, including model selection, tool definition, instruction configuration, and orchestration patterns like single-agent and multi-agent systems.
+- **Guardrails**: Implement robust safety mechanisms to ensure your agents operate within appropriate boundaries, including relevance classifiers, safety checks, PII filters, and human intervention protocols.
+
 ```{tableofcontents}
 ```
