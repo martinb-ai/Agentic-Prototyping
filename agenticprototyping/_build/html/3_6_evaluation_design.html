@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Evals design best practices &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3_6_evaluation_design';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use Case: AI Co-Scientist for Pharma R&amp;D" href="4_pharma_rd.html" />
+    <link rel="prev" title="Advanced usage" href="3_5_reproducibility.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3_6_evaluation_design.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Evals design best practices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-evals">What are evals?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-evals">Types of evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-evals">How to read evals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-your-eval-process">Design your eval process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-summarizing-transcripts">Example: Summarizing transcripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-q-a-over-docs">Example: Q&amp;A over docs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-where-you-need-evals">Identify where you need evals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-turn-model-interactions">Single-turn model interactions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-architectures">Workflow architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-agent-architectures">Single-agent architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agent-architectures">Multi-agent architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-combine-different-types-of-evaluators">Create and combine different types of evaluators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metric-based-evals">Metric-based evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-evals">Human evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge-and-model-graders">LLM-as-a-judge and model graders</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-edge-cases">Handle edge cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-variability">Input variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contextual-complexity">Contextual complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalization-and-customization">Personalization and customization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-evals-to-improve-performance">Use evals to improve performance</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="evals-design-best-practices">
+<h1>Evals design best practices<a class="headerlink" href="#evals-design-best-practices" title="Link to this heading">#</a></h1>
+<p>Learn best practices for designing evals to test model performance in production environments.</p>
+<p>Generative AI is variable. Models sometimes produce different output from the same input, which makes traditional software testing methods insufficient for AI architectures. Evaluations (<strong>evals</strong>) are a way to test your AI system despite this variability.</p>
+<p>This guide provides high-level guidance on designing evals. To get started with the <a class="reference external" href="https://platform.openai.com/docs/api-reference/evals">Evals API</a>, see <a class="reference external" href="https://platform.openai.com/docs/guides/evals">evaluating model performance</a>.</p>
+<section id="what-are-evals">
+<h2>What are evals?<a class="headerlink" href="#what-are-evals" title="Link to this heading">#</a></h2>
+<p>Evals are structured tests for measuring a model’s performance. They help ensure accuracy, performance, and reliability, despite the nondeterministic nature of AI systems. They’re also one of the only ways to <em>improve</em> performance of an LLM-based application (through <code class="docutils literal notranslate"><span class="pre">fine-tuning</span></code>).</p>
+<section id="types-of-evals">
+<h3>Types of evals<a class="headerlink" href="#types-of-evals" title="Link to this heading">#</a></h3>
+<p>When you see the word “evals,” it could refer to a few things:</p>
+<ul class="simple">
+<li><p>Industry benchmarks for comparing models in isolation, like <a class="reference external" href="https://github.com/openai/evals/blob/main/examples/mmlu.ipynb">MMLU</a> and those listed on <a class="reference external" href="https://huggingface.co/collections/open-llm-leaderboard/the-big-benchmarks-collection-64faca6335a7fc7d4ffe974a">HuggingFace’s leaderboard</a></p></li>
+<li><p>Standard numerical scores—like <a class="reference external" href="https://aclanthology.org/W04-1013/">ROUGE</a>, <a class="reference external" href="https://arxiv.org/abs/1904.09675">BERTScore</a>—that you can use as you design evals for your use case</p></li>
+<li><p>Specific tests you implement to measure your LLM application’s performance</p></li>
+</ul>
+<p>This guide is about the third type: designing your own evals.</p>
+</section>
+<section id="how-to-read-evals">
+<h3>How to read evals<a class="headerlink" href="#how-to-read-evals" title="Link to this heading">#</a></h3>
+<p>You’ll often see numerical eval scores between 0 and 1. There’s more to evals than just scores. Combine metrics with human judgment to ensure you’re answering the right questions.</p>
+<p><strong>Evals tips</strong></p>
+<ul class="simple">
+<li><p>Adopt eval-driven development: Evaluate early and often. Write scoped tests at every stage.</p></li>
+<li><p>Design task-specific evals: Make tests reflect model capability in real-world distributions.</p></li>
+<li><p>Log everything: Log as you develop so you can mine your logs for good eval cases.</p></li>
+<li><p>Automate when possible: Structure evaluations to allow for automated scoring.</p></li>
+<li><p>It’s a journey, not a destination: Evaluation is a continuous process.</p></li>
+<li><p>Maintain agreement: Use human feedback to calibrate automated scoring.</p></li>
+</ul>
+<p><strong>Anti-patterns</strong></p>
+<ul class="simple">
+<li><p>Overly generic metrics: Relying solely on academic metrics like perplexity or BLEU score.</p></li>
+<li><p>Biased design: Creating eval datasets that don’t faithfully reproduce production traffic patterns.</p></li>
+<li><p>Vibe-based evals: Using “it seems like it’s working” as an evaluation strategy, or waiting until you ship before implementing any evals.</p></li>
+<li><p>Ignoring human feedback: Not calibrating your automated metrics against human evals.</p></li>
+</ul>
+</section>
+</section>
+<section id="design-your-eval-process">
+<h2>Design your eval process<a class="headerlink" href="#design-your-eval-process" title="Link to this heading">#</a></h2>
+<p>There are a few important components of an eval workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Define eval objective</strong>. What’s the success criteria for the eval?</p></li>
+<li><p><strong>Collect dataset</strong>. Which data will help you evaluate against your objective? Consider synthetic eval data, domain-specific eval data, purchased eval data, human-curated eval data, production data, and historical data.</p></li>
+<li><p><strong>Define eval metrics</strong>. How will you check that the success criteria are met?</p></li>
+<li><p><strong>Run and compare evals</strong>. Iterate and improve model performance for your task or system.</p></li>
+<li><p><strong>Continuously evaluate</strong>. Set up continuous evaluation (CE) to run evals on every change, monitor your app to identify new cases of nondeterminism, and grow the eval set over time.</p></li>
+</ol>
+<p>Let’s run through a few examples.</p>
+<section id="example-summarizing-transcripts">
+<h3>Example: Summarizing transcripts<a class="headerlink" href="#example-summarizing-transcripts" title="Link to this heading">#</a></h3>
+<p>To test your LLM-based application’s ability to summarize transcripts, your eval design might be:</p>
+<ol class="arabic simple">
+<li><p><strong>Define eval objective</strong><br />
+The model should be able to compete with reference summaries for relevance and accuracy.</p></li>
+<li><p><strong>Collect dataset</strong><br />
+Use a mix of production data (collected from user feedback on generated summaries) and datasets created by domain experts (writers) to determine a “good” summary.</p></li>
+<li><p><strong>Define eval metrics</strong><br />
+On a held-out set of 1000 reference transcripts → summaries, the implementation should achieve a ROUGE-L score of at least 0.40 and coherence score of at least 80% using G-Eval.</p></li>
+<li><p><strong>Run and compare evals</strong><br />
+Use the <a class="reference external" href="https://platform.openai.com/docs/api-reference/evals">Evals API</a> to create and run evals in the OpenAI dashboard.</p></li>
+<li><p><strong>Continuously evaluate</strong><br />
+Set up continuous evaluation (CE) to run evals on every change, monitor your app to identify new cases of nondeterminism, and grow the eval set over time.</p></li>
+</ol>
+<p>LLMs are better at discriminating between options. Therefore, evaluations should focus on tasks like pairwise comparisons, classification, or scoring against specific criteria instead of open-ended generation. Aligning evaluation methods with LLMs’ strengths in comparison leads to more reliable assessments of LLM outputs or model comparisons.</p>
+</section>
+<section id="example-q-a-over-docs">
+<h3>Example: Q&amp;A over docs<a class="headerlink" href="#example-q-a-over-docs" title="Link to this heading">#</a></h3>
+<p>To test your LLM-based application’s ability to do Q&amp;A over docs, your eval design might be:</p>
+<ol class="arabic simple">
+<li><p><strong>Define eval objective</strong><br />
+The model should be able to provide precise answers, recall context as needed to reason through user prompts, and provide an answer that satisfies the user’s need.</p></li>
+<li><p><strong>Collect dataset</strong><br />
+Use a mix of production data (collected from users’ satisfaction with answers provided to their questions), hard-coded correct answers to questions created by domain experts, and historical data from logs.</p></li>
+<li><p><strong>Define eval metrics</strong><br />
+Context recall of at least 0.85, context precision of over 0.7, and 70+% positively rated answers.</p></li>
+<li><p><strong>Run and compare evals</strong><br />
+Use the <a class="reference external" href="https://platform.openai.com/docs/api-reference/evals">Evals API</a> to create and run evals in the OpenAI dashboard.</p></li>
+<li><p><strong>Continuously evaluate</strong><br />
+Set up continuous evaluation (CE) to run evals on every change, monitor your app to identify new cases of nondeterminism, and grow the eval set over time.</p></li>
+</ol>
+<p>When creating an eval dataset, o3 and GPT-4.1 are useful for collecting eval examples and edge cases. Consider using o3 to help you generate a diverse set of test data across various scenarios. Ensure your test data includes typical cases, edge cases, and adversarial cases. Use human expert labellers.</p>
+</section>
+</section>
+<section id="identify-where-you-need-evals">
+<h2>Identify where you need evals<a class="headerlink" href="#identify-where-you-need-evals" title="Link to this heading">#</a></h2>
+<p>Complexity increases as you move from simple to more complex architectures. Here are four common architecture patterns:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#single-turn-model-interactions"><span class="xref myst">Single-turn model interactions</span></a></p></li>
+<li><p><a class="reference internal" href="#workflow-architectures"><span class="xref myst">Workflows</span></a></p></li>
+<li><p><a class="reference internal" href="#single-agent-architectures"><span class="xref myst">Single-agent</span></a></p></li>
+<li><p><a class="reference internal" href="#multi-agent-architectures"><span class="xref myst">Multi-agent</span></a></p></li>
+</ul>
+<p>Read about each architecture below to identify where nondeterminism enters your system. That’s where you’ll want to implement evals.</p>
+<section id="single-turn-model-interactions">
+<h3>Single-turn model interactions<a class="headerlink" href="#single-turn-model-interactions" title="Link to this heading">#</a></h3>
+<p>In this kind of architecture, the user provides input to the model, and the model processes these inputs (along with any developer prompts provided) to generate a corresponding output.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
+<p>As an example, consider an online retail scenario. Your system prompt instructs the model to <strong>categorize the customer’s question</strong> into one of the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">order_status</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return_policy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">technical_issue</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cancel_order</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code></p></li>
+</ul>
+<p>To ensure a consistent, efficient user experience, the model should <strong>only return the label that matches user intent</strong>. Let’s say the customer asks, “What’s the status of my order?”</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Evaluation Criteria</p></th>
+<th class="head"><p>Example Questions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inputs provided by the developer and user</p></td>
+<td><p>Instruction following: Does the model accurately understand and act according to the provided instructions?<br>Instruction following: Does the model prioritize the system prompt over a conflicting user prompt?</p></td>
+<td><p>Does the model stay focused on the triage task or get swayed by the user’s question?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outputs generated by the model</p></td>
+<td><p>Functional correctness: Are the model’s outputs accurate, relevant, and thorough enough to fulfill the intended task or objective?</p></td>
+<td><p>Does the model’s determination of intent correctly match the expected intent?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="workflow-architectures">
+<h3>Workflow architectures<a class="headerlink" href="#workflow-architectures" title="Link to this heading">#</a></h3>
+<p>As you look to solve more complex problems, you’ll likely transition from a single-turn model interaction to a multistep workflow that chains together several model calls. Workflows don’t introduce any new elements of nondeterminism, but they involve multiple underlying model interactions, which you can evaluate in isolation.</p>
+<section id="id1">
+<h4>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Take the same example as before, where the customer asks about their order status. A workflow architecture triages the customer request and routes it through a step-by-step process:</p>
+<ol class="arabic simple">
+<li><p>Extracting an Order ID</p></li>
+<li><p>Looking up the order details</p></li>
+<li><p>Providing the order details to a model for a final response</p></li>
+</ol>
+<p>Each step in this workflow has its own system prompt that the model must follow, putting all fetched data into a friendly output.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Evaluation Criteria</p></th>
+<th class="head"><p>Example Questions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inputs provided by the developer and user</p></td>
+<td><p>Instruction following: Does the model accurately understand and act according to the provided instructions?<br>Instruction following: Does the model prioritize the system prompt over a conflicting user prompt?</p></td>
+<td><p>Does the model stay focused on the triage task or get swayed by the user’s question?<br>Does the model follow instructions to attempt to extract an Order ID?<br>Does the final response include the order status, estimated arrival date, and tracking number?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outputs generated by the model</p></td>
+<td><p>Functional correctness: Are the model’s outputs accurate, relevant, and thorough enough to fulfill the intended task or objective?</p></td>
+<td><p>Does the model’s determination of intent correctly match the expected intent?<br>Does the final response have the correct order status, estimated arrival date, and tracking number?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="single-agent-architectures">
+<h3>Single-agent architectures<a class="headerlink" href="#single-agent-architectures" title="Link to this heading">#</a></h3>
+<p>Unlike workflows, agents solve unstructured problems that require flexible decision making. An agent has instructions and a set of tools and dynamically selects which tool to use. This introduces a new opportunity for nondeterminism.</p>
+<blockquote>
+<div><p>Tools are developer defined chunks of code that the model can execute. This can range from small helper functions to API calls for existing services. For example, <code class="docutils literal notranslate"><span class="pre">check_order_status(order_id)</span></code> could be a tool, where it takes the argument <code class="docutils literal notranslate"><span class="pre">order_id</span></code> and calls an API to check the order status.</p>
+</div></blockquote>
+<section id="id2">
+<h4>Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>Let’s adapt our customer service example to use a single agent. The agent has access to three distinct tools:</p>
+<ul class="simple">
+<li><p>Order lookup tool</p></li>
+<li><p>Password reset tool</p></li>
+<li><p>Product FAQ tool</p></li>
+</ul>
+<p>When the customer asks about their order status, the agent dynamically decides to either invoke a tool or respond to the customer. For example, if the customer asks, “What is my order status?” the agent can now follow up by requesting the order ID from the customer. This helps create a more natural user experience.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Evaluation Criteria</p></th>
+<th class="head"><p>Example Questions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inputs provided by the developer and user</p></td>
+<td><p>Instruction following: Does the model accurately understand and act according to the provided instructions?<br>Instruction following: Does the model prioritize the system prompt over a conflicting user prompt?</p></td>
+<td><p>Does the model stay focused on the triage task or get swayed by the user’s question?<br>Does the model follow instructions to attempt to extract an Order ID?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outputs generated by the model</p></td>
+<td><p>Functional correctness: Are the model’s outputs accurate, relevant, and thorough enough to fulfill the intended task or objective?</p></td>
+<td><p>Does the model’s determination of intent correctly match the expected intent?</p></td>
+</tr>
+<tr class="row-even"><td><p>Tools chosen by the model</p></td>
+<td><p>Tool selection: Evaluations that test whether the agent is able to select the correct tool to use.<br>Data precision: Evaluations that verify the agent calls the tool with the correct arguments. Typically these arguments are extracted from the conversation history, so the goal is to validate this extraction was correct.</p></td>
+<td><p>When the user asks about their order status, does the model correctly recommend invoking the order lookup tool?<br>Does the model correctly extract the user-provided order ID to the lookup tool?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="multi-agent-architectures">
+<h3>Multi-agent architectures<a class="headerlink" href="#multi-agent-architectures" title="Link to this heading">#</a></h3>
+<p>As you add tools and tasks to your single-agent architecture, the model may struggle to follow instructions or select the correct tool to call. Multi-agent architectures help by creating several distinct agents who specialize in different areas. This triaging and handoff among multiple agents introduces a new opportunity for nondeterminism.</p>
+<blockquote>
+<div><p>The decision to use a multi-agent architecture should be driven by your evals. Starting with a multi-agent architecture adds unnecessary complexity that can slow down your time to production.</p>
+</div></blockquote>
+<section id="id3">
+<h4>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>Splitting the single-agent example into a multi-agent architecture, we’ll have four distinct agents:</p>
+<ol class="arabic simple">
+<li><p>Triage agent</p></li>
+<li><p>Order agent</p></li>
+<li><p>Account management agent</p></li>
+<li><p>Sales agent</p></li>
+</ol>
+<p>When the customer asks about their order status, the triage agent may hand off the conversation to the order agent to look up the order. If the customer changes the topic to ask about a product, the order agent should hand the request back to the triage agent, who then hands off to the sales agent to fetch product information.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Evaluation Criteria</p></th>
+<th class="head"><p>Example Questions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inputs provided by the developer and user</p></td>
+<td><p>Instruction following: Does the model accurately understand and act according to the provided instructions?<br>Instruction following: Does the model prioritize the system prompt over a conflicting user prompt?</p></td>
+<td><p>Does the model stay focused on the triage task or get swayed by the user’s question?<br>Assuming the lookup_order call returned, does the order agent return a tracking number and delivery date (doesn’t have to be the correct one)?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outputs generated by the model</p></td>
+<td><p>Functional correctness: Are the model’s outputs accurate, relevant, and thorough enough to fulfill the intended task or objective?</p></td>
+<td><p>Does the model’s determination of intent correctly match the expected intent?<br>Assuming the lookup_order call returned, does the order agent provide the correct tracking number and delivery date in its response?<br>Does the order agent follow system instructions to ask the customer their reason for requesting a return before processing the return?</p></td>
+</tr>
+<tr class="row-even"><td><p>Tools chosen by the model</p></td>
+<td><p>Tool selection: Evaluations that test whether the agent is able to select the correct tool to use.<br>Data precision: Evaluations that verify the agent calls the tool with the correct arguments. Typically these arguments are extracted from the conversation history, so the goal is to validate this extraction was correct.</p></td>
+<td><p>Does the order agent correctly call the lookup order tool?<br>Does the order agent correctly call the refund_order tool?<br>Does the order agent call the lookup order tool with the correct order ID?<br>Does the account agent correctly call the reset_password tool with the correct account ID?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agent handoff</p></td>
+<td><p>Agent handoff accuracy: Evaluations that test whether each agent can appropriately recognize the decision boundary for triaging to another agent</p></td>
+<td><p>When a user asks about order status, does the triage agent correctly pass to the order agent?<br>When the user changes the subject to talk about the latest product, does the order agent hand back control to the triage agent?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="create-and-combine-different-types-of-evaluators">
+<h2>Create and combine different types of evaluators<a class="headerlink" href="#create-and-combine-different-types-of-evaluators" title="Link to this heading">#</a></h2>
+<p>As you design your own evals, there are several specific evaluator types to choose from. Another way to think about this is what role you want the evaluator to play.</p>
+<section id="metric-based-evals">
+<h3>Metric-based evals<a class="headerlink" href="#metric-based-evals" title="Link to this heading">#</a></h3>
+<p>Quantitative evals provide a numerical score you can use to filter and rank results. They provide useful benchmarks for automated regression testing.</p>
+<ul class="simple">
+<li><p><strong>Examples</strong>: Exact match, string match, ROUGE/BLEU scoring, function call accuracy, executable evals (executed to assess functionality or behavior—e.g., text2sql)</p></li>
+<li><p><strong>Challenges</strong>: May not be tailored to specific use cases, may miss nuance</p></li>
+</ul>
+</section>
+<section id="human-evals">
+<h3>Human evals<a class="headerlink" href="#human-evals" title="Link to this heading">#</a></h3>
+<p>Human judgment evals provide the highest quality but are slow and expensive.</p>
+<ul class="simple">
+<li><p><strong>Examples</strong>: Skim over system outputs to get a sense of whether they look better or worse; create a randomized, blinded test in which employees, contractors, or outsourced labeling agencies judge the quality of system outputs (e.g., ranking a small set of possible outputs, or giving each a grade of 1-5)</p></li>
+<li><p><strong>Challenges</strong>: Disagreement among human experts, expensive, slow</p></li>
+<li><p><strong>Recommendations</strong>:</p>
+<ul>
+<li><p>Conduct multiple rounds of detailed human review to refine the scorecard</p></li>
+<li><p>Implement a “show rather than tell” policy by providing examples of different score levels (e.g., 1, 3, and 8 out of 10)</p></li>
+<li><p>Include a pass/fail threshold in addition to the numerical score</p></li>
+<li><p>A simple way to aggregate multiple reviewers is to take consensus votes</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="llm-as-a-judge-and-model-graders">
+<h3>LLM-as-a-judge and model graders<a class="headerlink" href="#llm-as-a-judge-and-model-graders" title="Link to this heading">#</a></h3>
+<p>Using models to judge output is cheaper to run and more scalable than human evaluation. Strong LLM judges like GPT-4.1 can match both controlled and crowdsourced human preferences, achieving over 80% agreement (the same level of agreement between humans).</p>
+<ul class="simple">
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p>Pairwise comparison: Present the judge model with two responses and ask it to determine which one is better based on specific criteria</p></li>
+<li><p>Single answer grading: The judge model evaluates a single response in isolation, assigning a score or rating based on predefined quality metrics</p></li>
+<li><p>Reference-guided grading: Provide the judge model with a reference or “gold standard” answer, which it uses as a benchmark to evaluate the given response</p></li>
+</ul>
+</li>
+<li><p><strong>Challenges</strong>: Position bias (response order), verbosity bias (preferring longer responses)</p></li>
+<li><p><strong>Recommendations</strong>:</p>
+<ul>
+<li><p>Use pairwise comparison or pass/fail for more reliability</p></li>
+<li><p>Use the most capable model to grade if you can (e.g., o3)—o-series models excel at auto-grading from rubics or from a collection of reference expert answers</p></li>
+<li><p>Control for response lengths as LLMs bias towards longer responses in general</p></li>
+<li><p>Add reasoning and chain-of-thought as reasoning before scoring improves eval performance</p></li>
+<li><p>Once the LLM judge reaches a point where it’s faster, cheaper, and consistently agrees with human annotations, scale up</p></li>
+<li><p>Structure questions to allow for automated grading while maintaining the integrity of the task—a common approach is to reformat questions into multiple choice formats</p></li>
+<li><p>Ensure eval rubrics are clear and detailed</p></li>
+</ul>
+</li>
+</ul>
+<p>No strategy is perfect. The quality of LLM-as-Judge varies depending on problem context while using expert human annotators to provide ground-truth labels is expensive and time-consuming.</p>
+</section>
+</section>
+<section id="handle-edge-cases">
+<h2>Handle edge cases<a class="headerlink" href="#handle-edge-cases" title="Link to this heading">#</a></h2>
+<p>While your evaluations should cover primary, happy-path scenarios for each architecture, real-world AI systems frequently encounter edge cases that challenge system performance. Evaluating these edge cases is important for ensuring reliability and a good user experience.</p>
+<p>We see these edge cases fall into a few buckets:</p>
+<section id="input-variability">
+<h3>Input variability<a class="headerlink" href="#input-variability" title="Link to this heading">#</a></h3>
+<p>Because users provide input to the model, our system must be flexible to handle the different ways our users may interact, like:</p>
+<ul class="simple">
+<li><p>Non-English or multilingual inputs</p></li>
+<li><p>Formats other than input text (e.g., XML, JSON, Markdown, CSV)</p></li>
+<li><p>Input modalities (e.g., images)</p></li>
+</ul>
+<p>Your evals for instruction following and functional correctness need to accommodate inputs that users might try.</p>
+</section>
+<section id="contextual-complexity">
+<h3>Contextual complexity<a class="headerlink" href="#contextual-complexity" title="Link to this heading">#</a></h3>
+<p>Many LLM-based applications fail due to poor understanding of the context of the request. This context could be from the user or noise in the past conversation history.</p>
+<p>Examples include:</p>
+<ul class="simple">
+<li><p>Multiple questions or intents in a single request</p></li>
+<li><p>Typos and misspellings</p></li>
+<li><p>Short requests with minimal context (e.g., if a user just says: “returns”)</p></li>
+<li><p>Long context or long-running conversations</p></li>
+<li><p>Tool calls that return data with ambiguous property names (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;on:</span> <span class="pre">123&quot;</span></code>, where “on” is the order number)</p></li>
+<li><p>Multiple tool calls, sometimes leading to incorrect arguments</p></li>
+<li><p>Multiple agent handoffs, sometimes leading to circular handoffs</p></li>
+</ul>
+</section>
+<section id="personalization-and-customization">
+<h3>Personalization and customization<a class="headerlink" href="#personalization-and-customization" title="Link to this heading">#</a></h3>
+<p>While AI improves UX by adapting to user-specific requests, this flexibility introduces many edge cases. Clearly define evals for use cases you want to specifically support and block:</p>
+<ul class="simple">
+<li><p>Jailbreak attempts to get the model to do something different</p></li>
+<li><p>Formatting requests (e.g., format as JSON, or use bullet points)</p></li>
+<li><p>Cases where user prompts conflict with your system prompts</p></li>
+</ul>
+</section>
+</section>
+<section id="use-evals-to-improve-performance">
+<h2>Use evals to improve performance<a class="headerlink" href="#use-evals-to-improve-performance" title="Link to this heading">#</a></h2>
+<p>When your evals reach a level of maturity that consistently measures performance, shift to using your evals data to improve your application’s performance.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_5_reproducibility.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced usage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4_pharma_rd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Use Case: AI Co-Scientist for Pharma R&amp;D</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-evals">What are evals?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-evals">Types of evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-evals">How to read evals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-your-eval-process">Design your eval process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-summarizing-transcripts">Example: Summarizing transcripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-q-a-over-docs">Example: Q&amp;A over docs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-where-you-need-evals">Identify where you need evals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-turn-model-interactions">Single-turn model interactions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-architectures">Workflow architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-agent-architectures">Single-agent architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agent-architectures">Multi-agent architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-combine-different-types-of-evaluators">Create and combine different types of evaluators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metric-based-evals">Metric-based evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-evals">Human evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge-and-model-graders">LLM-as-a-judge and model graders</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-edge-cases">Handle edge cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-variability">Input variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contextual-complexity">Contextual complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalization-and-customization">Personalization and customization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-evals-to-improve-performance">Use evals to improve performance</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

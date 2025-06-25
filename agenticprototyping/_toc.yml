@@ -9,6 +9,8 @@ parts:
       - file: 1_0_dev_quick_start
       - file: 1_1_model_selection
       - file: 1_2_prototype_to_production
+      - file: 1_3_structured_outputs
+      - file: 1_4_function_calling
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview
@@ -22,6 +24,7 @@ parts:
       - file: 3_3_reasoning_models
       - file: 3_4_accuracy_optimization
       - file: 3_5_reproducibility
+      - file: 3_6_evaluation_design
   - caption: Case Studies
     chapters:
       - file: 4_legal_qa
