@@ -105,7 +105,7 @@ Let's explore each pattern in detail.
 
 A single agent can handle many tasks by incrementally adding tools, keeping complexity manageable and simplifying evaluation and maintenance. Each new tool expands its capabilities without prematurely forcing you to orchestrate multiple agents.
 
-![Single agent orchestration](single_agent_orchestration.png)
+![Single agent orchestration](images/single_agent_orchestration.png)
 
 Every orchestration approach needs the concept of a 'run', typically implemented as a loop that lets agents operate until an exit condition is reached. Common exit conditions include tool calls, a certain structured output, errors, or reaching a maximum number of turns.
 
@@ -166,7 +166,7 @@ The manager pattern empowers a central LLM—the "manager"—to orchestrate a ne
 
 This pattern is ideal for workflows where you only want one agent to control workflow execution and have access to the user.
 
-![Manager pattern orchestration](multi_agent_orchestration.png)
+![Manager pattern orchestration](images/multi_agent_orchestration.png)
 
 For example, here's how you could implement this pattern in the Agents SDK:
 
@@ -228,7 +228,7 @@ In a decentralized pattern, agents can 'handoff' workflow execution to one anoth
 
 This pattern involves using many agents on equal footing, where one agent can directly hand off control of the workflow to another agent. This is optimal when you don't need a single agent maintaining central control or synthesis—instead allowing each agent to take over execution and interact with the user as needed.
 
-![Decentralized agent orchestration](decentralized_agent_orchestration.png)
+![Decentralized agent orchestration](images/decentralized_agent_orchestration.png)
 
 For example, here's how you'd implement the decentralized pattern using the Agents SDK for a customer service workflow that handles both sales and support:
 

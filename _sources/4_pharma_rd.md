@@ -1,6 +1,6 @@
 # Use Case: AI Co-Scientist for Pharma R&D
 
-![AI Scientist Pharma R&D](ai_scientist_pharma_rnd.png)
+![AI Scientist Pharma R&D](images/ai_scientist_pharma_rnd.png)
 
 This section details how to build an AI system that functions as a "co-scientist" to accelerate experimental design in pharmaceutical R&D, focusing on optimizing a drug synthesis process under specific constraints.
 
@@ -42,7 +42,7 @@ Traditionally, optimizing such experiments involves weeks of manual planning, li
 
 The system employs a multi-agent architecture that emulates a high-performing scientific team. Different AI components, acting in specialized roles (such as ideation, critique, and learning from outcomes), collaborate using various models and tools to execute the workflow.
 
-![Co-Scientist Architecture](coscientist_architecture.png)
+![Co-Scientist Architecture](images/coscientist_architecture.png)
 
 ### 2.1. Scientist Input & Constraints
 
