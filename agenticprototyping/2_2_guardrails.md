@@ -7,7 +7,7 @@ You can set up guardrails that address risks you've already identified for your 
 
 In the diagram below, we combine LLM-based guardrails, rules-based guardrails such as regex, and the OpenAI moderation API to vet our user inputs:
 
-![Guardrails Diagram](guard_rails.png)
+![Guardrails Diagram](images/guard_rails.png)
 
 ---
 

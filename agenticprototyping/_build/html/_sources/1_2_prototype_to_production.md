@@ -47,7 +47,7 @@ Transitioning a prototype to production requires careful planning and execution.
     - **Monitor Version Performance**: Track metrics across model versions to identify performance trends and inform future selection decisions.
 
 ## Adaptation Decision Tree
-![Model Selection Flowchart](model_selection_flowchart.png)
+![Model Selection Flowchart](images/model_selection_flowchart.png)
 
 ## Communicating Model Selection to Non-Technical Stakeholders
 When explaining your model choices to business stakeholders, focus on these key points:

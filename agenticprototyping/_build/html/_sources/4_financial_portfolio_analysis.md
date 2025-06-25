@@ -42,7 +42,7 @@ For more on these collaboration patterns, see the OpenAI Agents SDK documentatio
 
 Our system follows a hub-and-spoke design. The Portfolio Manager agent is the hub (central coordinator), and the specialist agents are the spokes. The user's query (e.g. "How would a planned interest rate reduction affect my GOOGL holdings?") goes first to the Portfolio Manager. The Portfolio Manager agent is prompted to break down the problem and delegate to the appropriate specialist agents. It treats each specialist as a callable tool, invoking them for their portion of the analysis. All three report back to the Portfolio Manager, which then synthesizes a final answer for the user.
 
-![Multi-Agent Collaboration Architecture](multi_agent_collab_agent_architecture.png)
+![Multi-Agent Collaboration Architecture](images/multi_agent_collab_agent_architecture.png)
 
 ---
 
@@ -283,15 +283,15 @@ Here's an example of an investment report generated through the workflow. Your o
 
 <!-- Insert the following images in the appropriate order for your analysis. -->
 
-![Cumulative Return Comparison](multi_agent_collab_cumulative_return_comparison.png)
-![GOOGL Daily Returns](multi_agent_collab_googl_daily_returns.png)
-![GOOGL Moving Averages](multi_agent_collab_googl_moving_averages.png)
-![GOOGL Rolling Volatility](multi_agent_collab_googl_rolling_volatility.png)
-![Rolling Volatility Comparison](multi_agent_collab_rolling_volatility_comparison.png)
-![GOOGL Quarterly Margins](multi_agent_collab_GOOGL_quarterly_margins.png)
-![GOOGL Quarterly Trends](multi_agent_collab_GOOGL_quarterly_trends.png)
-![GOOGL RSI](multi_agent_collab_googl_rsi.png)
-![GOOGL Analyst Recommendations Trend](multi_agent_collab_GOOGL_analyst_recommendations_trend.png)
+![Cumulative Return Comparison](images/multi_agent_collab_cumulative_return_comparison.png)
+![GOOGL Daily Returns](images/multi_agent_collab_googl_daily_returns.png)
+![GOOGL Moving Averages](images/multi_agent_collab_googl_moving_averages.png)
+![GOOGL Rolling Volatility](images/multi_agent_collab_googl_rolling_volatility.png)
+![Rolling Volatility Comparison](images/multi_agent_collab_rolling_volatility_comparison.png)
+![GOOGL Quarterly Margins](images/multi_agent_collab_GOOGL_quarterly_margins.png)
+![GOOGL Quarterly Trends](images/multi_agent_collab_GOOGL_quarterly_trends.png)
+![GOOGL RSI](images/multi_agent_collab_googl_rsi.png)
+![GOOGL Analyst Recommendations Trend](images/multi_agent_collab_GOOGL_analyst_recommendations_trend.png)
 
 ---
 

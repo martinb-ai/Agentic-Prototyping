@@ -25,7 +25,7 @@ OpenAI offers two distinct model families, each with unique strengths:
 
 ### OpenAI Model Evolution
 
-![OpenAI Model Evolution](model_selection.png)
+![OpenAI Model Evolution](images/model_selection.png)
 
 #### Key Characteristics
 

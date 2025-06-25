@@ -1,6 +1,6 @@
 # Use Case: Insurance Claim Processing
 
-![Insurance Task Card](insurance_task_card.png)
+![Insurance Task Card](images/insurance_task_card.png)
 
 Many businesses are faced with the task of digitizing hand-filled forms. In this section, we will demonstrate how OpenAI can be used to digitize and validate a hand-filled insurance form. While this is a common problem for insurance, the same techniques can be applied to a variety of other industries and forms, for example tax forms, invoices, and more.
 
@@ -32,7 +32,7 @@ This table summarizes the core technology choices and their rationale for this s
 
 The high level basic architecture of the solution is shown below.
 
-![Insurance Architecture](insurance_architecture.png)
+![Insurance Architecture](images/insurance_architecture.png)
 
 This task is complex and requires a wide variety of model capabilities, including vision, function calling, reasoning, and structured output. While o3 is capable of doing all of these at once, we found during experimentation that o4-mini alone was not sufficient to achieve the necessary performance. Due to the higher relative costs of o3, we instead opted for a two-stage approach.
 
@@ -42,7 +42,7 @@ Stage two takes advantage of the reasoning abilities of o4-mini. We use o4-mini 
 
 To demonstrate concretely how this works, let's look at a sample image of an insurance form.
 
-![Insurance Form](insurance_form.png)
+![Insurance Form](images/insurance_form.png)
 
 While the form itself is fairly straightforward, there is missing data and ambiguous information that will be difficult for a traditional OCR system to fill out correctly. First, notice that the zip code and county have been omitted. Second, the email address of the user is ambiguous -- it could be jsmith1@gmail.com or jsmithl@gmail.com. In the following sections, we will walk through how a well-designed solution can handle these ambiguities and return the correct form results.
 
