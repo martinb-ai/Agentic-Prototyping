@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Agentic Prototyping</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Streaming API responses &#8212; Agentic Prototyping</title>
   
   
   
@@ -55,12 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_6_streaming';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File inputs" href="1_7_file_inputs.html" />
+    <link rel="prev" title="Conversation state" href="1_5_conversational_state.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +93,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -122,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -181,14 +180,14 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_3_structured_outputs.html">Structured Outputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Streaming API responses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
@@ -256,6 +255,54 @@
 
 
 
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_6_streaming.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
   title="Fullscreen mode"
@@ -289,7 +336,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -298,42 +347,126 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Streaming API responses</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-streaming">Enable streaming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-responses">Read the responses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moderation-risk">Moderation risk</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="streaming-api-responses">
+<h1>Streaming API responses<a class="headerlink" href="#streaming-api-responses" title="Link to this heading">#</a></h1>
+<p>Learn how to stream model responses from the OpenAI API using server-sent events.</p>
+<p>By default, when you make a request to the OpenAI API, we generate the model’s entire output before sending it back in a single HTTP response. When generating long outputs, waiting for a response can take time. Streaming responses lets you start printing or processing the beginning of the model’s output while it continues generating the full response.</p>
+<section id="enable-streaming">
+<h2>Enable streaming<a class="headerlink" href="#enable-streaming" title="Link to this heading">#</a></h2>
+<p>To start streaming responses, set <code class="docutils literal notranslate"><span class="pre">stream=True</span></code> in your request to the Responses endpoint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Say &#39;double bubble bath&#39; ten times fast.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Responses API uses semantic events for streaming. Each event is typed with a predefined schema, so you can listen for events you care about.</p>
+<p>For a full list of event types, see the <a class="reference external" href="https://platform.openai.com/docs/api-reference/responses-streaming">API reference for streaming</a>. Here are a few examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">StreamingEvent</span> <span class="o">=</span> 
+	<span class="o">|</span> <span class="n">ResponseCreatedEvent</span>
+	<span class="o">|</span> <span class="n">ResponseInProgressEvent</span>
+	<span class="o">|</span> <span class="n">ResponseFailedEvent</span>
+	<span class="o">|</span> <span class="n">ResponseCompletedEvent</span>
+	<span class="o">|</span> <span class="n">ResponseOutputItemAdded</span>
+	<span class="o">|</span> <span class="n">ResponseOutputItemDone</span>
+	<span class="o">|</span> <span class="n">ResponseContentPartAdded</span>
+	<span class="o">|</span> <span class="n">ResponseContentPartDone</span>
+	<span class="o">|</span> <span class="n">ResponseOutputTextDelta</span>
+	<span class="o">|</span> <span class="n">ResponseOutputTextAnnotationAdded</span>
+	<span class="o">|</span> <span class="n">ResponseTextDone</span>
+	<span class="o">|</span> <span class="n">ResponseRefusalDelta</span>
+	<span class="o">|</span> <span class="n">ResponseRefusalDone</span>
+	<span class="o">|</span> <span class="n">ResponseFunctionCallArgumentsDelta</span>
+	<span class="o">|</span> <span class="n">ResponseFunctionCallArgumentsDone</span>
+	<span class="o">|</span> <span class="n">ResponseFileSearchCallInProgress</span>
+	<span class="o">|</span> <span class="n">ResponseFileSearchCallSearching</span>
+	<span class="o">|</span> <span class="n">ResponseFileSearchCallCompleted</span>
+	<span class="o">|</span> <span class="n">ResponseCodeInterpreterInProgress</span>
+	<span class="o">|</span> <span class="n">ResponseCodeInterpreterCallCodeDelta</span>
+	<span class="o">|</span> <span class="n">ResponseCodeInterpreterCallCodeDone</span>
+	<span class="o">|</span> <span class="n">ResponseCodeInterpreterCallIntepreting</span>
+	<span class="o">|</span> <span class="n">ResponseCodeInterpreterCallCompleted</span>
+	<span class="o">|</span> <span class="n">Error</span>
+</pre></div>
+</div>
+</section>
+<section id="read-the-responses">
+<h2>Read the responses<a class="headerlink" href="#read-the-responses" title="Link to this heading">#</a></h2>
+<p>If you’re using our SDK, every event is a typed instance. You can also identity individual events using the <code class="docutils literal notranslate"><span class="pre">type</span></code> property of the event.</p>
+<p>Some key lifecycle events are emitted only once, while others are emitted multiple times as the response is generated. Common events to listen for when streaming text are:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- `response.created`
+- `response.output_text.delta`
+- `response.completed`
+- `error`
+</pre></div>
+</div>
+</section>
+<section id="moderation-risk">
+<h2>Moderation risk<a class="headerlink" href="#moderation-risk" title="Link to this heading">#</a></h2>
+<p>Note that streaming the model’s output in a production application makes it more difficult to moderate the content of the completions, as partial completions may be more difficult to evaluate. This may have implications for approved usage.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               
@@ -342,12 +475,47 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="1_5_conversational_state.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conversation state</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_7_file_inputs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">File inputs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-streaming">Enable streaming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-responses">Read the responses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moderation-risk">Moderation risk</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; Agentic Prototyping</title>
+    <title>File inputs &#8212; Agentic Prototyping</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '3_5_reproducibility';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_7_file_inputs';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Evals design best practices" href="3_6_evaluation_design.html" />
-    <link rel="prev" title="Optimizing LLM Accuracy" href="3_4_accuracy_optimization.html" />
+    <link rel="next" title="Agents Overview" href="2_0_agents_overview.html" />
+    <link rel="prev" title="Streaming API responses" href="1_6_streaming.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">File inputs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul class="nav bd-sidenav">
@@ -197,13 +197,13 @@
 <li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="_sources/3_5_reproducibility.md" target="_blank"
+      <li><a href="_sources/1_7_file_inputs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Advanced usage</h1>
+    <h1>File inputs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,18 +359,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-outputs">Reproducible outputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-tokens">Managing tokens</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-dive">Deep dive</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-details">Parameter details</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-presence-penalties">Frequency and presence penalties</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Deep dive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-log-probabilities">Token log probabilities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other parameters</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files">Uploading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base64-encoded-files">Base64-encoded files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-considerations">Usage considerations</a></li>
 </ul>
             </nav>
         </div>
@@ -382,64 +374,97 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="advanced-usage">
-<h1>Advanced usage<a class="headerlink" href="#advanced-usage" title="Link to this heading">#</a></h1>
-<p>Use advanced techniques for reproducibility and parameter tuning.</p>
-<p>OpenAI’s text generation models (often called generative pre-trained transformers or large language models) have been trained to understand natural language, code, and images. The models provide text outputs in response to their inputs. The text inputs to these models are also referred to as “prompts”. Designing a prompt is essentially how you “program” a large language model model, usually by providing instructions or some examples of how to successfully complete a task.</p>
-<section id="reproducible-outputs">
-<h2>Reproducible outputs<a class="headerlink" href="#reproducible-outputs" title="Link to this heading">#</a></h2>
-<p>Chat Completions are non-deterministic by default (which means model outputs may differ from request to request). That being said, we offer some control towards deterministic outputs by giving you access to the seed parameter and the system_fingerprint response field.</p>
-<p>To receive (mostly) deterministic outputs across API calls, you can:</p>
-<ul class="simple">
-<li><p>Set the seed parameter to any integer of your choice and use the same value across requests you’d like deterministic outputs for.</p></li>
-<li><p>Ensure all other parameters (like <code class="docutils literal notranslate"><span class="pre">prompt</span></code> or <code class="docutils literal notranslate"><span class="pre">temperature</span></code>) are the exact same across requests.</p></li>
-</ul>
-<p>Sometimes, determinism may be impacted due to necessary changes OpenAI makes to model configurations on our end. To help you keep track of these changes, we expose the system_fingerprint field. If this value is different, you may see different outputs due to changes we’ve made on our systems.</p>
-<p><a class="reference external" href="https://cookbook.openai.com/examples/reproducible_outputs_with_the_seed_parameter">Deterministic outputs - Explore the new seed parameter in the OpenAI cookbook</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="file-inputs">
+<h1>File inputs<a class="headerlink" href="#file-inputs" title="Link to this heading">#</a></h1>
+<p>Learn how to use PDF files as inputs to the OpenAI API.</p>
+<p>OpenAI models with vision capabilities can also accept PDF files as input. Provide PDFs either as Base64-encoded data or as file IDs obtained after uploading files to the <code class="docutils literal notranslate"><span class="pre">/v1/files</span></code> endpoint through the <a class="reference external" href="https://platform.openai.com/docs/api-reference/files">API</a> or <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> under <code class="docutils literal notranslate"><span class="pre">storage</span></code>.</p>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h2>
+<p>To help models understand PDF content, we put into the model’s context both the extracted text and an image of each page. The model can then use both the text and the images to generate a response. This is useful, for example, if diagrams contain key information that isn’t in the text.</p>
 </section>
-<section id="managing-tokens">
-<h2>Managing tokens<a class="headerlink" href="#managing-tokens" title="Link to this heading">#</a></h2>
-<p>Language models read and write text in chunks called tokens. In English, a token can be as short as one character or as long as one word (e.g., <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">apple</span></code>), and in some languages tokens can be even shorter than one character or even longer than one word.</p>
-<p>As a rough rule of thumb, 1 token is approximately 4 characters or 0.75 words for English text.</p>
-<p>Check out our <a class="reference external" href="https://platform.openai.com/tokenizer">Tokenizer tool</a> to test specific strings and see how they are translated into tokens.</p>
-<p>For example, the string <code class="docutils literal notranslate"><span class="pre">&quot;ChatGPT</span> <span class="pre">is</span> <span class="pre">great!&quot;</span></code> is encoded into six tokens: <code class="docutils literal notranslate"><span class="pre">[&quot;Chat&quot;,</span> <span class="pre">&quot;G&quot;,</span> <span class="pre">&quot;PT&quot;,</span> <span class="pre">&quot;</span> <span class="pre">is&quot;,</span> <span class="pre">&quot;</span> <span class="pre">great&quot;,</span> <span class="pre">&quot;!&quot;]</span></code>.</p>
-<p>The total number of tokens in an API call affects:</p>
-<ul class="simple">
-<li><p>How much your API call costs, as you pay per token</p></li>
-<li><p>How long your API call takes, as writing more tokens takes more time</p></li>
-<li><p>Whether your API call works at all, as total tokens must be below the model’s maximum limit (4097 tokens for <code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code>)</p></li>
-</ul>
-<p>Both input and output tokens count toward these quantities. For example, if your API call used 10 tokens in the message input and you received 20 tokens in the message output, you would be billed for 30 tokens. Note however that for some models the price per token is different for tokens in the input vs. the output (see the <a class="reference external" href="https://openai.com/api/pricing">pricing</a> page for more information).</p>
-<p>To see how many tokens are used by an API call, check the <code class="docutils literal notranslate"><span class="pre">usage</span></code> field in the API response (e.g., <code class="docutils literal notranslate"><span class="pre">response['usage']['total_tokens']</span></code>).</p>
-<p>Chat models like <code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code> and <code class="docutils literal notranslate"><span class="pre">gpt-4-turbo-preview</span></code> use tokens in the same way as the models available in the completions API, but because of their message-based formatting, it’s more difficult to count how many tokens will be used by a conversation.</p>
-<section id="deep-dive">
-<h3>Deep dive<a class="headerlink" href="#deep-dive" title="Link to this heading">#</a></h3>
-<p>Counting tokens for chat API calls</p>
-<p>To see how many tokens are in a text string without making an API call, use OpenAI’s <a class="reference external" href="https://github.com/openai/tiktoken">tiktoken</a> Python library. Example code can be found in the OpenAI Cookbook’s guide on <a class="reference external" href="https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken">how to count tokens with tiktoken</a>.</p>
-<p>Each message passed to the API consumes the number of tokens in the content, role, and other fields, plus a few extra for behind-the-scenes formatting. This may change slightly in the future.</p>
-<p>If a conversation has too many tokens to fit within a model’s maximum limit (e.g., more than 4097 tokens for <code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code> or more than 128k tokens for <code class="docutils literal notranslate"><span class="pre">gpt-4o</span></code>), you will have to truncate, omit, or otherwise shrink your text until it fits. Beware that if a message is removed from the messages input, the model will lose all knowledge of it.</p>
-<p>Note that very long conversations are more likely to receive incomplete replies. For example, a <code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code> conversation that is 4090 tokens long will have its reply cut off after just 6 tokens.</p>
+<section id="uploading-files">
+<h2>Uploading files<a class="headerlink" href="#uploading-files" title="Link to this heading">#</a></h2>
+<p>In the example below, we first upload a PDF using the <a class="reference external" href="https://platform.openai.com/docs/api-reference/files">Files API</a>, then reference its file ID in an API request to the model.</p>
+<p>Upload a file to use in a response</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="n">purpose</span><span class="o">=</span><span class="s2">&quot;user_data&quot;</span>
+<span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_file&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the first dragon in the book?&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
+<section id="base64-encoded-files">
+<h2>Base64-encoded files<a class="headerlink" href="#base64-encoded-files" title="Link to this heading">#</a></h2>
+<p>You can send PDF file inputs as Base64-encoded inputs as well.</p>
+<p>Base64 encode a file to use in a response</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">base64_string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_file&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_data&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:application/pdf;base64,</span><span class="si">{</span><span class="n">base64_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the first dragon in the book?&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
-<section id="parameter-details">
-<h2>Parameter details<a class="headerlink" href="#parameter-details" title="Link to this heading">#</a></h2>
-<section id="frequency-and-presence-penalties">
-<h3>Frequency and presence penalties<a class="headerlink" href="#frequency-and-presence-penalties" title="Link to this heading">#</a></h3>
-<p>The frequency and presence penalties found in the Chat Completions API and Legacy Completions API can be used to reduce the likelihood of sampling repetitive sequences of tokens.</p>
-</section>
-<section id="id1">
-<h3>Deep dive<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Penalties behind the scenes</p>
-<p>Reasonable values for the penalty coefficients are around 0.1 to 1 if the aim is to just reduce repetitive samples somewhat. If the aim is to strongly suppress repetition, then one can increase the coefficients up to 2, but this can noticeably degrade the quality of samples. Negative values can be used to increase the likelihood of repetition.</p>
-</section>
-<section id="token-log-probabilities">
-<h3>Token log probabilities<a class="headerlink" href="#token-log-probabilities" title="Link to this heading">#</a></h3>
-<p>The logprobs parameter found in the Chat Completions API and Legacy Completions API, when requested, provides the log probabilities of each output token, and a limited number of the most likely tokens at each token position alongside their log probabilities. This can be useful in some cases to assess the confidence of the model in its output, or to examine alternative responses the model might have given.</p>
-</section>
-<section id="other-parameters">
-<h3>Other parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">#</a></h3>
-<p>See the full <a class="reference external" href="https://platform.openai.com/docs/api-reference/chat">API reference documentation</a> to learn more.</p>
-</section>
+<section id="usage-considerations">
+<h2>Usage considerations<a class="headerlink" href="#usage-considerations" title="Link to this heading">#</a></h2>
+<p>Below are a few considerations to keep in mind while using PDF inputs.</p>
+<p><strong>Token usage</strong></p>
+<p>To help models understand PDF content, we put into the model’s context both extracted text and an image of each page—regardless of whether the page includes images. Before deploying your solution at scale, ensure you understand the pricing and token usage implications of using PDFs as input.</p>
+<p><strong>File size limitations</strong></p>
+<p>You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.</p>
+<p><strong>Supported models</strong></p>
+<p>Only models that support both text and image inputs, such as gpt-4o, gpt-4o-mini, or o1, can accept PDF files as input.</p>
+<p><strong>File upload purpose</strong></p>
+<p>You can upload these files to the Files API with any <a class="reference external" href="https://platform.openai.com/docs/api-reference/files/create">purpose</a>, but we recommend using the <code class="docutils literal notranslate"><span class="pre">user_data</span></code> purpose for files you plan to use as model inputs.</p>
 </section>
 </section>
 
@@ -474,20 +499,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="3_4_accuracy_optimization.html"
+       href="1_6_streaming.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Optimizing LLM Accuracy</p>
+        <p class="prev-next-title">Streaming API responses</p>
       </div>
     </a>
     <a class="right-next"
-       href="3_6_evaluation_design.html"
+       href="2_0_agents_overview.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Evals design best practices</p>
+        <p class="prev-next-title">Agents Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -507,18 +532,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-outputs">Reproducible outputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-tokens">Managing tokens</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-dive">Deep dive</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-details">Parameter details</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-presence-penalties">Frequency and presence penalties</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Deep dive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-log-probabilities">Token log probabilities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other parameters</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files">Uploading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base64-encoded-files">Base64-encoded files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-considerations">Usage considerations</a></li>
 </ul>
   </nav></div>
 
