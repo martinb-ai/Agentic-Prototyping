@@ -14,6 +14,7 @@ parts:
       - file: 1_5_conversational_state
       - file: 1_6_streaming
       - file: 1_7_file_inputs
+      - file: 1_8_evals
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview

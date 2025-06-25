@@ -1,6 +1,5 @@
 # File inputs
 
-
 Learn how to use PDF files as inputs to the OpenAI API.
 
 OpenAI models with vision capabilities can also accept PDF files as input. Provide PDFs either as Base64-encoded data or as file IDs obtained after uploading files to the `/v1/files` endpoint through the [API](https://platform.openai.com/docs/api-reference/files) or `dashboard` under `storage`.
