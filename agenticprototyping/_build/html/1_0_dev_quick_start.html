@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="_sources/1_0_dev_quick_start.ipynb" target="_blank"
+      <li><a href="_sources/1_0_dev_quick_start.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -276,7 +276,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -366,9 +366,9 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-file-types">Supported File Types</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#size-limits">Size Limits</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-requirements">Other Requirements</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-the-model-with-tools">Extend the model with tools</a></li>
@@ -388,9 +388,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="developer-quickstart">
 <h1>Developer Quickstart<a class="headerlink" href="#developer-quickstart" title="Link to this heading">#</a></h1>
 <p>The OpenAI API provides a simple interface to state-of-the-art AI models for text generation, natural language processing, computer vision, and more. This example generates text output from a prompt, as you might using ChatGPT.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initalize Openai Client library and Setup API keys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initalize Openai Client library and Setup API keys</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
@@ -402,13 +400,9 @@ document.write(`
 <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-</div>
 <section id="text-creation">
 <h2>Text Creation<a class="headerlink" href="#text-creation" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
     <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Write a one-sentence bedtime story about a unicorn.&quot;</span>
 <span class="p">)</span>
@@ -416,20 +410,15 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Beneath a shimmer of moonlight, a gentle unicorn tiptoed through a field of glowing flowers, leaving trails of stardust to fill everyone’s dreams with magic.
+<p>Output</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Under<span class="w"> </span>a<span class="w"> </span>silver<span class="w"> </span>moon,<span class="w"> </span>a<span class="w"> </span>gentle<span class="w"> </span>unicorn<span class="w"> </span>named<span class="w"> </span>Luna<span class="w"> </span>tiptoed<span class="w"> </span>through<span class="w"> </span>a<span class="w"> </span>sparkling<span class="w"> </span>forest,<span class="w"> </span>leaving<span class="w"> </span>trails<span class="w"> </span>of<span class="w"> </span>twinkling<span class="w"> </span>stardust<span class="w"> </span>and<span class="w"> </span>sweet<span class="w"> </span>dreams<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>sleeping<span class="w"> </span>creatures.
 </pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="analyze-image-inputs">
 <h2>Analyze Image Inputs<a class="headerlink" href="#analyze-image-inputs" title="Link to this heading">#</a></h2>
 <p>You can provide image inputs to the model as well. Scan receipts, analyze screenshots, or find objects in the real world with computer vision.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
     <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
         <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What two dogs are in this image?&quot;</span><span class="p">},</span>
@@ -448,17 +437,8 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the image, the animal on the left is a **wolf** (not a domesticated dog breed, but the ancestor of domestic dogs), and the animal on the right is a **Pug**, which is a breed of domestic dog.
-</pre></div>
-</div>
-</div>
-</div>
 <p>Passing a Base64 encoded Image (local images)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
 
 <span class="c1"># Function to encode the image</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">encode_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
@@ -492,62 +472,43 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This image is a flowchart diagram illustrating a **manager-agent architecture** for handling a translation request.
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>This<span class="w"> </span>image<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>flowchart<span class="w"> </span>illustrating<span class="w"> </span>a<span class="w"> </span><span class="s2">&quot;manager-agent&quot;</span><span class="w"> </span>system<span class="w"> </span><span class="k">for</span><span class="w"> </span>translating<span class="w"> </span>the<span class="w"> </span>word<span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span>into<span class="w"> </span>Spanish,<span class="w"> </span>French,<span class="w"> </span>and<span class="w"> </span>Italian.
 
-### Here&#39;s what is depicted:
-1. **Input:**  
-   On the left, a request is made:  
-   - &quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot;
+Here<span class="s1">&#39;s a breakdown of what&#39;</span>s<span class="w"> </span>depicted:
 
-2. **Manager:**  
-   The request goes to a central **Manager** box, which represents a system or person delegating the task.
+<span class="m">1</span>.<span class="w"> </span>**Input<span class="w"> </span><span class="o">(</span>Left<span class="w"> </span>Side<span class="o">)</span>:**
+<span class="w">    </span>-<span class="w"> </span>A<span class="w"> </span>request:<span class="w"> </span><span class="s2">&quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot;</span><span class="w"> </span>
+<span class="w">    </span>-<span class="w"> </span>Another<span class="w"> </span>unspecified<span class="w"> </span>input<span class="w"> </span>indicated<span class="w"> </span>by<span class="w"> </span><span class="s2">&quot;...&quot;</span>
 
-3. **Task Creation:**  
-   The manager divides the request into three specific **Tasks** (represented by dashed boxes):
-   - One for each target language (Spanish, French, Italian).
+<span class="m">2</span>.<span class="w"> </span>**Manager<span class="w"> </span><span class="o">(</span>Center<span class="o">)</span>:**
+<span class="w">    </span>-<span class="w"> </span>The<span class="w"> </span><span class="s2">&quot;Manager&quot;</span><span class="w"> </span>box<span class="w"> </span>receives<span class="w"> </span>the<span class="w"> </span>input<span class="w"> </span>requests.
+<span class="w">    </span>-<span class="w"> </span>The<span class="w"> </span>manager<span class="w"> </span>breaks<span class="w"> </span>down<span class="w"> </span>the<span class="w"> </span>main<span class="w"> </span>translation<span class="w"> </span>request<span class="w"> </span>into<span class="w"> </span>individual<span class="w"> </span>translation<span class="w"> </span>tasks.
 
-4. **Agents:**  
-   Each task is then passed to a respective **Agent**:
-   - **Spanish agent** for translating to Spanish  
-   - **French agent** for translating to French  
-   - **Italian agent** for translating to Italian  
+<span class="m">3</span>.<span class="w"> </span>**Tasks<span class="w"> </span><span class="o">(</span>Right<span class="w"> </span>of<span class="w"> </span>Manager<span class="o">)</span>:**
+<span class="w">    </span>-<span class="w"> </span>Three<span class="w"> </span>dashed<span class="w"> </span>boxes<span class="w"> </span>labeled<span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="w"> </span>represent<span class="w"> </span>task<span class="w"> </span>assignments.
+<span class="w">    </span>-<span class="w"> </span>Each<span class="w"> </span>task<span class="w"> </span>is<span class="w"> </span>sent<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;agent&quot;</span>:
+<span class="w">      </span>-<span class="w"> </span>Spanish<span class="w"> </span>agent
+<span class="w">      </span>-<span class="w"> </span>French<span class="w"> </span>agent
+<span class="w">      </span>-<span class="w"> </span>Italian<span class="w"> </span>agent
 
-5. **Process Flow:**  
-   Arrows indicate the flow of tasks:
-   - From the manager to the tasks
-   - From tasks to the agents  
-   - Back from agents after completing the translation tasks to the manager  
-   - Finally back to the requester with the results
+<span class="m">4</span>.<span class="w"> </span>**Agents<span class="w"> </span><span class="o">(</span>Far<span class="w"> </span>Right<span class="o">)</span>:**
+<span class="w">    </span>-<span class="w"> </span>Each<span class="w"> </span>agent<span class="w"> </span><span class="o">(</span>Spanish,<span class="w"> </span>French,<span class="w"> </span>Italian<span class="o">)</span><span class="w"> </span>handles<span class="w"> </span>the<span class="w"> </span>specific<span class="w"> </span>task.
+<span class="w">    </span>-<span class="w"> </span>The<span class="w"> </span>tasks<span class="w"> </span>and<span class="w"> </span>results<span class="w"> </span>are<span class="w"> </span>sent<span class="w"> </span>back<span class="w"> </span>and<span class="w"> </span>forth<span class="w"> </span>between<span class="w"> </span>the<span class="w"> </span>manager<span class="w"> </span>and<span class="w"> </span>the<span class="w"> </span>agents.
 
-### Purpose:
-- The diagram visually explains how a manager can break a complex job (multi-language translation) into smaller subtasks and delegate them to specialized agents, eventually collecting the results to return a combined answer.
-
-This type of structure is often used in computer science for **multi-agent systems** or **task management frameworks**.
+**Purpose:**<span class="w">  </span>
+The<span class="w"> </span>diagram<span class="w"> </span>visualizes<span class="w"> </span>how<span class="w"> </span>a<span class="w"> </span>manager<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>orchestrator<span class="o">)</span><span class="w"> </span>can<span class="w"> </span>distribute<span class="w"> </span>complex<span class="w"> </span>requests<span class="w"> </span>into<span class="w"> </span>subtasks<span class="w"> </span>and<span class="w"> </span>assign<span class="w"> </span>them<span class="w"> </span>to<span class="w"> </span>specialized<span class="w"> </span>agents,<span class="w"> </span><span class="k">then</span><span class="w"> </span>collect<span class="w"> </span>their<span class="w"> </span>results<span class="w"> </span>to<span class="w"> </span>respond<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>original<span class="w"> </span>request.<span class="w"> </span>In<span class="w"> </span>this<span class="w"> </span><span class="k">case</span>,<span class="w"> </span>it<span class="err">&#39;</span>s<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>translating<span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span>into<span class="w"> </span>multiple<span class="w"> </span>languages<span class="w"> </span>via<span class="w"> </span>specialized<span class="w"> </span>language<span class="w"> </span>agents.
 </pre></div>
-</div>
-</div>
 </div>
 <p>Specify image input detail level</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">detail</span></code> parameter tells the model what level of detail to use when processing and understanding the image (<code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, or <code class="docutils literal notranslate"><span class="pre">auto</span></code> to let the model decide). If you skip the parameter, the model will use auto.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span>
-<span class="p">}</span>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;input_image&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;image_url&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;detail&quot;</span>:<span class="w"> </span><span class="s2">&quot;high&quot;</span>
+<span class="o">}</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;input_image&#39;,
- &#39;image_url&#39;: &#39;https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg&#39;,
- &#39;detail&#39;: &#39;high&#39;}
-</pre></div>
-</div>
-</div>
 </div>
 <p>You can save tokens and speed up responses by using <code class="docutils literal notranslate"><span class="pre">&quot;detail&quot;:</span> <span class="pre">&quot;low&quot;</span></code>. This lets the model process the image with a budget of 85 tokens. The model receives a low-resolution 512px x 512px version of the image. This is fine if your use case doesn’t require the model to see with high-resolution detail (for example, if you’re asking about the dominant shape or color in the image).</p>
 <p>On the other hand, you can use <code class="docutils literal notranslate"><span class="pre">&quot;detail&quot;:</span> <span class="pre">&quot;high&quot;</span></code> if you want the model to have a better understanding of the image.</p>
@@ -578,8 +539,9 @@ This type of structure is often used in computer science for **multi-agent syste
 <li><p>Clear enough for a human to understand</p></li>
 </ul>
 </section>
+</section>
 <section id="limitations">
-<h4>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h4>
+<h3>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h3>
 <p>While models with vision capabilities are powerful and can be used in many situations, it’s important to understand the limitations of these models. Here are some known limitations:</p>
 <ul class="simple">
 <li><p>Medical images: The model is not suitable for interpreting specialized medical images like CT scans and shouldn’t be used for medical advice.</p></li>
@@ -596,30 +558,33 @@ This type of structure is often used in computer science for **multi-agent syste
 </ul>
 </section>
 </section>
-</section>
 <section id="extend-the-model-with-tools">
 <h2>Extend the model with tools<a class="headerlink" href="#extend-the-model-with-tools" title="Link to this heading">#</a></h2>
 <p>Give the model access to new data and capabilities using tools. You can either call your own custom code, or use one of OpenAI’s powerful built-in tools. This example uses web search to give the model access to the latest information on the Internet.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;web_search_preview&quot;</span><span class="p">}],</span>
     <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;What was a positive news story from today?&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">#print(response.output_text)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>As<span class="w"> </span>of<span class="w"> </span>June<span class="w"> </span><span class="m">23</span>,<span class="w"> </span><span class="m">2025</span>,<span class="w"> </span>one<span class="w"> </span>notable<span class="w"> </span>positive<span class="w"> </span>news<span class="w"> </span>story<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>successful<span class="w"> </span>reintroduction<span class="w"> </span>of<span class="w"> </span>helmeted<span class="w"> </span>honeyeaters<span class="w"> </span>to<span class="w"> </span>Cardinia<span class="w"> </span><span class="k">in</span><span class="w"> </span>Victoria,<span class="w"> </span>Australia.<span class="w"> </span>These<span class="w"> </span>critically<span class="w"> </span>endangered<span class="w"> </span>birds<span class="w"> </span>have<span class="w"> </span>returned<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>area<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span><span class="nb">time</span><span class="w"> </span>since<span class="w"> </span>the<span class="w"> </span>Ash<span class="w"> </span>Wednesday<span class="w"> </span>bushfires<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1983</span>,<span class="w"> </span>marking<span class="w"> </span>a<span class="w"> </span>significant<span class="w"> </span>milestone<span class="w"> </span><span class="k">in</span><span class="w"> </span>conservation<span class="w"> </span>efforts.<span class="w"> </span><span class="o">([</span>globalgoodnews.com<span class="o">](</span>https://globalgoodnews.com/?utm_source<span class="o">=</span>openai<span class="o">))</span>
+
+Additionally,<span class="w"> </span>a<span class="w"> </span><span class="m">14</span>-year-old<span class="w"> </span>from<span class="w"> </span>Dallas,<span class="w"> </span>Siddharth<span class="w"> </span>Nandyala,<span class="w"> </span>has<span class="w"> </span>developed<span class="w"> </span>an<span class="w"> </span>AI-powered<span class="w"> </span>app<span class="w"> </span>capable<span class="w"> </span>of<span class="w"> </span>detecting<span class="w"> </span>heart<span class="w"> </span>disease<span class="w"> </span><span class="k">in</span><span class="w"> </span>just<span class="w"> </span>seven<span class="w"> </span>seconds<span class="w"> </span>using<span class="w"> </span>only<span class="w"> </span>a<span class="w"> </span>smartphone<span class="s1">&#39;s microphone. This innovation has the potential to revolutionize early detection and treatment of heart conditions. ([globalgoodnews.com](https://globalgoodnews.com/?utm_source=openai))</span>
+
+<span class="s1">Furthermore, the Yurok Tribe in the United States is celebrating the return of ancestral homelands, following historic dam removals. This restoration supports the tribe&#39;</span>s<span class="w"> </span>cultural<span class="w"> </span>and<span class="w"> </span>environmental<span class="w"> </span>initiatives.<span class="w"> </span><span class="o">([</span>goodnewsnetwork.org<span class="o">](</span>https://www.goodnewsnetwork.org/?utm_source<span class="o">=</span>openai<span class="o">))</span>
+
+These<span class="w"> </span>stories<span class="w"> </span>highlight<span class="w"> </span>significant<span class="w"> </span>advancements<span class="w"> </span><span class="k">in</span><span class="w"> </span>environmental<span class="w"> </span>conservation,<span class="w"> </span>technological<span class="w"> </span>innovation,<span class="w"> </span>and<span class="w"> </span>cultural<span class="w"> </span>restoration.
+</pre></div>
 </div>
 </section>
 <section id="deliver-blazing-fast-ai-experiences">
 <h2>Deliver blazing fast AI experiences<a class="headerlink" href="#deliver-blazing-fast-ai-experiences" title="Link to this heading">#</a></h2>
 <p>Using either the new Realtime API or server-sent streaming events, you can build high performance, low-latency experiences for your users.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
     <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
         <span class="p">{</span>
@@ -631,15 +596,11 @@ This type of structure is often used in computer science for **multi-agent syste
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
 </section>
 <section id="build-agents">
 <h2>Build agents<a class="headerlink" href="#build-agents" title="Link to this heading">#</a></h2>
 <p>Use the OpenAI platform to build agents capable of taking action—like controlling computers—on behalf of your users. Use the Agents SDK for Python or TypeScript to create orchestration logic on the backend.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Runner</span>
 
 <span class="n">spanish_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
@@ -668,12 +629,9 @@ This type of structure is often used in computer science for **multi-agent syste
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Hola! Estoy bien, gracias. ¿Y tú?
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Hola,<span class="w"> </span>estoy<span class="w"> </span>bien,<span class="w"> </span>gracias.<span class="w"> </span>¿Y<span class="w"> </span>tú,<span class="w"> </span>cómo<span class="w"> </span>estás?
 </pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -748,9 +706,9 @@ This type of structure is often used in computer science for **multi-agent syste
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-file-types">Supported File Types</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#size-limits">Size Limits</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-requirements">Other Requirements</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extend-the-model-with-tools">Extend the model with tools</a></li>

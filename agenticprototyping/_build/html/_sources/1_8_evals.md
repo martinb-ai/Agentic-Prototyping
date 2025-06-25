@@ -378,11 +378,11 @@ In our simple test, the model reliably generated the content we wanted for a sma
 
 The Evaluations tooling [in the OpenAI dashboard](https://platform.openai.com/evaluations) evolves quickly and may not match exactly the UI shown below, but this video will give you a quick overview of how to set up and run evals using the browser-based UI.
 
+
 <video controls width="100%">
-  <source src="images/evals.mp4" type="video/mp4">
+  <source src="../images/evals.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
 
 ## Next steps
 
