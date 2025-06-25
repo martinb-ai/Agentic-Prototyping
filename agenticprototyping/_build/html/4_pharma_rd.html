@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Use Case: AI Co-Scientist for Pharma R&amp;D &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4_pharma_rd';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use Case: Insurance Claim Processing" href="4_insurance_claims.html" />
+    <link rel="prev" title="Production best practices" href="3_0_production_best_practices.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production_best_practices.html">Production best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4_pharma_rd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Use Case: AI Co-Scientist for Pharma R&D</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-snapshot">1. Scenario Snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-multi-agent-reasoning">2. Architecture (Multi-Agent Reasoning)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scientist-input-constraints">2.1. Scientist Input &amp; Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ideation-o4-mini-tools">2.2. Ideation (o4-mini + Tools)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tournament-ranking-o4-mini-o3">2.3. Tournament Ranking (o4-mini / o3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-critique-synthesis-o3">2.4. Deep Critique &amp; Synthesis (o3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-safety-check">2.5. (Optional) Safety Check</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-review">2.6. Human Review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execution-learning-o3-code-interpreter">2.7. Execution &amp; Learning (o3 + Code Interpreter)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-playbook">3. Model Playbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-notes">4. Deployment Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeaways">5. Takeaways</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="use-case-ai-co-scientist-for-pharma-r-d">
+<h1>Use Case: AI Co-Scientist for Pharma R&amp;D<a class="headerlink" href="#use-case-ai-co-scientist-for-pharma-r-d" title="Link to this heading">#</a></h1>
+<p><img alt="AI Scientist Pharma R&amp;D" src="_images/ai_scientist_pharma_rnd.png" /></p>
+<p>This section details how to build an AI system that functions as a “co-scientist” to accelerate experimental design in pharmaceutical R&amp;D, focusing on optimizing a drug synthesis process under specific constraints.</p>
+<section id="tl-dr-matrix">
+<h2>🗂️ TL;DR Matrix<a class="headerlink" href="#tl-dr-matrix" title="Link to this heading">#</a></h2>
+<p>This table summarizes the core technology choices and their rationale for this specific AI Co-Scientist implementation.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Layer</p></th>
+<th class="head"><p>Choice</p></th>
+<th class="head"><p>Utility</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ideation</p></td>
+<td><p>o4-mini (Parallel Role-Playing Agents)</p></td>
+<td><p>Generates diverse hypotheses &amp; protocols rapidly and cost-effectively; role-playing enhances creativity.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grounding</p></td>
+<td><p>External Tool Calls (chem_lookup, cost_estimator, outcome_db, etc.)</p></td>
+<td><p>Ensures plans are based on real-world data (chemical properties, costs, past results).</p></td>
+</tr>
+<tr class="row-even"><td><p>Ranking</p></td>
+<td><p>o4-mini (Pairwise Tournament Comparison)</p></td>
+<td><p>Nuanced evaluation beyond simple scoring; selects promising candidates efficiently.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Critique/Synth</p></td>
+<td><p>o3 (Deep Review &amp; Synthesis)</p></td>
+<td><p>Provides rigorous, senior-level analysis, identifies risks, and ensures scientific validity.</p></td>
+</tr>
+<tr class="row-even"><td><p>Safety (Opt.)</p></td>
+<td><p>gpt-4.1-mini (Targeted Check)</p></td>
+<td><p>Adds an extra layer of specialized safety review before human handoff.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Learning</p></td>
+<td><p>o3 + Code Interpreter (Result Analysis → DB)</p></td>
+<td><p>Captures experimental outcomes systematically, enabling continuous improvement over time.</p></td>
+</tr>
+<tr class="row-even"><td><p>Core Technique</p></td>
+<td><p>Multi-Agent Collaboration &amp; Escalation</p></td>
+<td><p>Leverages strengths of different models (speed vs. depth) for a complex, multi-step reasoning task.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Note: Model identifiers accurate as of April 2025, subject to change.</em></p>
+</section>
+<section id="scenario-snapshot">
+<h2>1. Scenario Snapshot<a class="headerlink" href="#scenario-snapshot" title="Link to this heading">#</a></h2>
+<p><strong>Problem Space:</strong> Optimizing complex experimental procedures in pharmaceutical R&amp;D, such as improving the synthesis yield of a new drug compound (“XYZ-13”) while adhering to strict constraints.</p>
+<p><strong>Users:</strong> Research scientists and lab technicians involved in drug discovery and development.</p>
+<p><strong>Typical Asks:</strong></p>
+<ul class="simple">
+<li><p>Suggest 3 distinct protocols to increase XYZ-13 yield by ≥15% by testing different catalysts, staying under $15k using approved reagents.</p></li>
+<li><p>Propose protocols to optimize XYZ-13 yield below 60°C (due to past heat issues), exploring different approved solvents within budget.</p></li>
+<li><p>Design two XYZ-13 yield strategies (aiming for ≥15%): a. one maximizing potential yield within the $10k.</p></li>
+</ul>
+<p><strong>Constraints:</strong></p>
+<ul class="simple">
+<li><p><strong>Budgetary:</strong> Operate within defined financial limits (e.g., $15,000 per experiment series).</p></li>
+<li><p><strong>Regulatory/Safety:</strong> Use only pre-approved chemicals/reagents and adhere rigorously to safety protocols.</p></li>
+<li><p><strong>Human Oversight:</strong> Final experimental plans must be reviewed and validated by a human expert before execution.</p></li>
+</ul>
+<p>Traditionally, optimizing such experiments involves weeks of manual planning, literature review, iterative benchwork, and analysis. This AI Co-Scientist approach aims to dramatically reduce the cycle time by automating hypothesis generation, protocol design, and preliminary evaluation, enabling scientists to focus on higher-level strategy and final validation. It shifts the scientist’s role from manual execution of planning steps to expert oversight and collaboration with the AI.</p>
+</section>
+<section id="architecture-multi-agent-reasoning">
+<h2>2. Architecture (Multi-Agent Reasoning)<a class="headerlink" href="#architecture-multi-agent-reasoning" title="Link to this heading">#</a></h2>
+<p>The system employs a multi-agent architecture that emulates a high-performing scientific team. Different AI components, acting in specialized roles (such as ideation, critique, and learning from outcomes), collaborate using various models and tools to execute the workflow.</p>
+<p><img alt="Co-Scientist Architecture" src="_images/coscientist_architecture.png" /></p>
+<section id="scientist-input-constraints">
+<h3>2.1. Scientist Input &amp; Constraints<a class="headerlink" href="#scientist-input-constraints" title="Link to this heading">#</a></h3>
+<p>The process starts with the scientist defining the goal, target compound, and constraints.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agent_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">call_openai</span><span class="p">,</span> <span class="n">log_json</span>
+
+<span class="c1"># Example Initial Input</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;compound&quot;</span><span class="p">:</span> <span class="s2">&quot;XYZ-13&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;goal&quot;</span><span class="p">:</span> <span class="s2">&quot;Improve synthesis yield by 15%&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;budget&quot;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span>
+    <span class="s2">&quot;time_h&quot;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+    <span class="s2">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;Prior attempts failed at high temp; explore potential catalyst effects.&quot;</span>
+<span class="p">}</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(),</span> <span class="o">**</span><span class="n">user_input</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ideation-o4-mini-tools">
+<h3>2.2. Ideation (o4-mini + Tools)<a class="headerlink" href="#ideation-o4-mini-tools" title="Link to this heading">#</a></h3>
+<p>Multiple o4-mini instances, prompted with different roles (e.g., Hypothesis Agent, Protocol Agent, Resource Agent), generate experimental plans in parallel. Assigning distinct personas encourages diverse perspectives and covers different aspects of the problem simultaneously during the ideation phase.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ROLE_FOCUS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Hypothesis Agent Prompt</span>
+    <span class="s2">&quot;hypothesis_agent&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;You are a pharmaceutical hypothesis specialist. </span>
+<span class="s2">        Focus exclusively on analyzing the compound structure and research goals to generate testable hypotheses. </span>
+<span class="s2">        Consider mechanism of action, binding affinity predictions, and potential off-target effects.&quot;&quot;&quot;</span><span class="p">,</span>
+
+    <span class="c1"># Protocol Agent Prompt</span>
+    <span class="s2">&quot;protocol_agent&quot;</span>  <span class="p">:</span> <span class="s2">&quot;&quot;&quot;You are a laboratory protocol specialist. </span>
+<span class="s2">        Design experimental procedures that will effectively test the provided hypothesis. </span>
+<span class="s2">        Focus on experimental conditions, controls, and measurement techniques.&quot;&quot;&quot;</span><span class="p">,</span>
+
+    <span class="c1"># Resource Agent Prompt</span>
+    <span class="s2">&quot;resource_agent&quot;</span>  <span class="p">:</span> <span class="s2">&quot;&quot;&quot;You are a laboratory resource optimization specialist. </span>
+<span class="s2">        Review the proposed protocol and optimize for efficiency. </span>
+<span class="s2">        Identify opportunities to reduce reagent use, equipment time, and overall costs while maintaining scientific validity.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a structured prompt template for ideation</span>
+<span class="n">IDEATION_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a pharmaceutical </span><span class="si">{role}</span><span class="s2"> specialist. Your goal is to </span><span class="si">{goal}</span><span class="s2"> for compound </span><span class="si">{compound}</span><span class="s2">.</span>
+<span class="s2">Constraints:</span>
+<span class="s2">- Budget: $</span><span class="si">{budget}</span>
+<span class="s2">- Approved reagents only</span>
+<span class="s2">- Complete within </span><span class="si">{time_h}</span><span class="s2"> hours</span>
+<span class="s2">- Previous attempts: </span><span class="si">{previous}</span>
+<span class="s2">Respond with structured JSON describing your protocol.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+<span class="n">MODEL_IDEATE</span>   <span class="o">=</span> <span class="s2">&quot;o4-mini-2025-04-16&quot;</span>  <span class="c1"># o4-mini model for ideation - balances speed and quality</span>
+
+<span class="c1"># Configure logging to help with tracking experiment progress and debugging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run‑id </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">  Compound: </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">compound</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Logs will be stored in: </span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ctx</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ideation</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting ideation phase...&quot;</span><span class="p">)</span>
+    <span class="n">ideas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">role</span><span class="p">,</span> <span class="n">focus</span> <span class="ow">in</span> <span class="n">ROLE_FOCUS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running ideation agent $</span><span class="si">{</span><span class="n">role</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys</span> <span class="o">=</span> <span class="n">IDEATION_PROMPT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span> <span class="n">focus</span><span class="o">=</span><span class="n">focus</span><span class="p">,</span> <span class="o">**</span><span class="n">ctx</span><span class="o">.</span><span class="n">prompt_vars</span><span class="p">())</span>
+        <span class="n">usr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Design a protocol to </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">goal</span><span class="si">}</span><span class="s2"> within $</span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">budget</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="n">idea</span> <span class="o">=</span> <span class="n">call_openai</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">MODEL_IDEATE</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+        <span class="n">ideas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idea</span><span class="p">)</span>
+    <span class="n">log_json</span><span class="p">(</span><span class="s2">&quot;ideation_done&quot;</span><span class="p">,</span> <span class="n">ideas</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ideas</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Run‑id<span class="w"> </span>9835f69c<span class="w">  </span>Compound:<span class="w"> </span>XYZ-13
+Logs<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>stored<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>logs/9835f69c
+</pre></div>
+</div>
+<p>The ideation agents can utilize external tools such as literature_search, chem_lookup (chemical database), cost_estimator, outcome_db (outcome of previous experiments) to ground their suggestions in data. Explicitly enabling and prompting models to use external tools ensures that generated plans are feasible, compliant, and informed by existing knowledge. The model decides when and which tool to call based on the task.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">IDEATION_PROMPT</span> <span class="o">+=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2">Use the following tools as appropriate:</span>
+<span class="s2">- Use the `list_available_chemicals` tool to get list of approved reagents.</span>
+<span class="s2">- Use the `chem_lookup` tool to verify properties of reagents mentioned.</span>
+<span class="s2">- Use the `cost_estimator` tool to calculate the approximate cost based on reagents and proposed steps.</span>
+<span class="s2">- Check the `outcome_db` for relevant prior experiments with </span><span class="si">{compound}</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">ideas</span> <span class="o">=</span> <span class="n">ideation</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ideation complete!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>ideation<span class="w"> </span>phase...
+Running<span class="w"> </span>ideation<span class="w"> </span>agent<span class="w"> </span><span class="nv">$hypothesis_agent</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>List<span class="w"> </span>available<span class="w"> </span>chemicals
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Outcome<span class="w"> </span>DB:<span class="w"> </span>XYZ-13,<span class="w"> </span>yield,<span class="w"> </span><span class="m">5</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Cost<span class="w"> </span>estimator:<span class="w"> </span><span class="o">[{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Palladium chloride&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.05,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triphenylphosphine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.1,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Potassium carbonate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Dimethylformamide&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Toluene&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Sodium borohydride&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.1,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triethylamine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}]</span>,<span class="w"> </span><span class="o">[</span><span class="s1">&#39;round-bottom flask&#39;</span>,<span class="w"> </span><span class="s1">&#39;magnetic stirrer&#39;</span>,<span class="w"> </span><span class="s1">&#39;reflux condenser&#39;</span><span class="o">]</span>,<span class="w"> </span><span class="m">36</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Running<span class="w"> </span>ideation<span class="w"> </span>agent<span class="w"> </span><span class="nv">$protocol_agent</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Outcome<span class="w"> </span>DB:<span class="w"> </span>XYZ-13,<span class="w"> </span>yield,<span class="w"> </span><span class="m">5</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>List<span class="w"> </span>available<span class="w"> </span>chemicals
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Literature<span class="w"> </span>search:<span class="w"> </span>XYZ-13<span class="w"> </span>synthesis<span class="w"> </span>palladium<span class="w"> </span>triphenylphosphine<span class="w"> </span>ligand<span class="w"> </span>yield<span class="w"> </span>improvement,<span class="w"> </span>None,<span class="w"> </span><span class="m">3</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Cost<span class="w"> </span>estimator:<span class="w"> </span><span class="o">[{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Palladium acetate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.05,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triphenylphosphine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.1,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Potassium carbonate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triethylamine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Dimethylformamide&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">100</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}]</span>,<span class="w"> </span><span class="o">[</span><span class="s1">&#39;Magnetic stirrer&#39;</span>,<span class="w"> </span><span class="s1">&#39;Oil bath&#39;</span>,<span class="w"> </span><span class="s1">&#39;Inert gas setup&#39;</span><span class="o">]</span>,<span class="w"> </span><span class="m">48</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Running<span class="w"> </span>ideation<span class="w"> </span>agent<span class="w"> </span><span class="nv">$resource_agent</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Outcome<span class="w"> </span>DB:<span class="w"> </span>XYZ-13,<span class="w"> </span>yield,<span class="w"> </span><span class="m">5</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>List<span class="w"> </span>available<span class="w"> </span>chemicals
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Cost<span class="w"> </span>estimator:<span class="w"> </span><span class="o">[{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Palladium acetate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.05,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triphenylphosphine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.1,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Potassium carbonate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Dimethylformamide&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triethylamine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}]</span>,<span class="w"> </span><span class="o">[</span><span class="s1">&#39;Round-bottom flask&#39;</span>,<span class="w"> </span><span class="s1">&#39;Reflux condenser&#39;</span>,<span class="w"> </span><span class="s1">&#39;Heating mantle&#39;</span>,<span class="w"> </span><span class="s1">&#39;Magnetic stirrer&#39;</span><span class="o">]</span>,<span class="w"> </span><span class="m">36</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Sodium<span class="w"> </span>borohydride,<span class="w"> </span>None
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Ideation<span class="w"> </span>complete!
+</pre></div>
+</div>
+<p>These tools are defined in agent_utils.py. For purposes of this solution, the tool calls are mocked in <a class="reference external" href="http://tools.py">tools.py</a>. In a real use case, these tools would call real APIs.</p>
+</section>
+<section id="tournament-ranking-o4-mini-o3">
+<h3>2.3. Tournament Ranking (o4-mini / o3)<a class="headerlink" href="#tournament-ranking-o4-mini-o3" title="Link to this heading">#</a></h3>
+<p>Generated protocols are compared pairwise based on criteria like expected effectiveness, feasibility, cost, and novelty. Instead of asking a model to score protocols in isolation, providing two protocols at a time and asking for a direct comparison against specific criteria often yields more reliable relative rankings.</p>
+<p>This Elo-style ranking identifies the most promising candidates for deeper review.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TOURNAMENT_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Protocol A: [details...]</span>
+<span class="s2">Protocol B: [details...]</span>
+
+<span class="s2">Compare Protocol A and Protocol B for synthesizing </span><span class="si">{compound}</span><span class="s2"> aimed at </span><span class="si">{goal}</span><span class="s2">. Score them on:</span>
+<span class="s2">1. Likelihood of achieving ≥ 15% yield increase.</span>
+<span class="s2">2. Practical feasibility (reagents, time).</span>
+<span class="s2">3. Estimated cost-efficiency (use tool if needed).</span>
+<span class="s2">4. Scientific novelty/risk.</span>
+
+<span class="s2">Return JSON {{&quot;winner&quot;: &quot;A&quot;|&quot;B&quot;, &quot;justification&quot;: &quot;...&quot;}}.&quot;&quot;&quot;</span>
+
+<span class="c1"># This is a mock tourname implementation that only compares the first two protocols</span>
+<span class="c1"># A real implementation would compare pairs in a tournament bracket style</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tournament</span><span class="p">(</span><span class="n">protocols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting tournament phase...&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">protocols</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">protocols</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">protocols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">protocols</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sys</span> <span class="o">=</span> <span class="n">TOURNAMENT_PROMPT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="o">.</span><span class="n">prompt_vars</span><span class="p">())</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">call_openai</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">MODEL_IDEATE</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="n">winner</span> <span class="o">=</span> <span class="n">a</span> <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;winner&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span> <span class="k">else</span> <span class="n">b</span>
+    <span class="n">log_json</span><span class="p">(</span><span class="s2">&quot;tournament&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">winner</span><span class="p">]</span>
+
+<span class="n">top_proto</span> <span class="o">=</span> <span class="n">tournament</span><span class="p">(</span><span class="n">ideas</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Tournament winner picked!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>tournament<span class="w"> </span>phase...
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Tournament<span class="w"> </span>winner<span class="w"> </span>picked!
+</pre></div>
+</div>
+<p>In early experiments, we found that asking models to score protocols on a 1-10 scale led to inconsistent results with score compression. The tournament approach solved this by forcing relative judgments that proved more reliable. This mirrors human expert behavior — scientists often find it easier to compare two options directly than to assign absolute scores.</p>
+</section>
+<section id="deep-critique-synthesis-o3">
+<h3>2.4. Deep Critique &amp; Synthesis (o3)<a class="headerlink" href="#deep-critique-synthesis-o3" title="Link to this heading">#</a></h3>
+<p>The top-ranked protocols are passed to o3 for rigorous review. o3 acts like a senior scientist, assessing scientific validity, methodology, safety, budget compliance, and suggesting improvements or synthesizing a final, refined protocol. It may also call tools for verification.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deep critique phase using a more powerful model for rigorous review</span>
+<span class="n">CRITIQUE_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a senior researcher reviewing a proposed synthesis protocol </span>
+<span class="s2">for </span><span class="si">{compound}</span><span class="s2"> aiming for </span><span class="si">{goal}</span><span class="s2">, budget $</span><span class="si">{budget}</span><span class="s2"> using approved reagents. Review the protocol below rigorously:</span>
+<span class="s2">1. Identify scientific flaws or methodological weaknesses.</span>
+<span class="s2">2. Assess safety risks and budget compliance (use `cost_estimator` tool if needed).</span>
+<span class="s2">3. Check for consistency with prior `outcome_db` results if relevant.</span>
+<span class="s2">4. Suggest concrete improvements or rewrite sections if necessary.</span>
+<span class="s2">5. Provide a final go/no-go recommendation.</span>
+
+<span class="s2">Return JSON {{&quot;revised_protocol&quot;: ..., &quot;critique&quot;: &quot;...&quot;, &quot;recommendation&quot;: &quot;go|no-go&quot;}}.</span>
+
+<span class="s2">Protocol to Review:</span>
+<span class="s2">[Protocol details...]</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">MODEL_CRITIQUE</span> <span class="o">=</span> <span class="s2">&quot;o3-2025-04-16&quot;</span>  <span class="c1"># o3 model for deep critique</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">critique</span><span class="p">(</span><span class="n">protocol</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting critique phase...&quot;</span><span class="p">)</span>
+    <span class="n">sys</span> <span class="o">=</span> <span class="n">CRITIQUE_PROMPT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="o">.</span><span class="n">prompt_vars</span><span class="p">())</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">crit</span> <span class="o">=</span> <span class="n">call_openai</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">MODEL_CRITIQUE</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="n">log_json</span><span class="p">(</span><span class="s2">&quot;critique&quot;</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revised_protocol&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+
+<span class="n">critiqued</span> <span class="o">=</span> <span class="n">critique</span><span class="p">(</span><span class="n">top_proto</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Deep critique completed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>critique<span class="w"> </span>phase...
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Cost<span class="w"> </span>estimator:<span class="w"> </span><span class="o">[{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Palladium chloride&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.0045,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triphenylphosphine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.013,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Sodium borohydride&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.0038,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Potassium carbonate&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.14,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Triethylamine&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">0</span>.07,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Dimethylformamide&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Toluene&#39;</span>,<span class="w"> </span><span class="s1">&#39;amount&#39;</span>:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="s1">&#39;unit&#39;</span>:<span class="w"> </span><span class="s1">&#39;mL&#39;</span><span class="o">}]</span>,<span class="w"> </span><span class="o">[</span><span class="s1">&#39;100 mL round-bottom flask&#39;</span>,<span class="w"> </span><span class="s1">&#39;magnetic stirrer&#39;</span>,<span class="w"> </span><span class="s1">&#39;reflux condenser&#39;</span>,<span class="w"> </span><span class="s1">&#39;inert gas line&#39;</span><span class="o">]</span>,<span class="w"> </span><span class="m">24</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Outcome<span class="w"> </span>DB:<span class="w"> </span>XYZ-13,<span class="w"> </span>None,<span class="w"> </span><span class="m">5</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Deep<span class="w"> </span>critique<span class="w"> </span>completed!
+</pre></div>
+</div>
+<p>We deliberately separate ideation from critique using different models and personas. Having the same model both generate and critique its own work often leads to self-justification rather than objective assessment. The o3 model, acting as a “senior scientist,” consistently identified methodological weaknesses that o4-mini missed during ideation.</p>
+</section>
+<section id="optional-safety-check">
+<h3>2.5. (Optional) Safety Check<a class="headerlink" href="#optional-safety-check" title="Link to this heading">#</a></h3>
+<p>A specialized model, such as gpt-4.1-mini, can perform a final check for specific safety concerns (e.g., hazardous reagent combos).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optional safety check using a targeted model</span>
+<span class="n">SAFETY_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a lab‑safety specialist. </span>
+<span class="s2">Identify hazards, unsafe conditions, or compliance issues in this protocol for </span><span class="si">{compound}</span><span class="s2">. </span>
+<span class="s2">Use `chem_lookup` tool if needed. Return JSON assessment.&quot;&quot;&quot;</span>
+
+<span class="n">MODEL_SAFETY</span>   <span class="o">=</span> <span class="s2">&quot;gpt-4.1-mini-2025-04-14&quot;</span>  <span class="c1"># gpt-4.1-mini model for safety checks - optimized for instruction following</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">safety</span><span class="p">(</span><span class="n">protocol</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting safety assessment...&quot;</span><span class="p">)</span>
+    <span class="n">sys</span> <span class="o">=</span> <span class="n">SAFETY_PROMPT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="o">.</span><span class="n">prompt_vars</span><span class="p">())</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">assessment</span> <span class="o">=</span> <span class="n">call_openai</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">MODEL_SAFETY</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="n">log_json</span><span class="p">(</span><span class="s2">&quot;safety&quot;</span><span class="p">,</span> <span class="n">assessment</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="n">protocol</span><span class="p">,</span> <span class="s2">&quot;safety&quot;</span><span class="p">:</span> <span class="n">assessment</span><span class="p">}</span>
+
+<span class="n">secured</span> <span class="o">=</span> <span class="n">safety</span><span class="p">(</span><span class="n">critiqued</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Safety check completed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>safety<span class="w"> </span>assessment...
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Palladium<span class="w"> </span>chloride,<span class="w"> </span>None
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Triphenylphosphine,<span class="w"> </span>None
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Sodium<span class="w"> </span>borohydride,<span class="w"> </span>None
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Potassium<span class="w"> </span>carbonate,<span class="w"> </span>None
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Dimethylformamide,<span class="w"> </span>None
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Chemical<span class="w"> </span>lookup:<span class="w"> </span>Toluene,<span class="w"> </span>None
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Safety<span class="w"> </span>check<span class="w"> </span>completed!
+</pre></div>
+</div>
+</section>
+<section id="human-review">
+<h3>2.6. Human Review<a class="headerlink" href="#human-review" title="Link to this heading">#</a></h3>
+<p>The AI-generated final plan is presented to the human scientist via an interface for validation, potential edits, and final approval.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">human_review</span><span class="p">(</span><span class="n">safety_package</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Awaiting human review...&quot;</span><span class="p">)</span>
+    <span class="n">protocol</span> <span class="o">=</span> <span class="n">safety_package</span><span class="p">[</span><span class="s2">&quot;protocol&quot;</span><span class="p">]</span>
+    <span class="n">safety_assessment</span> <span class="o">=</span> <span class="n">safety_package</span><span class="p">[</span><span class="s2">&quot;safety&quot;</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== PROTOCOL FOR REVIEW: </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">compound</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">goal</span><span class="si">}</span><span class="s2"> ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DETAILS: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SAFETY: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">safety_assessment</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">approval</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Approve for execution? (yes/no): &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">approval</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]:</span>
+            <span class="n">approved</span> <span class="o">=</span> <span class="n">approval</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Protocol </span><span class="si">{</span><span class="s1">&#39;approved&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">approved</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;rejected&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="n">protocol</span><span class="p">,</span> <span class="s2">&quot;approved&quot;</span><span class="p">:</span> <span class="n">approved</span><span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please enter &#39;yes&#39; or &#39;no&#39;&quot;</span><span class="p">)</span>
+
+<span class="n">human_decision</span> <span class="o">=</span> <span class="n">human_review</span><span class="p">(</span><span class="n">secured</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Awaiting<span class="w"> </span>human<span class="w"> </span>review...
+<span class="o">===</span><span class="w"> </span>PROTOCOL<span class="w"> </span>FOR<span class="w"> </span>REVIEW:<span class="w"> </span>XYZ-13<span class="w"> </span>-<span class="w"> </span>Improve<span class="w"> </span>synthesis<span class="w"> </span>yield<span class="w"> </span>by<span class="w"> </span><span class="m">15</span>%<span class="w"> </span><span class="o">===</span>
+DETAILS:<span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;protocol_title&quot;</span>:<span class="w"> </span><span class="s2">&quot;Optimised In-Situ Pd(0)/PPh3 Coupling for XYZ-13 – Target ≥ 72 % Yield&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;key_changes_vs_original&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;Catalyst loading reduced from 5 mol % to 2 mol % Pd to cut cost and metal contamination without loss of activity.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Reaction run at 0.10 M substrate concentration (12 mL solvent total) instead of 50 mL; higher effective collision frequency boosts conversion and reduces waste.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Single solvent system (toluene/DMF 4:1) avoids phase separation and simplifies work-up.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Redundant triethylamine removed; K2CO3 (2.5 eq) provides sufficient basicity.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Reaction temperature raised slightly to 80 °C (still below side-reaction threshold found in exp-001) and time shortened to 24 h with in-process HPLC check at 6 h intervals.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Work-up switched from large silica column to two-step: (a) aqueous EDTA wash to strip Pd, (b) recrystallisation from EtOAc/hexane – typically 5–8 % higher isolated yield on this substrate.&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;objective&quot;</span>:<span class="w"> </span><span class="s2">&quot;Isolated yield ≥ 72 % within 24 h, total direct cost ≤ US </span><span class="nv">$5</span><span class="s2"> 000.&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;scale&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.5 mmol XYZ-13 (170 mg, assume MW ≈ 340).&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;reagents&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Palladium chloride&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">0</span>.02,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;g&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;precatalyst (2 mol %)&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Triphenylphosphine&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">0</span>.041,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;g&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;ligand (2 eq vs Pd)&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Sodium borohydride&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">0</span>.02,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;g&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;Pd(II)→Pd(0) reducer&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Potassium carbonate&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">0</span>.345,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;g&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;base (2.5 eq)&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Dimethylformamide&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">2</span>.0,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;mL&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;co-solvent (20 %)&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Toluene&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;amount&quot;</span>:<span class="w"> </span><span class="m">10</span>.0,
+<span class="w">      </span><span class="s2">&quot;unit&quot;</span>:<span class="w"> </span><span class="s2">&quot;mL&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;role&quot;</span>:<span class="w"> </span><span class="s2">&quot;primary solvent (80 %)&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;equipment&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;50 mL round-bottom flask&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;magnetic stirrer&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;reflux condenser&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;argon line&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;reaction_conditions&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;atmosphere&quot;</span>:<span class="w"> </span><span class="s2">&quot;Ar&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;temperature&quot;</span>:<span class="w"> </span><span class="s2">&quot;80 °C (oil bath)&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;duration&quot;</span>:<span class="w"> </span><span class="s2">&quot;24 h&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;stirring&quot;</span>:<span class="w"> </span><span class="s2">&quot;600 rpm&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;procedure&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;1. Charge dry 50 mL flask with PdCl2 (20 mg) and PPh3 (41 mg) under Ar. Add DMF (2 mL) and stir 5 min.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;2. Add NaBH4 (20 mg) portion-wise over 3 min; colour turns dark brown.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;3. Add XYZ-13 (170 mg, 0.50 mmol) and K2CO3 (345 mg). Add toluene (10 mL). Fit condenser.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;4. Heat to 80 °C for 24 h. Take 0.1 mL aliquots at 6, 12, 18 h; quench in NH4Cl and analyse by HPLC to confirm ≥ 95 % conversion.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;5. Cool to RT, add 10 mL 0.05 M EDTA (aq) and stir 5 min to complex Pd. Separate layers, extract aqueous twice with 5 mL toluene.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;6. Combine organic layers, wash with brine, dry (Na2SO4), filter, concentrate in vacuo.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;7. Recrystallise residue from 4:1 hexane/EtOAc (15 mL) to afford XYZ-13 as off-white solid. Record mass, calculate yield, check purity by HPLC.&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;expected_outcome&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;projected_yield&quot;</span>:<span class="w"> </span><span class="s2">&quot;72–78 %&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;purity&quot;</span>:<span class="w"> </span><span class="s2">&quot;≥ 97 % (HPLC)&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;safety_and_waste&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;NaBH4 generates H2; add slowly behind blast shield.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;DMF and toluene are toxic/flammable – use fume hood.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;EDTA washwater and Pd residues collected for heavy-metal disposal.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Standard PPE (lab coat, gloves, goggles).&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;cost_estimate_USD&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;reagents&quot;</span>:<span class="w"> </span><span class="m">1120</span>,
+<span class="w">    </span><span class="s2">&quot;equipment_amortisation&quot;</span>:<span class="w"> </span><span class="m">150</span>,
+<span class="w">    </span><span class="s2">&quot;labor (24 h @ </span><span class="nv">$75</span><span class="s2">/h)&quot;</span>:<span class="w"> </span><span class="m">1800</span>,
+<span class="w">    </span><span class="s2">&quot;total&quot;</span>:<span class="w"> </span><span class="m">3070</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+SAFETY:<span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;hazards&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Sodium borohydride&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Flammable, water-reactive&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;unsafe_condition&quot;</span>:<span class="w"> </span><span class="s2">&quot;Adding NaBH4 portion-wise generates hydrogen gas (H2) which is explosive; requires slow addition behind blast shield and in well-ventilated fume hood.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Dimethylformamide&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Reproductive toxin, flammable&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;compliance&quot;</span>:<span class="w"> </span><span class="s2">&quot;Use only in fume hood with appropriate PPE to avoid inhalation exposure; handle with care due to reproductive toxicity.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Toluene&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Flammable, CNS depressant&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;compliance&quot;</span>:<span class="w"> </span><span class="s2">&quot;Use in fume hood and avoid ignition sources; ensure proper ventilation to minimize exposure.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Palladium chloride&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Irritant, potential carcinogen&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;compliance&quot;</span>:<span class="w"> </span><span class="s2">&quot;Minimize exposure; use gloves and handle in fume hood. Collect and dispose of Pd-containing waste as hazardous heavy metal waste.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Potassium carbonate&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Irritant&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;compliance&quot;</span>:<span class="w"> </span><span class="s2">&quot;Use gloves to prevent skin irritation.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;chemical&quot;</span>:<span class="w"> </span><span class="s2">&quot;Triphenylphosphine&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;hazard&quot;</span>:<span class="w"> </span><span class="s2">&quot;Irritant&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;compliance&quot;</span>:<span class="w"> </span><span class="s2">&quot;Use gloves and avoid inhalation of dust.&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;unsafe_conditions&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;condition&quot;</span>:<span class="w"> </span><span class="s2">&quot;Reaction temperature at 80 °C with flammable solvents (toluene, DMF)&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;recommendation&quot;</span>:<span class="w"> </span><span class="s2">&quot;Ensure all heating apparatus is explosion-proof; maintain constant stirring to avoid hot spots.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;condition&quot;</span>:<span class="w"> </span><span class="s2">&quot;Use of Argon atmosphere&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;recommendation&quot;</span>:<span class="w"> </span><span class="s2">&quot;Ensure proper inert gas handling to prevent oxygen contamination; adequate ventilation to prevent asphyxiation risk.&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;compliance_issues&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;issue&quot;</span>:<span class="w"> </span><span class="s2">&quot;Hydrogen gas evolution during NaBH4 addition&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;recommendation&quot;</span>:<span class="w"> </span><span class="s2">&quot;Add NaBH4 slowly behind blast shield, wear full PPE including face shield, and perform operation in a well-ventilated fume hood.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;issue&quot;</span>:<span class="w"> </span><span class="s2">&quot;Heavy metal waste handling&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;recommendation&quot;</span>:<span class="w"> </span><span class="s2">&quot;Collect EDTA wash water and palladium residues separately and dispose as hazardous heavy metal waste in compliance with local regulations.&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;issue&quot;</span>:<span class="w"> </span><span class="s2">&quot;PPE not explicitly stating face shield&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;recommendation&quot;</span>:<span class="w"> </span><span class="s2">&quot;Recommend including face shield during NaBH4 addition step for splash and blast protection.&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;general_comments&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;The protocol includes appropriate solvent proportions and reaction scale to reduce waste and cost.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;The use of EDTA wash for palladium removal and dual solvent recrystallization is a safer, more efficient approach than large silica columns.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;The procedural timing with intermittent HPLC monitoring is good practice to avoid over-reaction and side products.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Standard lab safety practices are advised including lab coat, gloves, and goggles; upgrading to include face shield for hazardous steps is recommended.&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;No major equipment safety issues identified with specified items. Ensure all glassware is rated for heating and inert atmosphere.&quot;</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="o">}</span>
+Protocol<span class="w"> </span>approved
+</pre></div>
+</div>
+</section>
+<section id="execution-learning-o3-code-interpreter">
+<h3>2.7. Execution &amp; Learning (o3 + Code Interpreter)<a class="headerlink" href="#execution-learning-o3-code-interpreter" title="Link to this heading">#</a></h3>
+<p>Once the human approves, the plan is sent for lab execution. After lab execution, results are fed back into the system. o3 combined with the Code Interpreter analyzes the data, generates insights, and stores structured outcomes (protocol, parameters, results, insights) in a database (Outcome DB). This database informs future ideation cycles, creating a learning loop.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulating execution and analyzing results</span>
+<span class="n">ANALYSIS_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a data analyst. </span>
+<span class="s2">Did the experiment achieve </span><span class="si">{goal}</span><span class="s2">?  Analyse factors, suggest improvements, and return structured JSON.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">execute_and_analyse</span><span class="p">(</span><span class="n">pkt</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting mock execution and analysis...&quot;</span><span class="p">)</span>
+    <span class="c1"># These are mock results for a lab experiment</span>
+    <span class="n">mock_results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;yield_improvement&quot;</span><span class="p">:</span> <span class="mf">12.5</span><span class="p">,</span>
+        <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;actual_cost&quot;</span><span class="p">:</span> <span class="n">ctx</span><span class="o">.</span><span class="n">budget</span> <span class="o">*</span> <span class="mf">0.85</span><span class="p">,</span>
+        <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock execution&quot;</span>
+    <span class="p">}</span>
+    <span class="n">sys</span> <span class="o">=</span> <span class="n">ANALYSIS_PROMPT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">ctx</span><span class="o">.</span><span class="n">prompt_vars</span><span class="p">())</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="n">pkt</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">mock_results</span><span class="p">},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">analysis</span> <span class="o">=</span> <span class="n">call_openai</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">MODEL_CRITIQUE</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="n">log_json</span><span class="p">(</span><span class="s2">&quot;analysis&quot;</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">analysis</span>
+
+<span class="c1"># Only proceed to execution if approved by the human reviewer</span>
+<span class="k">if</span> <span class="n">human_decision</span><span class="p">[</span><span class="s2">&quot;approved&quot;</span><span class="p">]:</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">execute_and_analyse</span><span class="p">(</span><span class="n">human_decision</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Analysis complete&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Protocol rejected by human reviewer - execution skipped&quot;</span><span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">out_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">_summary.json&quot;</span>
+<span class="n">out_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎉 Completed. Summary written to </span><span class="si">{</span><span class="n">out_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>mock<span class="w"> </span>execution<span class="w"> </span>and<span class="w"> </span>analysis...
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Literature<span class="w"> </span>search:<span class="w"> </span>Pd<span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span>PPh3<span class="w"> </span>coupling<span class="w"> </span>yield<span class="w"> </span>optimization<span class="w"> </span>EDTA<span class="w"> </span>work-up<span class="w"> </span>recrystallization<span class="w"> </span>losses,<span class="w"> </span>None,<span class="w"> </span><span class="m">3</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+<span class="o">(</span>Tool<span class="o">)</span><span class="w"> </span>Outcome<span class="w"> </span>DB:<span class="w"> </span>XYZ-13,<span class="w"> </span>yield,<span class="w"> </span><span class="m">5</span>
+HTTP<span class="w"> </span>Request:<span class="w"> </span>POST<span class="w"> </span>https://api.openai.com/v1/chat_completions<span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK&quot;</span>
+Analysis<span class="w"> </span><span class="nb">complete</span>
+🎉<span class="w"> </span>Completed.<span class="w"> </span>Summary<span class="w"> </span>written<span class="w"> </span>to<span class="w"> </span>output/9835f69c_summary.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-playbook">
+<h2>3. Model Playbook<a class="headerlink" href="#model-playbook" title="Link to this heading">#</a></h2>
+<p>Choosing between o4-mini and o3 depends on the task’s complexity and required depth. For other tasks, gpt-4.1-mini provides balance between cost and performance, with the more powerful gpt4.1 recommended when greater capability or nuance is needed.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Start With</p></th>
+<th class="head"><p>Upgrade When…</p></th>
+<th class="head"><p>Escalate To</p></th>
+<th class="head"><p>Rationale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ideation &amp; Protocol Generation</p></td>
+<td><p>o4-mini</p></td>
+<td><p>Hypotheses lack depth or creativity needed for complex chemical synthesis.</p></td>
+<td><p>o3</p></td>
+<td><p>o4-mini rapidly generates diverse protocols cost-effectively. o3 provides deeper scientific reasoning when more nuanced approaches are required.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Protocol Ranking</p></td>
+<td><p>o4-mini</p></td>
+<td><p>Comparison requires deeper scientific assessment or multi-factor trade-offs.</p></td>
+<td><p>o3</p></td>
+<td><p>Tournament-style ranking with o4-mini efficiently identifies promising candidates. Escalate when subtle scientific validity needs evaluation.</p></td>
+</tr>
+<tr class="row-even"><td><p>Deep Critique &amp; Synthesis</p></td>
+<td><p>o3</p></td>
+<td><p>N/A - Already using the most capable model for this critical task.</p></td>
+<td><p>N/A</p></td>
+<td><p>o3 excels at rigorous scientific review, identifying methodological flaws, and synthesizing improvements across complex protocols. This task inherently requires deep reasoning.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Safety Assessment</p></td>
+<td><p>gpt-4.1-mini</p></td>
+<td><p>Domain-specific hazards require higher accuracy or specialized knowledge.</p></td>
+<td><p>gpt-4.1</p></td>
+<td><p>gpt-4.1-mini offers a good balance of cost and performance for standard safety checks. Escalate to gpt4.1 when higher accuracy or more nuanced reasoning is needed for complex safety risks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Key Insight:</strong></p>
+<p>This use case exemplifies a powerful pattern: using faster, cheaper models (o4-mini) for breadth and initial filtering, then escalating to more powerful models (o3) for depth, critical review, and synthesis. This layered approach optimizes for both creativity/speed and rigor/accuracy, while managing computational costs effectively. The integration with tools is essential for grounding the AI’s reasoning in verifiable, real-world data.</p>
+</section>
+<section id="deployment-notes">
+<h2>4. Deployment Notes<a class="headerlink" href="#deployment-notes" title="Link to this heading">#</a></h2>
+<p>Transitioning the AI Co-Scientist from prototype to lab use involves careful planning.</p>
+<p><strong>Cost Control:</strong></p>
+<ul class="simple">
+<li><p>Implement configurable “modes” (such as Fast, Standard, Thorough) that adjust the number of o4-mini ideation agents, the depth of o3 critique, or the use of optional checks to balance result quality with cost and latency.</p></li>
+<li><p>Track token usage per stage (ideation, ranking, critique) and per tool call for fine-grained cost monitoring.</p></li>
+</ul>
+<p><strong>Observability:</strong></p>
+<ul class="simple">
+<li><p>Log inputs, outputs, model choices, tool calls/responses, latencies, and token counts for each step.</p></li>
+<li><p>Monitor the performance of the tournament ranking and the impact of o3 critiques (such as how often plans are significantly altered or rejected).</p></li>
+<li><p>Track user interactions: which plans are approved, edited, or rejected by the human scientist.</p></li>
+</ul>
+<p><strong>Safety &amp; Compliance:</strong></p>
+<ul class="simple">
+<li><p>Implement multiple safety layers: constraints in prompts, tool-based checks (such as reagent compatibility via chem_lookup), optional dedicated model checks (gpt-4.1-mini), automated filters (such as for known hazardous combinations), and mandatory human review.</p></li>
+<li><p>Ensure tool endpoints (such as internal databases) meet security requirements.</p></li>
+</ul>
+<p><strong>Rollout Strategy:</strong></p>
+<ul class="simple">
+<li><p>Begin with retrospective analysis of past experiments, then move to shadow mode (AI suggests plans alongside human planners), followed by limited live use cases with close monitoring before broader adoption.</p></li>
+</ul>
+</section>
+<section id="takeaways">
+<h2>5. Takeaways<a class="headerlink" href="#takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Model pairing creates synergy:</strong> o4-mini covers more ground quickly; o3 brings precision and depth.</p></li>
+<li><p><strong>Tool integration grounds reasoning in reality:</strong> Real-world data such as chemical costs and safety constraints inform decision-making.</p></li>
+<li><p><strong>Human scientists remain central:</strong> The system empowers experts by removing grunt work—not by replacing them.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_0_production_best_practices.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Production best practices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4_insurance_claims.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Use Case: Insurance Claim Processing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-snapshot">1. Scenario Snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-multi-agent-reasoning">2. Architecture (Multi-Agent Reasoning)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scientist-input-constraints">2.1. Scientist Input &amp; Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ideation-o4-mini-tools">2.2. Ideation (o4-mini + Tools)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tournament-ranking-o4-mini-o3">2.3. Tournament Ranking (o4-mini / o3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-critique-synthesis-o3">2.4. Deep Critique &amp; Synthesis (o3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-safety-check">2.5. (Optional) Safety Check</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-review">2.6. Human Review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execution-learning-o3-code-interpreter">2.7. Execution &amp; Learning (o3 + Code Interpreter)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-playbook">3. Model Playbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-notes">4. Deployment Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeaways">5. Takeaways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

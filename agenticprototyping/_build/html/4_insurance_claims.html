@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Use Case: Insurance Claim Processing &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4_insurance_claims';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Use Case: AI Co-Scientist for Pharma R&amp;D" href="4_pharma_rd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production_best_practices.html">Production best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use Case: Insurance Claim Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4_insurance_claims.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Use Case: Insurance Claim Processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-snapshot">1. Scenario Snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">2. Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup-library-code">Environment Setup &amp; Library Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-explanation-stage-1">Flow Explanation: Stage 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-and-capabilities-playbook">3. Model and Capabilities Playbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">4. Evaluation Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-notes">5. Deployment Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-breakdown">Cost Breakdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-1-ocr-optical-character-recognition">Stage 1: OCR (Optical Character Recognition)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-2-reasoning">Stage 2: Reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-deployment">Monitoring &amp; Deployment</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="use-case-insurance-claim-processing">
+<h1>Use Case: Insurance Claim Processing<a class="headerlink" href="#use-case-insurance-claim-processing" title="Link to this heading">#</a></h1>
+<p><img alt="Insurance Task Card" src="_images/insurance_task_card.png" /></p>
+<p>Many businesses are faced with the task of digitizing hand-filled forms. In this section, we will demonstrate how OpenAI can be used to digitize and validate a hand-filled insurance form. While this is a common problem for insurance, the same techniques can be applied to a variety of other industries and forms, for example tax forms, invoices, and more.</p>
+<section id="tl-dr-matrix">
+<h2>🗂️ TL;DR Matrix<a class="headerlink" href="#tl-dr-matrix" title="Link to this heading">#</a></h2>
+<p>This table summarizes the core technology choices and their rationale for this specific OCR implementation targeting the insurance use case.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Layer</p></th>
+<th class="head"><p>Choice</p></th>
+<th class="head"><p>Utility</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>JSON Output</p></td>
+<td><p>Structured output with Pydantic</p></td>
+<td><p>Easy to specify formatting, adheres to schema better than JSON mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>OCR and Vision</p></td>
+<td><p>gpt-4.1</p></td>
+<td><p>Powerful OCR and vision capabilities, structured output</p></td>
+</tr>
+<tr class="row-even"><td><p>Reasoning</p></td>
+<td><p>o4-mini</p></td>
+<td><p>Affordable but capable reasoning, function calling available</p></td>
+</tr>
+<tr class="row-odd"><td><p>Form Validation</p></td>
+<td><p>Custom function calling</p></td>
+<td><p>Can provide interaction with custom or internal databases</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Note: Prices and model identifiers accurate as of April 2025, subject to change.</em></p>
+</section>
+<section id="scenario-snapshot">
+<h2>1. Scenario Snapshot<a class="headerlink" href="#scenario-snapshot" title="Link to this heading">#</a></h2>
+<p><strong>Users:</strong> The target users are insurance servicing and ops teams who need to ingest data from handwritten forms.</p>
+<p><strong>Typical Asks:</strong> Each form will have a different required structure, as well as different fields that need to be extracted.</p>
+<p><strong>Constraints:</strong></p>
+<ul class="simple">
+<li><p><strong>Accuracy:</strong> High accuracy is required to ensure that the data is correct and complete.</p></li>
+<li><p><strong>Uncertainty:</strong> The system must handle uncertainty in the data, such as missing data, ambiguous data, and different formats of the same field. In the event that the model cannot resolve the uncertainty, the system requires a mechanism to request human review.</p></li>
+<li><p><strong>Performance &amp; Cost:</strong> While system latency is not critical, high accuracy is required while keeping costs under control. We will aim for a cost target of $20 or less per 1000 pages processed.</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h2>2. Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<p>The high level basic architecture of the solution is shown below.</p>
+<p><img alt="Insurance Architecture" src="_images/insurance_architecture.png" /></p>
+<p>This task is complex and requires a wide variety of model capabilities, including vision, function calling, reasoning, and structured output. While o3 is capable of doing all of these at once, we found during experimentation that o4-mini alone was not sufficient to achieve the necessary performance. Due to the higher relative costs of o3, we instead opted for a two-stage approach.</p>
+<p>Stage one is performed using the vision capabilities of GPT 4.1. This stage is optimized to extract text with maximum accuracy, leaving uncertainty for the reasoning stage and not making any assumptions not visible on the page. By doing OCR in the first stage, we do not require the reasoning model to work directly from an image, which can be challenging given all the other tasks the reasoning model must perform.</p>
+<p>Stage two takes advantage of the reasoning abilities of o4-mini. We use o4-mini to validate the accuracy of the OCR and to extract the data into a structured format. Importantly, we expect o4-mini to act as the secondary quality gate – if the OCR is incomplete at this stage we can use o4-mini to refine and validate the original results.</p>
+<p>To demonstrate concretely how this works, let’s look at a sample image of an insurance form.</p>
+<p><img alt="Insurance Form" src="_images/insurance_form.png" /></p>
+<p>While the form itself is fairly straightforward, there is missing data and ambiguous information that will be difficult for a traditional OCR system to fill out correctly. First, notice that the zip code and county have been omitted. Second, the email address of the user is ambiguous – it could be <a class="reference external" href="mailto:jsmith1&#37;&#52;&#48;gmail&#46;com">jsmith1<span>&#64;</span>gmail<span>&#46;</span>com</a> or <a class="reference external" href="mailto:jsmithl&#37;&#52;&#48;gmail&#46;com">jsmithl<span>&#64;</span>gmail<span>&#46;</span>com</a>. In the following sections, we will walk through how a well-designed solution can handle these ambiguities and return the correct form results.</p>
+<hr class="docutils" />
+<section id="environment-setup-library-code">
+<h3>Environment Setup &amp; Library Code<a class="headerlink" href="#environment-setup-library-code" title="Link to this heading">#</a></h3>
+<p>To make our example code more clear, we have broken out environment setup (such as pip install commands) and library functions into a separate code block. This will make it easier to focus on only the relevant logic in each step of our solution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Python requirements</span>
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">qU</span> <span class="n">pydantic</span> <span class="s2">&quot;openai&gt;=1.76.0&quot;</span>
+
+<span class="c1"># All imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="c1"># Create the OpenAI client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;sk-dummykey&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: you may need to restart the kernel to use updated packages.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_conversation_loop</span><span class="p">(</span>
+    <span class="n">client</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="p">,</span>
+    <span class="n">tool_handlers</span><span class="p">,</span>
+    <span class="n">response_format</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the OpenAI response completion loop, handling function calls via tool_handlers until parsing final response.&quot;&quot;&quot;</span>
+    <span class="n">summaries</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Requesting completion from model &#39;</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39; (messages=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+            <span class="n">text_format</span><span class="o">=</span><span class="n">response_format</span><span class="p">,</span>
+            <span class="n">reasoning</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">summaries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">output_parsed</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Assistant requested tool calls, resolving ...&quot;</span><span class="p">)</span>
+
+            <span class="n">reasoning_msg</span><span class="p">,</span> <span class="n">tool_call</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reasoning_msg</span><span class="p">)</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="s2">&quot;call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">call_id</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+            <span class="p">})</span>
+
+            <span class="k">if</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">tool_handlers</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">&quot;Failed to parse </span><span class="si">%s</span><span class="s2"> arguments: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">exc</span>
+                    <span class="p">)</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">tool_handlers</span><span class="p">[</span><span class="n">tool_call</span><span class="o">.</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function_call_output&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">call_id</span><span class="p">,</span>
+                        <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">),</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tool call </span><span class="si">{</span><span class="n">tool_call</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> complete, result: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unhandled function call: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">output_parsed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received parsed result from model&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">summaries</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="flow-explanation-stage-1">
+<h3>Flow Explanation: Stage 1<a class="headerlink" href="#flow-explanation-stage-1" title="Link to this heading">#</a></h3>
+<p><strong>Image:</strong> The image of the form taken from the user’s smartphone is passed to the model. OpenAI’s models can accept a variety of image formats, but we typically use a PNG format to keep the text crisp and reduce artifacts. For this example, we pass the image to the model from a publicly available content URL. In a production environment, you likely would pass the image as a signed URL to an image hosted in your own cloud storage bucket.</p>
+<p><strong>Structured Output Schema:</strong> We define a Pydantic model that sets the structure of the output data. The model includes all of the fields that we need to extract from the form, along with the appropriate types for each field. Our model is broken into several subcomponents, each of which is a Pydantic model itself and referenced by the parent model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PersonContact</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">home_phone</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">work_phone</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">cell_phone</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Address</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">street</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">city</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="nb">zip</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">county</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DwellingDetails</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">coverage_a_limit</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">companion_policy_expiration_date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">occupancy_of_dwelling</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">type_of_policy</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">unrepaired_structural_damage</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">construction_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">roof_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">foundation_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">has_post_and_pier_or_post_and_beam_foundation</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">cripple_walls</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">number_of_stories</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">living_space_over_garage</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">number_of_chimneys</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">square_footage</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">year_of_construction</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">anchored_to_foundation</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">water_heater_secured</span><span class="p">:</span> <span class="nb">bool</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InsuranceFormData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">applicant</span><span class="p">:</span> <span class="n">PersonContact</span>
+    <span class="n">co_applicant</span><span class="p">:</span> <span class="n">PersonContact</span>
+    <span class="n">risk_address</span><span class="p">:</span> <span class="n">Address</span>
+    <span class="n">mailing_address_if_different_than_risk_address</span><span class="p">:</span> <span class="n">Address</span>
+    <span class="n">participating_insurer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">companion_policy_number</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">dwelling_details</span><span class="p">:</span> <span class="n">DwellingDetails</span>
+    <span class="n">effective_date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">expiration_date</span><span class="p">:</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<p><strong>Run OCR:</strong> Using the vision capabilities of GPT-4.1, we run the first stage of our pipeline to extract the text from the document in a structured format. This initial stage aims to achieve high accuracy while passing through uncertainty to the second stage. Our prompt explicitly instructs the model to avoid inferring inputs and instead to fill out the details as exact as possible.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OCR_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a helpful assistant who excels at processing insurance forms.</span>
+
+<span class="s2">You will be given an image of a hand-filled insurance form. Your job is to OCR the data into the given structured format.</span>
+<span class="s2">Fill out the fields as exactly as possible. If a written character could possibly be ambiguous (i.e. l or 1, o or 0), include all possiblities in the field separated by &quot;OR&quot;, especially for email addresses.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">user_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Here is a photo of the form filled out by the user:&quot;</span><span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://drive.usercontent.google.com/download?id=1-tZ526AW3mX1qthvgi8spaaxxeqFG5_6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">OCR_PROMPT</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_content</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-2025-04-14&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">text_format</span><span class="o">=</span><span class="n">InsuranceFormData</span><span class="p">,</span>
+    <span class="c1"># Set temp to 0 for reproducibility</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">s1_json_results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_parsed</span><span class="o">.</span><span class="n">model_dump_json</span><span class="p">()),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s1_json_results</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;applicant&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Smith, James L&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;home_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;510 331 5555&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;work_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;cell_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;510 212 5555&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;email&quot;</span>:<span class="w"> </span><span class="s2">&quot;jsmithl@gmail.com&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;co_applicant&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;Roberts, Jesse T&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;home_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;510 331 5555&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;work_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;415 626 5555&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;cell_phone&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;email&quot;</span>:<span class="w"> </span><span class="s2">&quot;jrobertsjr@gmail.com&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;risk_address&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;street&quot;</span>:<span class="w"> </span><span class="s2">&quot;855 Brannan St&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;city&quot;</span>:<span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;state&quot;</span>:<span class="w"> </span><span class="s2">&quot;CA&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;zip&quot;</span>:<span class="w"> </span><span class="s2">&quot;94107&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;county&quot;</span>:<span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;mailing_address_if_different_than_risk_address&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;street&quot;</span>:<span class="w"> </span><span class="s2">&quot;855 Brannan St&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;city&quot;</span>:<span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;state&quot;</span>:<span class="w"> </span><span class="s2">&quot;CA&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;zip&quot;</span>:<span class="w"> </span><span class="s2">&quot;94107&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;county&quot;</span>:<span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;participating_insurer&quot;</span>:<span class="w"> </span><span class="s2">&quot;Acme Insurance Co&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;companion_policy_number&quot;</span>:<span class="w"> </span><span class="s2">&quot;81265919&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;dwelling_details&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;coverage_a_limit&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$900</span><span class="s2">,000&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;companion_policy_expiration_date&quot;</span>:<span class="w"> </span><span class="s2">&quot;5/31/27&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;occupancy_of_dwelling&quot;</span>:<span class="w"> </span><span class="s2">&quot;Owner&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;type_of_policy&quot;</span>:<span class="w"> </span><span class="s2">&quot;Homeowners&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;unrepaired_structural_damage&quot;</span>:<span class="w"> </span>false,
+<span class="w">    </span><span class="s2">&quot;construction_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;Frame&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;roof_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;Composition&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;foundation_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;Raised&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;has_post_and_pier_or_post_and_beam_foundation&quot;</span>:<span class="w"> </span>false,
+<span class="w">    </span><span class="s2">&quot;cripple_walls&quot;</span>:<span class="w"> </span>false,
+<span class="w">    </span><span class="s2">&quot;number_of_stories&quot;</span>:<span class="w"> </span><span class="s2">&quot;Greater than 1 story&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;living_space_over_garage&quot;</span>:<span class="w"> </span>true,
+<span class="w">    </span><span class="s2">&quot;number_of_chimneys&quot;</span>:<span class="w"> </span><span class="s2">&quot;2&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;square_footage&quot;</span>:<span class="w"> </span><span class="s2">&quot;1200&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;year_of_construction&quot;</span>:<span class="w"> </span><span class="s2">&quot;2005&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;anchored_to_foundation&quot;</span>:<span class="w"> </span>true,
+<span class="w">    </span><span class="s2">&quot;water_heater_secured&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;effective_date&quot;</span>:<span class="w"> </span><span class="s2">&quot;5/31/25&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;expiration_date&quot;</span>:<span class="w"> </span><span class="s2">&quot;5/31/27&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>You can see that the email address has been refined to a single value, the zip code and county have been filled in, and the mailing address has been filled in by using the risk address. The model has also returned the results in a structured format (with appropriate types such as boolean for yes/no questions), which can be easily parsed by a downstream system.</p>
+<p>To help us understand and debug the model, we can also print the summary chain-of-thought reasoning produced by the model. This can help expose common failure modes, points where the model is unclear, or incorrect upstream details.</p>
+<p>While developing this solution, the chain-of-thought summaries exposed some incorrectly named and typed schema values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">summary</span> <span class="ow">in</span> <span class="n">summaries</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**Determining<span class="w"> </span>insurance<span class="w"> </span>form<span class="w"> </span>details**
+
+I<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>JSON<span class="w"> </span>representation<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>partially<span class="w"> </span>filled<span class="w"> </span>insurance<span class="w"> </span>form,<span class="w"> </span>and<span class="w"> </span>there<span class="w"> </span>are<span class="w"> </span>a<span class="w"> </span>few<span class="w"> </span>missing<span class="w"> </span>or<span class="w"> </span>ambiguous<span class="w"> </span>fields<span class="w"> </span>that<span class="w"> </span>I<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>address.
+
+For<span class="w"> </span>the<span class="w"> </span>email<span class="w"> </span>address,<span class="w"> </span>I<span class="w"> </span>see<span class="w"> </span>two<span class="w"> </span>options.<span class="w"> </span>I<span class="w"> </span>can<span class="w"> </span>validate<span class="w"> </span>which<span class="w"> </span>one<span class="w"> </span>is<span class="w"> </span>correct<span class="w"> </span>by<span class="w"> </span>checking<span class="w"> </span>both<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>tool.
+
+The<span class="w"> </span>risk<span class="w"> </span>address<span class="w"> </span>fields<span class="w"> </span><span class="k">for</span><span class="w"> </span>zip<span class="w"> </span>code<span class="w"> </span>and<span class="w"> </span>county<span class="w"> </span>are<span class="w"> </span>empty.<span class="w"> </span>Based<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>address<span class="w"> </span><span class="s2">&quot;855 Brannan St, San Francisco, CA,&quot;</span><span class="w"> </span>I<span class="w"> </span>can<span class="w"> </span>determine<span class="w"> </span>the<span class="w"> </span>correct<span class="w"> </span>zip<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span><span class="m">94107</span>,<span class="w"> </span>as<span class="w"> </span>that<span class="w"> </span>area<span class="w"> </span>corresponds<span class="w"> </span>to<span class="w"> </span>South<span class="w"> </span>Beach.<span class="w"> </span>Lastly,<span class="w"> </span>since<span class="w"> </span>the<span class="w"> </span>mailing<span class="w"> </span>address<span class="w"> </span>is<span class="w"> </span>empty,<span class="w"> </span>I<span class="w"> </span>assume<span class="w"> </span>it<span class="s1">&#39;s the same as the risk address.</span>
+
+<span class="s1">**Filling insurance form details**</span>
+
+<span class="s1">I think it&#39;</span>s<span class="w"> </span>best<span class="w"> </span>to<span class="w"> </span><span class="nb">set</span><span class="w"> </span>the<span class="w"> </span>mailing<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>risk<span class="w"> </span>address<span class="w"> </span>or<span class="w"> </span>clarify<span class="w"> </span>that<span class="w"> </span>a<span class="w"> </span>blank<span class="w"> </span>one<span class="w"> </span>implies<span class="w"> </span>the<span class="w"> </span>same.<span class="w"> </span>Since<span class="w"> </span>it<span class="s1">&#39;s an explicit instruction to fill missing fields, I&#39;</span>ll<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>mailing<span class="w"> </span>address<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>risk<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>avoid<span class="w"> </span>confusion.
+
+All<span class="w"> </span>co-applicant<span class="w"> </span>fields<span class="w"> </span>are<span class="w"> </span>present,<span class="w"> </span>and<span class="w"> </span>dwelling<span class="w"> </span>details<span class="w"> </span>are<span class="w"> </span>complete.<span class="w"> </span>The<span class="w"> </span>effective<span class="w"> </span>and<span class="w"> </span>expiration<span class="w"> </span>dates<span class="w"> </span>are<span class="w"> </span>also<span class="w"> </span>provided.<span class="w"> </span>I<span class="w"> </span>plan<span class="w"> </span>to<span class="w"> </span>validate<span class="w"> </span>both<span class="w"> </span>email<span class="w"> </span>options<span class="w"> </span>by<span class="w"> </span>checking<span class="w"> </span>each<span class="w"> </span>one<span class="w"> </span>separately.<span class="w"> </span>Let<span class="err">&#39;</span>s<span class="w"> </span>begin<span class="w"> </span>with<span class="w"> </span>validating<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>email.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-and-capabilities-playbook">
+<h2>3. Model and Capabilities Playbook<a class="headerlink" href="#model-and-capabilities-playbook" title="Link to this heading">#</a></h2>
+<p>Selecting the right tool for the job is key to getting the best results. In general, it’s a good idea to start with the simplest solution that fits your needs and then upgrade if you need more capabilities.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Start With</p></th>
+<th class="head"><p>Upgrade When…</p></th>
+<th class="head"><p>Escalate To</p></th>
+<th class="head"><p>Rationale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OCR</p></td>
+<td><p>gpt-4.1</p></td>
+<td><p>Complex forms that are difficult to understand at a glance</p></td>
+<td><p>o3</p></td>
+<td><p>gpt-4.1 is fast and cost-effective for most OCR. o-3 has the ability to reason about form structure.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Results Refinement</p></td>
+<td><p>o4-mini</p></td>
+<td><p>Complex logic for inferring details, many function calls required.</p></td>
+<td><p>o3</p></td>
+<td><p>Better for very long chains of reasoning, especially with both function calls and structured output.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="evaluation-metrics">
+<h2>4. Evaluation Metrics<a class="headerlink" href="#evaluation-metrics" title="Link to this heading">#</a></h2>
+<p>Track key metrics to ensure the system is performing accurately and as expected.</p>
+<p><strong>Critical Metrics</strong></p>
+<ul class="simple">
+<li><p><strong>OCR Accuracy:</strong> Per-character and per-word accuracy.</p></li>
+<li><p><strong>Inferred Field Rate:</strong> Portion unfilled entries correctly inferred from either existing data or function calling.</p></li>
+<li><p><strong>Human Intervention Rate:</strong> How often a document contains an UNKNOWN and must be referred to a human.</p></li>
+</ul>
+<p>We recommend building a labeled hold-out set of forms and their expected responses. This dataset should be representative of the expected deployment environment, see the OpenAI evals guide for more detailed information on building and evaluating your system.</p>
+</section>
+<section id="deployment-notes">
+<h2>5. Deployment Notes<a class="headerlink" href="#deployment-notes" title="Link to this heading">#</a></h2>
+<p>Moving from prototype to a production-ready system requires attention to operational details (LLMOps).</p>
+<section id="cost-breakdown">
+<h3>Cost Breakdown<a class="headerlink" href="#cost-breakdown" title="Link to this heading">#</a></h3>
+<p>We will assume that for document ingestion, batch pricing is a viable option due to high latency tolerance (i.e. overnight runs are fine).</p>
+<section id="stage-1-ocr-optical-character-recognition">
+<h4>Stage 1: OCR (Optical Character Recognition)<a class="headerlink" href="#stage-1-ocr-optical-character-recognition" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Model:</strong> gpt-4.1</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Tokens</p></th>
+<th class="head"><p>Rate (per 1M)</p></th>
+<th class="head"><p>Cost</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input</p></td>
+<td><p>2,000</p></td>
+<td><p>$1.00</p></td>
+<td><p>$0.002</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output</p></td>
+<td><p>1,500</p></td>
+<td><p>$4.00</p></td>
+<td><p>$0.006</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total for 1,000 pages (Stage 1)</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>$8.00</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="stage-2-reasoning">
+<h4>Stage 2: Reasoning<a class="headerlink" href="#stage-2-reasoning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Model:</strong> o4-mini</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Tokens</p></th>
+<th class="head"><p>Rate (per 1M)</p></th>
+<th class="head"><p>Cost</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input</p></td>
+<td><p>2,000</p></td>
+<td><p>$0.55</p></td>
+<td><p>$0.0011</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output</p></td>
+<td><p>3,000</p></td>
+<td><p>$2.20</p></td>
+<td><p>$0.0066</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total for 1,000 pages (Stage 2)</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>$7.70</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Grand Total (per 1,000 pages): $15.70</strong></p>
+<p>Compare this cost to a one-stage o3 deployment. Assuming equal token usage and batch usage, the additional cost of the more powerful reasoning model would come to $70/1000 pages.</p>
+</section>
+</section>
+<section id="monitoring-deployment">
+<h3>Monitoring &amp; Deployment<a class="headerlink" href="#monitoring-deployment" title="Link to this heading">#</a></h3>
+<p>Monitor your system by logging key metrics:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">llm_model_used</span></code>, <code class="docutils literal notranslate"><span class="pre">llm_input_tokens</span></code>, <code class="docutils literal notranslate"><span class="pre">llm_output_tokens</span></code>, <code class="docutils literal notranslate"><span class="pre">llm_latency_ms</span></code> per model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_query_latency_ms</span></code>, <code class="docutils literal notranslate"><span class="pre">estimated_query_cost</span></code> per model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function_calls_per_document</span></code>, <code class="docutils literal notranslate"><span class="pre">num_email_validation_calls</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">human_review_required</span></code></p></li>
+</ul>
+<p>Pin the specific model version identifier (e.g., o4-mini-2025-04-16) used in deployment via configuration/environment variables to prevent unexpected behavior from silent model updates.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4_pharma_rd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Use Case: AI Co-Scientist for Pharma R&amp;D</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-snapshot">1. Scenario Snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">2. Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup-library-code">Environment Setup &amp; Library Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-explanation-stage-1">Flow Explanation: Stage 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-and-capabilities-playbook">3. Model and Capabilities Playbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">4. Evaluation Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-notes">5. Deployment Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-breakdown">Cost Breakdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-1-ocr-optical-character-recognition">Stage 1: OCR (Optical Character Recognition)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-2-reasoning">Stage 2: Reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-deployment">Monitoring &amp; Deployment</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
