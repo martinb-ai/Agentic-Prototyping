@@ -1,0 +1,1259 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Function calling &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_4_function_calling';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Agents Overview" href="2_0_agents_overview.html" />
+    <link rel="prev" title="Structured Outputs" href="1_3_structured_outputs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Function calling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_4_function_calling.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Function calling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-function">Sample function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-calling-steps">Function calling steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-defining-functions">Best practices for defining functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-usage">Token Usage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-function-calls">Handling function calls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-results">Formatting results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-results-into-response">Incorporating results into response</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-configurations">Additional configurations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-choice">Tool choice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-function-calling">Parallel function calling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strict-mode">Strict mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming">Streaming</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="function-calling">
+<h1>Function calling<a class="headerlink" href="#function-calling" title="Link to this heading">#</a></h1>
+<p>Enable models to fetch data and take actions.</p>
+<p><strong>Function calling</strong> provides a powerful and flexible way for OpenAI models to interface with your code or external services. This guide will explain how to connect the models to your own custom code to fetch data or take action.</p>
+<p><strong>Get weather</strong></p>
+<p>Function calling example with get_weather function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get current temperature for a given location.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;City and country e.g. Bogotá, Colombia&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;location&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">}]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the weather like in Paris today?&quot;</span><span class="p">}],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Paris, France\&quot;}&quot;</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<p><strong>Send email</strong></p>
+<p>Function calling example with send_email function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;send_email&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Send an email to a given recipient with a subject and message.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The recipient email address.&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Email subject line.&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Body of the email message.&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;to&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">}]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you send an email to ilan@example.com and katia@example.com saying hi?&quot;</span><span class="p">}],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_9876abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;send_email&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;to\&quot;:\&quot;ilan@example.com\&quot;,\&quot;subject\&quot;:\&quot;Hello!\&quot;,\&quot;body\&quot;:\&quot;Just wanted to say hi\&quot;}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_9876abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;send_email&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;to\&quot;:\&quot;katia@example.com\&quot;,\&quot;subject\&quot;:\&quot;Hello!\&quot;,\&quot;body\&quot;:\&quot;Just wanted to say hi\&quot;}&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Search knowledge base</strong></p>
+<p>Function calling example with search_knowledge_base function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;search_knowledge_base&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Query a knowledge base to retrieve relevant info on a topic.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The user question or search query.&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;num_results&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of top results to return.&quot;</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;domain_filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;null&quot;</span>
+                        <span class="p">],</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Optional domain to narrow the search (e.g. &#39;finance&#39;, &#39;medical&#39;). Pass null if not needed.&quot;</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;sort_by&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;null&quot;</span>
+                        <span class="p">],</span>
+                        <span class="s2">&quot;enum&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="s2">&quot;relevance&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;popularity&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;alphabetical&quot;</span>
+                        <span class="p">],</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;How to sort results. Pass null if not needed.&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;num_results&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;domain_filter&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sort_by&quot;</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;options&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">}]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you find information about ChatGPT in the AI knowledge base?&quot;</span><span class="p">}],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_4567xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_knowledge_base&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;query\&quot;:\&quot;What is ChatGPT?\&quot;,\&quot;options\&quot;:{\&quot;num_results\&quot;:3,\&quot;domain_filter\&quot;:null,\&quot;sort_by\&quot;:\&quot;relevance\&quot;}}&quot;</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>You can give the model access to your own custom code through <strong>function calling</strong>. Based on the system prompt and messages, the model may decide to call these functions — <strong>instead of (or in addition to) generating text or audio</strong>.</p>
+<p>You’ll then execute the function code, send back the results, and the model will incorporate them into its final response.</p>
+<p><img alt="Function Calling Diagram Steps" src="_images/function-calling-diagram-steps.png" /></p>
+<p>Function calling has two primary use cases:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Use Case</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fetching Data</p></td>
+<td><p>Retrieve up-to-date information to incorporate into the model’s response (RAG). Useful for searching knowledge bases and retrieving specific data from APIs (e.g. current weather data).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Taking Action</p></td>
+<td><p>Perform actions like submitting a form, calling APIs, modifying application state (UI/frontend or backend), or taking agentic workflow actions (like handing off the conversation).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="sample-function">
+<h3>Sample function<a class="headerlink" href="#sample-function" title="Link to this heading">#</a></h3>
+<p>Let’s look at the steps to allow a model to use a real <code class="docutils literal notranslate"><span class="pre">get_weather</span></code> function defined below:</p>
+<p>Sample get_weather function implemented in your codebase</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.open-meteo.com/v1/forecast?latitude=</span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s2">&amp;longitude=</span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s2">&amp;current=temperature_2m,wind_speed_10m&amp;hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">][</span><span class="s1">&#39;temperature_2m&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getWeather</span><span class="p">(</span><span class="nx">latitude</span><span class="p">,</span><span class="w"> </span><span class="nx">longitude</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://api.open-meteo.com/v1/forecast?latitude=</span><span class="si">${</span><span class="nx">latitude</span><span class="si">}</span><span class="sb">&amp;longitude=</span><span class="si">${</span><span class="nx">longitude</span><span class="si">}</span><span class="sb">&amp;current=temperature_2m,wind_speed_10m&amp;hourly=temperature_2m,relative_humidity_2m,wind_speed_10m`</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">temperature_2m</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Unlike the diagram earlier, this function expects precise <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> instead of a general <code class="docutils literal notranslate"><span class="pre">location</span></code> parameter. (However, our models can automatically determine the coordinates for many locations!)</p>
+</section>
+<section id="function-calling-steps">
+<h3>Function calling steps<a class="headerlink" href="#function-calling-steps" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Call model with <a class="reference internal" href="#defining-functions"><span class="xref myst">functions defined</span></a></strong> – along with your system and user messages.</p></li>
+</ol>
+<p>Step 1: Call model with get_weather tool defined</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get current temperature for provided coordinates in celsius.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;strict&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}]</span>
+
+<span class="n">input_messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What&#39;s the weather like in Paris today?&quot;</span><span class="p">}]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">input_messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Model decides to call function(s)</strong> – model returns the <strong>name</strong> and <strong>input arguments</strong>.</p></li>
+</ol>
+<p>response.output</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;latitude\&quot;:48.8566,\&quot;longitude\&quot;:2.3522}&quot;</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Execute function code</strong> – parse the model’s response and <a class="reference internal" href="#handling-function-calls"><span class="xref myst">handle function calls</span></a>.</p></li>
+</ol>
+<p>Step 3: Execute get_weather function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tool_call</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Supply model with results</strong> – so it can incorporate them into its final response.</p></li>
+</ol>
+<p>Step 4: Supply result and call model again</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span>  <span class="c1"># append model&#39;s function call message</span>
+<span class="n">input_messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>                               <span class="c1"># append result message</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function_call_output&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">call_id</span><span class="p">,</span>
+    <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="n">response_2</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">input_messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response_2</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Model responds</strong> – incorporating the result in its output.</p></li>
+</ol>
+<p>response_2.output_text</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;The current temperature in Paris is 14°C (57.2°F).&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="defining-functions">
+<h2>Defining functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h2>
+<p>Functions can be set in the <code class="docutils literal notranslate"><span class="pre">tools</span></code> parameter of each API request.</p>
+<p>A function is defined by its schema, which informs the model what it does and what input arguments it expects. It comprises the following fields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>This should always be function</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>The function’s name (e.g. get_weather)</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><p>Details on when and how to use the function</p></td>
+</tr>
+<tr class="row-odd"><td><p>parameters</p></td>
+<td><p>JSON schema defining the function’s input arguments</p></td>
+</tr>
+<tr class="row-even"><td><p>strict</p></td>
+<td><p>Whether to enforce strict mode for the function call</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Take a look at this example.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieves current weather for the given location.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City and country e.g. Bogotá, Colombia&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;celsius&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;fahrenheit&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Units the temperature will be returned in.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;location&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;units&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;strict&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Because the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> are defined by a <a class="reference external" href="https://json-schema.org/">JSON schema</a>, you can leverage many of its rich features like property types, enums, descriptions, nested objects, and, recursive objects.</p>
+<section id="best-practices-for-defining-functions">
+<h3>Best practices for defining functions<a class="headerlink" href="#best-practices-for-defining-functions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Write clear and detailed function names, parameter descriptions, and instructions.</strong></p>
+<ul class="simple">
+<li><p><strong>Explicitly describe the purpose of the function and each parameter</strong> (and its format), and what the output represents.</p></li>
+<li><p><strong>Use the system prompt to describe when (and when not) to use each function.</strong> Generally, tell the model <em>exactly</em> what to do.</p></li>
+<li><p><strong>Include examples and edge cases</strong>, especially to rectify any recurring failures. (<strong>Note:</strong> Adding examples may hurt performance for <code class="docutils literal notranslate"><span class="pre">reasoning</span> <span class="pre">models</span></code>)</p></li>
+</ul>
+</li>
+<li><p><strong>Apply software engineering best practices.</strong></p>
+<ul class="simple">
+<li><p><strong>Make the functions obvious and intuitive</strong>. (<a class="reference external" href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least surprise</a>)</p></li>
+<li><p><strong>Use enums</strong> and object structure to make invalid states unrepresentable. (e.g. <code class="docutils literal notranslate"><span class="pre">toggle_light(on:</span> <span class="pre">bool,</span> <span class="pre">off:</span> <span class="pre">bool)</span></code> allows for invalid calls)</p></li>
+<li><p><strong>Pass the intern test.</strong> Can an intern/human correctly use the function given nothing but what you gave the model? (If not, what questions do they ask you? Add the answers to the prompt.)</p></li>
+</ul>
+</li>
+<li><p><strong>Offload the burden from the model and use code where possible.</strong></p>
+<ul class="simple">
+<li><p><strong>Don’t make the model fill arguments you already know.</strong> For example, if you already have an <code class="docutils literal notranslate"><span class="pre">order_id</span></code> based on a previous menu, don’t have an <code class="docutils literal notranslate"><span class="pre">order_id</span></code> param – instead, have no params <code class="docutils literal notranslate"><span class="pre">submit_refund()</span></code> and pass the <code class="docutils literal notranslate"><span class="pre">order_id</span></code> with code.</p></li>
+<li><p><strong>Combine functions that are always called in sequence.</strong> For example, if you always call <code class="docutils literal notranslate"><span class="pre">mark_location()</span></code> after <code class="docutils literal notranslate"><span class="pre">query_location()</span></code>, just move the marking logic into the query function call.</p></li>
+</ul>
+</li>
+<li><p><strong>Keep the number of functions small for higher accuracy.</strong></p>
+<ul class="simple">
+<li><p><strong>Evaluate your performance</strong> with different numbers of functions.</p></li>
+<li><p><strong>Aim for fewer than 20 functions</strong> at any one time, though this is just a soft suggestion.</p></li>
+</ul>
+</li>
+<li><p><strong>Leverage OpenAI resources.</strong></p>
+<ul class="simple">
+<li><p><strong>Generate and iterate on function schemas</strong> in the <a class="reference internal" href="#/playground"><span class="xref myst">Playground</span></a>.</p></li>
+<li><p><strong>Consider <a class="reference external" href="https://platform.openai.com/docs/guides/fine-tuning">fine-tuning</a> to increase function calling accuracy</strong> for large numbers of functions or difficult tasks. (<a class="reference external" href="https://cookbook.openai.com/examples/fine_tuning_for_function_calling">cookbook</a>)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="token-usage">
+<h3>Token Usage<a class="headerlink" href="#token-usage" title="Link to this heading">#</a></h3>
+<p>Under the hood, functions are injected into the system message in a syntax the model has been trained on. This means functions count against the model’s context limit and are billed as input tokens. If you run into token limits, we suggest limiting the number of functions or the length of the descriptions you provide for function parameters.</p>
+<p>It is also possible to use <code class="docutils literal notranslate"><span class="pre">fine</span> <span class="pre">tuning</span></code> to reduce the number of tokens used if you have many functions defined in your tools specification.</p>
+</section>
+</section>
+<section id="handling-function-calls">
+<h2>Handling function calls<a class="headerlink" href="#handling-function-calls" title="Link to this heading">#</a></h2>
+<p>When the model calls a function, you must execute it and return the result. Since model responses can include zero, one, or multiple calls, it is best practice to assume there are several.</p>
+<p>The response <code class="docutils literal notranslate"><span class="pre">output</span></code> array contains an entry with the <code class="docutils literal notranslate"><span class="pre">type</span></code> having a value of <code class="docutils literal notranslate"><span class="pre">function_call</span></code>. Each entry with a <code class="docutils literal notranslate"><span class="pre">call_id</span></code> (used later to submit the function result), <code class="docutils literal notranslate"><span class="pre">name</span></code>, and JSON-encoded <code class="docutils literal notranslate"><span class="pre">arguments</span></code>.</p>
+<p>Sample response with multiple function calls</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_12345xyz&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Paris, France\&quot;}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_67890abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_67890abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Bogotá, Colombia\&quot;}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_99999def&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_99999def&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;send_email&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;to\&quot;:\&quot;bob@email.com\&quot;,\&quot;body\&quot;:\&quot;Hi bob\&quot;}&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Execute function calls and append results</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;function_call&quot;</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">call_function</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">input_messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function_call_output&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">call_id</span><span class="p">,</span>
+        <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+<p>In the example above, we have a hypothetical <code class="docutils literal notranslate"><span class="pre">call_function</span></code> to route each call. Here’s a possible implementation:</p>
+<p>Execute function calls and append results</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">call_function</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_weather</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;send_email&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">send_email</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="formatting-results">
+<h3>Formatting results<a class="headerlink" href="#formatting-results" title="Link to this heading">#</a></h3>
+<p>A result must be a string, but the format is up to you (JSON, error codes, plain text, etc.). The model will interpret that string as needed.</p>
+<p>If your function has no return value (e.g. <code class="docutils literal notranslate"><span class="pre">send_email</span></code>), simply return a string to indicate success or failure. (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;success&quot;</span></code>)</p>
+</section>
+<section id="incorporating-results-into-response">
+<h3>Incorporating results into response<a class="headerlink" href="#incorporating-results-into-response" title="Link to this heading">#</a></h3>
+<p>After appending the results to your <code class="docutils literal notranslate"><span class="pre">input</span></code>, you can send them back to the model to get a final response.</p>
+<p>Send results back to model</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">input_messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Final response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;It&#39;s about 15°C in Paris, 18°C in Bogotá, and I&#39;ve sent that email to Bob.&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="additional-configurations">
+<h2>Additional configurations<a class="headerlink" href="#additional-configurations" title="Link to this heading">#</a></h2>
+<section id="tool-choice">
+<h3>Tool choice<a class="headerlink" href="#tool-choice" title="Link to this heading">#</a></h3>
+<p>By default the model will determine when and how many tools to use. You can force specific behavior with the <code class="docutils literal notranslate"><span class="pre">tool_choice</span></code> parameter.</p>
+<ol class="arabic simple">
+<li><p><strong>Auto:</strong> (<em>Default</em>) Call zero, one, or multiple functions. <code class="docutils literal notranslate"><span class="pre">tool_choice:</span> <span class="pre">&quot;auto&quot;</span></code></p></li>
+<li><p><strong>Required:</strong> Call one or more functions. <code class="docutils literal notranslate"><span class="pre">tool_choice:</span> <span class="pre">&quot;required&quot;</span></code></p></li>
+<li><p><strong>Forced Function:</strong> Call exactly one specific function. <code class="docutils literal notranslate"><span class="pre">tool_choice:</span> <span class="pre">{&quot;type&quot;:</span> <span class="pre">&quot;function&quot;,</span> <span class="pre">&quot;name&quot;:</span> <span class="pre">&quot;get_weather&quot;}</span></code></p></li>
+</ol>
+<p><img alt="Function Calling Diagram Steps" src="_images/function-calling-diagram-tool-choice.png" /></p>
+<p>You can also set <code class="docutils literal notranslate"><span class="pre">tool_choice</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code> to imitate the behavior of passing no functions.</p>
+</section>
+<section id="parallel-function-calling">
+<h3>Parallel function calling<a class="headerlink" href="#parallel-function-calling" title="Link to this heading">#</a></h3>
+<p>The model may choose to call multiple functions in a single turn. You can prevent this by setting <code class="docutils literal notranslate"><span class="pre">parallel_tool_calls</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>, which ensures exactly zero or one tool is called.</p>
+<p><strong>Note:</strong> Currently, if you are using a fine tuned model and the model calls multiple functions in one turn then <a class="reference internal" href="#strict-mode"><span class="xref myst">strict mode</span></a> will be disabled for those calls.</p>
+<p><strong>Note for <code class="docutils literal notranslate"><span class="pre">gpt-4.1-nano-2025-04-14</span></code>:</strong> This snapshot of <code class="docutils literal notranslate"><span class="pre">gpt-4.1-nano</span></code> can sometimes include multiple tools calls for the same tool if parallel tool calls are enabled. It is recommended to disable this feature when using this nano snapshot.</p>
+</section>
+<section id="strict-mode">
+<h3>Strict mode<a class="headerlink" href="#strict-mode" title="Link to this heading">#</a></h3>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">strict</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> will ensure function calls reliably adhere to the function schema, instead of being best effort. We recommend always enabling strict mode.</p>
+<p>Under the hood, strict mode works by leveraging our <code class="docutils literal notranslate"><span class="pre">structured</span> <span class="pre">outputs</span></code> feature and therefore introduces a couple requirements:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">additionalProperties</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">false</span></code> for each object in the <code class="docutils literal notranslate"><span class="pre">parameters</span></code>.</p></li>
+<li><p>All fields in <code class="docutils literal notranslate"><span class="pre">properties</span></code> must be marked as <code class="docutils literal notranslate"><span class="pre">required</span></code>.</p></li>
+</ol>
+<p>You can denote optional fields by adding <code class="docutils literal notranslate"><span class="pre">null</span></code> as a <code class="docutils literal notranslate"><span class="pre">type</span></code> option (see example below).</p>
+<p>Strict mode enabled</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieves current weather for the given location.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;strict&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City and country e.g. Bogotá, Colombia&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;celsius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fahrenheit&quot;</span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Units the temperature will be returned in.&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;units&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Strict mode disabled</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieves current weather for the given location.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City and country e.g. Bogotá, Colombia&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;celsius&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fahrenheit&quot;</span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Units the temperature will be returned in.&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While we recommend you enable strict mode, it has a few limitations:</p>
+<ol class="arabic simple">
+<li><p>Some features of JSON schema are not supported. (See <code class="docutils literal notranslate"><span class="pre">supported</span> <span class="pre">schemas</span></code>)</p></li>
+</ol>
+</section>
+</section>
+<section id="streaming">
+<h2>Streaming<a class="headerlink" href="#streaming" title="Link to this heading">#</a></h2>
+<p>Streaming can be used to surface progress by showing which function is called as the model fills its arguments, and even displaying the arguments in real time.</p>
+<p>Streaming function calls is very similar to streaming regular responses: you set <code class="docutils literal notranslate"><span class="pre">stream</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and get different <code class="docutils literal notranslate"><span class="pre">event</span></code> objects.</p>
+<p>Streaming function calls</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get current temperature for a given location.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;City and country e.g. Bogotá, Colombia&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;location&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">}]</span>
+
+<span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What&#39;s the weather like in Paris today?&quot;</span><span class="p">}],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output events</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.output_item.added&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;item&quot;</span><span class="p">:{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="s2">&quot;call_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;{\&quot;&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;location&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;\&quot;:\&quot;&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;Paris&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;,&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot; France&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.delta&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="s2">&quot;\&quot;}&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.function_call_arguments.done&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Paris, France\&quot;}&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;response.output_item.done&quot;</span><span class="p">,</span><span class="nt">&quot;response_id&quot;</span><span class="p">:</span><span class="s2">&quot;resp_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;output_index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;item&quot;</span><span class="p">:{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="s2">&quot;call_2345abc&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Paris, France\&quot;}&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>Instead of aggregating chunks into a single <code class="docutils literal notranslate"><span class="pre">content</span></code> string, however, you’re aggregating chunks into an encoded <code class="docutils literal notranslate"><span class="pre">arguments</span></code> JSON object.</p>
+<p>When the model calls one or more functions an event of type <code class="docutils literal notranslate"><span class="pre">response.output_item.added</span></code> will be emitted for each function call that contains the following fields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>response_id</p></td>
+<td><p>The id of the response that the function call belongs to</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_index</p></td>
+<td><p>The index of the output item in the response. This respresents the individual function calls in the response.</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The in-progress function call item that includes a name, arguments and id field</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Afterwards you will receive a series of events of type <code class="docutils literal notranslate"><span class="pre">response.function_call_arguments.delta</span></code> which will contain the <code class="docutils literal notranslate"><span class="pre">delta</span></code> of the <code class="docutils literal notranslate"><span class="pre">arguments</span></code> field. These events contain the following fields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>response_id</p></td>
+<td><p>The id of the response that the function call belongs to</p></td>
+</tr>
+<tr class="row-odd"><td><p>item_id</p></td>
+<td><p>The id of the function call item that the delta belongs to</p></td>
+</tr>
+<tr class="row-even"><td><p>output_index</p></td>
+<td><p>The index of the output item in the response. This respresents the individual function calls in the response.</p></td>
+</tr>
+<tr class="row-odd"><td><p>delta</p></td>
+<td><p>The delta of the arguments field.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Below is a code snippet demonstrating how to aggregate the <code class="docutils literal notranslate"><span class="pre">delta</span></code>s into a final <code class="docutils literal notranslate"><span class="pre">tool_call</span></code> object.</p>
+<p>Accumulating tool_call deltas</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">final_tool_calls</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">===</span> <span class="s1">&#39;response.output_item.added&#39;</span><span class="p">:</span>
+        <span class="n">final_tool_calls</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">output_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">item</span><span class="p">;</span>
+    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">===</span> <span class="s1">&#39;response.function_call_arguments.delta&#39;</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">output_index</span>
+
+        <span class="k">if</span> <span class="n">final_tool_calls</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+            <span class="n">final_tool_calls</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">arguments</span> <span class="o">+=</span> <span class="n">event</span><span class="o">.</span><span class="n">delta</span>
+</pre></div>
+</div>
+<p>Accumulated final_tool_calls[0]</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function_call&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fc_1234xyz&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;call_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;call_2345abc&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;location\&quot;:\&quot;Paris, France\&quot;}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When the model has finished calling the functions an event of type <code class="docutils literal notranslate"><span class="pre">response.function_call_arguments.done</span></code> will be emitted. This event contains the entire function call including the following fields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>response_id</p></td>
+<td><p>The id of the response that the function call belongs to</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_index</p></td>
+<td><p>The index of the output item in the response. This respresents the individual function calls in the response.</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The function call item that includes a name, arguments and id field.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_3_structured_outputs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Structured Outputs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_0_agents_overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agents Overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-function">Sample function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-calling-steps">Function calling steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-defining-functions">Best practices for defining functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-usage">Token Usage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-function-calls">Handling function calls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-results">Formatting results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-results-into-response">Incorporating results into response</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-configurations">Additional configurations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-choice">Tool choice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-function-calling">Parallel function calling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strict-mode">Strict mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming">Streaming</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
