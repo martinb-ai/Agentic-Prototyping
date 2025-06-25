@@ -25,9 +25,35 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+import base64
+
+# Function to encode the image
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+
+# Path to your image
+image_path = "path_to_your_image.jpg"
+
+# Getting the Base64 string
+base64_image = encode_image(image_path)
+
+
 response = client.responses.create(
     model="gpt-4.1",
-    input="Write a one-sentence bedtime story about a unicorn."
+    input=[
+        {
+            "role": "user",
+            "content": [
+                { "type": "input_text", "text": "what's in this image?" },
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/jpeg;base64,{base64_image}",
+                },
+            ],
+        }
+    ],
 )
 
 #print(response.output_text)
@@ -35,80 +61,31 @@ response = client.responses.create(
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mRateLimitError[39m                            Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m response = [43mclient[49m[43m.[49m[43mresponses[49m[43m.[49m[43mcreate[49m[43m([49m
-[32m      2[39m [43m    [49m[43mmodel[49m[43m=[49m[33;43m"[39;49m[33;43mgpt-4.1[39;49m[33;43m"[39;49m[43m,[49m
-[32m      3[39m [43m    [49m[38;5;28;43minput[39;49m[43m=[49m[33;43m"[39;49m[33;43mWrite a one-sentence bedtime story about a unicorn.[39;49m[33;43m"[39;49m
-[32m      4[39m [43m)[49m
-[32m      6[39m [38;5;66;03m#print(response.output_text)[39;00m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 13[39m
+[32m     10[39m image_path = [33m"[39m[33mpath_to_your_image.jpg[39m[33m"[39m
+[32m     12[39m [38;5;66;03m# Getting the Base64 string[39;00m
+[32m---> [39m[32m13[39m base64_image = [43mencode_image[49m[43m([49m[43mimage_path[49m[43m)[49m
+[32m     16[39m response = client.responses.create(
+[32m     17[39m     model=[33m"[39m[33mgpt-4.1[39m[33m"[39m,
+[32m     18[39m     [38;5;28minput[39m=[
+[32m   (...)[39m[32m     29[39m     ],
+[32m     30[39m )
+[32m     32[39m [38;5;66;03m#print(response.output_text)[39;00m
 
-[36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\openai\_utils\_utils.py:287[39m, in [36mrequired_args.<locals>.inner.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
-[32m    285[39m             msg = [33mf[39m[33m"[39m[33mMissing required argument: [39m[38;5;132;01m{[39;00mquote(missing[[32m0[39m])[38;5;132;01m}[39;00m[33m"[39m
-[32m    286[39m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(msg)
-[32m--> [39m[32m287[39m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 5[39m, in [36mencode_image[39m[34m(image_path)[39m
+[32m      4[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mencode_image[39m(image_path):
+[32m----> [39m[32m5[39m     [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[43mimage_path[49m[43m,[49m[43m [49m[33;43m"[39;49m[33;43mrb[39;49m[33;43m"[39;49m[43m)[49m [38;5;28;01mas[39;00m image_file:
+[32m      6[39m         [38;5;28;01mreturn[39;00m base64.b64encode(image_file.read()).decode([33m"[39m[33mutf-8[39m[33m"[39m)
 
-[36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\openai\resources\responses\responses.py:701[39m, in [36mResponses.create[39m[34m(self, input, model, background, include, instructions, max_output_tokens, metadata, parallel_tool_calls, previous_response_id, prompt, reasoning, service_tier, store, stream, temperature, text, tool_choice, tools, top_p, truncation, user, extra_headers, extra_query, extra_body, timeout)[39m
-[32m    669[39m [38;5;129m@required_args[39m([[33m"[39m[33minput[39m[33m"[39m, [33m"[39m[33mmodel[39m[33m"[39m], [[33m"[39m[33minput[39m[33m"[39m, [33m"[39m[33mmodel[39m[33m"[39m, [33m"[39m[33mstream[39m[33m"[39m])
-[32m    670[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcreate[39m(
-[32m    671[39m     [38;5;28mself[39m,
-[32m   (...)[39m[32m    699[39m     timeout: [38;5;28mfloat[39m | httpx.Timeout | [38;5;28;01mNone[39;00m | NotGiven = NOT_GIVEN,
-[32m    700[39m ) -> Response | Stream[ResponseStreamEvent]:
-[32m--> [39m[32m701[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_post[49m[43m([49m
-[32m    702[39m [43m        [49m[33;43m"[39;49m[33;43m/responses[39;49m[33;43m"[39;49m[43m,[49m
-[32m    703[39m [43m        [49m[43mbody[49m[43m=[49m[43mmaybe_transform[49m[43m([49m
-[32m    704[39m [43m            [49m[43m{[49m
-[32m    705[39m [43m                [49m[33;43m"[39;49m[33;43minput[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[38;5;28;43minput[39;49m[43m,[49m
-[32m    706[39m [43m                [49m[33;43m"[39;49m[33;43mmodel[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mmodel[49m[43m,[49m
-[32m    707[39m [43m                [49m[33;43m"[39;49m[33;43mbackground[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mbackground[49m[43m,[49m
-[32m    708[39m [43m                [49m[33;43m"[39;49m[33;43minclude[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43minclude[49m[43m,[49m
-[32m    709[39m [43m                [49m[33;43m"[39;49m[33;43minstructions[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43minstructions[49m[43m,[49m
-[32m    710[39m [43m                [49m[33;43m"[39;49m[33;43mmax_output_tokens[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mmax_output_tokens[49m[43m,[49m
-[32m    711[39m [43m                [49m[33;43m"[39;49m[33;43mmetadata[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mmetadata[49m[43m,[49m
-[32m    712[39m [43m                [49m[33;43m"[39;49m[33;43mparallel_tool_calls[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mparallel_tool_calls[49m[43m,[49m
-[32m    713[39m [43m                [49m[33;43m"[39;49m[33;43mprevious_response_id[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mprevious_response_id[49m[43m,[49m
-[32m    714[39m [43m                [49m[33;43m"[39;49m[33;43mprompt[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mprompt[49m[43m,[49m
-[32m    715[39m [43m                [49m[33;43m"[39;49m[33;43mreasoning[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mreasoning[49m[43m,[49m
-[32m    716[39m [43m                [49m[33;43m"[39;49m[33;43mservice_tier[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mservice_tier[49m[43m,[49m
-[32m    717[39m [43m                [49m[33;43m"[39;49m[33;43mstore[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mstore[49m[43m,[49m
-[32m    718[39m [43m                [49m[33;43m"[39;49m[33;43mstream[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mstream[49m[43m,[49m
-[32m    719[39m [43m                [49m[33;43m"[39;49m[33;43mtemperature[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtemperature[49m[43m,[49m
-[32m    720[39m [43m                [49m[33;43m"[39;49m[33;43mtext[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtext[49m[43m,[49m
-[32m    721[39m [43m                [49m[33;43m"[39;49m[33;43mtool_choice[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtool_choice[49m[43m,[49m
-[32m    722[39m [43m                [49m[33;43m"[39;49m[33;43mtools[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtools[49m[43m,[49m
-[32m    723[39m [43m                [49m[33;43m"[39;49m[33;43mtop_p[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtop_p[49m[43m,[49m
-[32m    724[39m [43m                [49m[33;43m"[39;49m[33;43mtruncation[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43mtruncation[49m[43m,[49m
-[32m    725[39m [43m                [49m[33;43m"[39;49m[33;43muser[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[43muser[49m[43m,[49m
-[32m    726[39m [43m            [49m[43m}[49m[43m,[49m
-[32m    727[39m [43m            [49m[43mresponse_create_params[49m[43m.[49m[43mResponseCreateParamsStreaming[49m
-[32m    728[39m [43m            [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mstream[49m
-[32m    729[39m [43m            [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43mresponse_create_params[49m[43m.[49m[43mResponseCreateParamsNonStreaming[49m[43m,[49m
-[32m    730[39m [43m        [49m[43m)[49m[43m,[49m
-[32m    731[39m [43m        [49m[43moptions[49m[43m=[49m[43mmake_request_options[49m[43m([49m
-[32m    732[39m [43m            [49m[43mextra_headers[49m[43m=[49m[43mextra_headers[49m[43m,[49m[43m [49m[43mextra_query[49m[43m=[49m[43mextra_query[49m[43m,[49m[43m [49m[43mextra_body[49m[43m=[49m[43mextra_body[49m[43m,[49m[43m [49m[43mtimeout[49m[43m=[49m[43mtimeout[49m
-[32m    733[39m [43m        [49m[43m)[49m[43m,[49m
-[32m    734[39m [43m        [49m[43mcast_to[49m[43m=[49m[43mResponse[49m[43m,[49m
-[32m    735[39m [43m        [49m[43mstream[49m[43m=[49m[43mstream[49m[43m [49m[38;5;129;43;01mor[39;49;00m[43m [49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
-[32m    736[39m [43m        [49m[43mstream_cls[49m[43m=[49m[43mStream[49m[43m[[49m[43mResponseStreamEvent[49m[43m][49m[43m,[49m
-[32m    737[39m [43m    [49m[43m)[49m
+[36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\IPython\core\interactiveshell.py:327[39m, in [36m_modified_open[39m[34m(file, *args, **kwargs)[39m
+[32m    320[39m [38;5;28;01mif[39;00m file [38;5;129;01min[39;00m {[32m0[39m, [32m1[39m, [32m2[39m}:
+[32m    321[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m    322[39m         [33mf[39m[33m"[39m[33mIPython won[39m[33m'[39m[33mt let you open fd=[39m[38;5;132;01m{[39;00mfile[38;5;132;01m}[39;00m[33m by default [39m[33m"[39m
+[32m    323[39m         [33m"[39m[33mas it is likely to crash IPython. If you know what you are doing, [39m[33m"[39m
+[32m    324[39m         [33m"[39m[33myou can use builtins[39m[33m'[39m[33m open.[39m[33m"[39m
+[32m    325[39m     )
+[32m--> [39m[32m327[39m [38;5;28;01mreturn[39;00m [43mio_open[49m[43m([49m[43mfile[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
 
-[36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\openai\_base_client.py:1249[39m, in [36mSyncAPIClient.post[39m[34m(self, path, cast_to, body, options, files, stream, stream_cls)[39m
-[32m   1235[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mpost[39m(
-[32m   1236[39m     [38;5;28mself[39m,
-[32m   1237[39m     path: [38;5;28mstr[39m,
-[32m   (...)[39m[32m   1244[39m     stream_cls: [38;5;28mtype[39m[_StreamT] | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m,
-[32m   1245[39m ) -> ResponseT | _StreamT:
-[32m   1246[39m     opts = FinalRequestOptions.construct(
-[32m   1247[39m         method=[33m"[39m[33mpost[39m[33m"[39m, url=path, json_data=body, files=to_httpx_files(files), **options
-[32m   1248[39m     )
-[32m-> [39m[32m1249[39m     [38;5;28;01mreturn[39;00m cast(ResponseT, [38;5;28;43mself[39;49m[43m.[49m[43mrequest[49m[43m([49m[43mcast_to[49m[43m,[49m[43m [49m[43mopts[49m[43m,[49m[43m [49m[43mstream[49m[43m=[49m[43mstream[49m[43m,[49m[43m [49m[43mstream_cls[49m[43m=[49m[43mstream_cls[49m[43m)[49m)
-
-[36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\openai\_base_client.py:1037[39m, in [36mSyncAPIClient.request[39m[34m(self, cast_to, options, stream, stream_cls)[39m
-[32m   1034[39m             err.response.read()
-[32m   1036[39m         log.debug([33m"[39m[33mRe-raising status error[39m[33m"[39m)
-[32m-> [39m[32m1037[39m         [38;5;28;01mraise[39;00m [38;5;28mself[39m._make_status_error_from_response(err.response) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
-[32m   1039[39m     [38;5;28;01mbreak[39;00m
-[32m   1041[39m [38;5;28;01massert[39;00m response [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m, [33m"[39m[33mcould not resolve response (should never happen)[39m[33m"[39m
-
-[31mRateLimitError[39m: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: 'path_to_your_image.jpg'
 
