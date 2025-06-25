@@ -186,6 +186,9 @@
 <li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_3_structured_outputs.html">Structured Outputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul class="nav bd-sidenav">
@@ -414,7 +417,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Under a moonlit sky, a gentle unicorn tiptoed through a field of glowing daisies, leaving behind a trail of sparkling dreams for every child to find.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Under a silver moon, a gentle unicorn named Luna tiptoed through a field of twinkling stars, softly singing dreams to every sleeping child.
 </pre></div>
 </div>
 </div>
@@ -446,7 +449,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the image, the animal on the left appears to be a wolf, which is not a domesticated dog but is the ancestor of domestic dogs. The animal on the right is a Pug, a breed of domestic dog known for its wrinkly face and distinctive expression.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the image, the animal on the left is a **wolf** (which is not a domesticated dog but is closely related to dogs genetically), and the animal on the right is a **Pug**, which is a breed of domestic dog.
 </pre></div>
 </div>
 </div>
@@ -490,15 +493,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This image is a flowchart diagram illustrating a task delegation system, likely in the context of AI or software agents.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This image is a diagram illustrating a **task delegation system**, often used to explain multi-agent frameworks or manager-worker architectures in computing and artificial intelligence.
 
-- **Left Side**: There is an input box that says, &quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot; which represents a user&#39;s request.
-- **Middle**: The request goes to a &quot;Manager&quot; (represented as a large, shaded rectangle). The manager appears to handle multiple input requests (with another input labeled &quot;...&quot;).
-- **Right Side**: The manager splits the main task into subtasks (represented by smaller dashed boxes labeled “Task”).
-- **Further Right**: Each task is assigned to a specific language agent: &quot;Spanish agent&quot;, &quot;French agent&quot;, and &quot;Italian agent&quot;.
-- The arrows indicate the direction of information flow: user → manager → individual tasks for agents → results flow back.
+Here&#39;s a breakdown of the components:
 
-Overall, this diagram represents a system architecture where a central manager breaks a user’s request into language-specific translation tasks, which are then executed by specialized agent components.
+- On the left, there is a box with the instruction: **&quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot;**
+- This instruction is sent to a central component labeled **Manager**.
+- The Manager splits this request into three separate **Tasks** (each represented by a dashed box labeled &quot;Task&quot;).
+- Each Task is then assigned to a different specialized **agent**:
+  - **Spanish agent**
+  - **French agent**
+  - **Italian agent**
+- Each agent is responsible for handling its specific language translation subtask.
+
+The diagram shows how a complex request is broken down by a manager, distributed as tasks, and handled by specialized agents, with possible return flow to collect results. This is a common pattern for parallel processing, workflow systems, or multi-agent AI coordination.
 </pre></div>
 </div>
 </div>
@@ -644,7 +652,7 @@ Overall, this diagram represents a system architecture where a central manager b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Hola! Estoy bien, gracias. ¿Y tú, cómo te encuentras?
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Hola! Estoy bien, gracias. ¿Y tú?
 </pre></div>
 </div>
 </div>

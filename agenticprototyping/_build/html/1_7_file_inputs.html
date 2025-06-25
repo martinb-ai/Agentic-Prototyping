@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Safety Best Practices &#8212; Agentic Prototyping</title>
+    <title>File inputs &#8212; Agentic Prototyping</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '3_1_safety';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_7_file_inputs';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Prompt caching" href="3_2_prompt_caching.html" />
-    <link rel="prev" title="Production best practices" href="3_0_production.html" />
+    <link rel="next" title="Agents Overview" href="2_0_agents_overview.html" />
+    <link rel="prev" title="Streaming API responses" href="1_6_streaming.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
@@ -188,7 +188,7 @@
 <li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">File inputs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul class="nav bd-sidenav">
@@ -197,9 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="_sources/3_1_safety.md" target="_blank"
+      <li><a href="_sources/1_7_file_inputs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Safety Best Practices</h1>
+    <h1>File inputs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,18 +359,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-our-free-moderation-api">Use our free Moderation API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adversarial-testing">Adversarial testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#human-in-the-loop-hitl">Human in the loop (HITL)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt engineering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#know-your-customer-kyc">“Know your customer” (KYC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constrain-user-input-and-limit-output-tokens">Constrain user input and limit output tokens</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allow-users-to-report-issues">Allow users to report issues</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-and-communicate-limitations">Understand and communicate limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-ids">End-user IDs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-providing-a-user-identifier">Example: Providing a user identifier</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files">Uploading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base64-encoded-files">Base64-encoded files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-considerations">Usage considerations</a></li>
 </ul>
             </nav>
         </div>
@@ -382,67 +374,97 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="safety-best-practices">
-<h1>Safety Best Practices<a class="headerlink" href="#safety-best-practices" title="Link to this heading">#</a></h1>
-<p>Implement safety measures like moderation and human oversight.</p>
-<section id="use-our-free-moderation-api">
-<h2>Use our free Moderation API<a class="headerlink" href="#use-our-free-moderation-api" title="Link to this heading">#</a></h2>
-<p>OpenAI’s Moderation API is free-to-use and can help reduce the frequency of unsafe content in your completions. Alternatively, you may wish to develop your own content filtration system tailored to your use case.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="file-inputs">
+<h1>File inputs<a class="headerlink" href="#file-inputs" title="Link to this heading">#</a></h1>
+<p>Learn how to use PDF files as inputs to the OpenAI API.</p>
+<p>OpenAI models with vision capabilities can also accept PDF files as input. Provide PDFs either as Base64-encoded data or as file IDs obtained after uploading files to the <code class="docutils literal notranslate"><span class="pre">/v1/files</span></code> endpoint through the <a class="reference external" href="https://platform.openai.com/docs/api-reference/files">API</a> or <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> under <code class="docutils literal notranslate"><span class="pre">storage</span></code>.</p>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h2>
+<p>To help models understand PDF content, we put into the model’s context both the extracted text and an image of each page. The model can then use both the text and the images to generate a response. This is useful, for example, if diagrams contain key information that isn’t in the text.</p>
 </section>
-<section id="adversarial-testing">
-<h2>Adversarial testing<a class="headerlink" href="#adversarial-testing" title="Link to this heading">#</a></h2>
-<p>We recommend “red-teaming” your application to ensure it’s robust to adversarial input. Test your product over a wide range of inputs and user behaviors, both a representative set and those reflective of someone trying to ‘break’ your application. Does it wander off topic? Can someone easily redirect the feature via prompt injections, e.g. “ignore the previous instructions and do this instead”?</p>
-</section>
-<section id="human-in-the-loop-hitl">
-<h2>Human in the loop (HITL)<a class="headerlink" href="#human-in-the-loop-hitl" title="Link to this heading">#</a></h2>
-<p>Wherever possible, we recommend having a human review outputs before they are used in practice. This is especially critical in high-stakes domains, and for code generation. Humans should be aware of the limitations of the system, and have access to any information needed to verify the outputs (for example, if the application summarizes notes, a human should have easy access to the original notes to refer back).</p>
-</section>
-<section id="prompt-engineering">
-<h2>Prompt engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h2>
-<p>“Prompt engineering” can help constrain the topic and tone of output text. This reduces the chance of producing undesired content, even if a user tries to produce it. Providing additional context to the model (such as by giving a few high-quality examples of desired behavior prior to the new input) can make it easier to steer model outputs in desired directions.</p>
-</section>
-<section id="know-your-customer-kyc">
-<h2>“Know your customer” (KYC)<a class="headerlink" href="#know-your-customer-kyc" title="Link to this heading">#</a></h2>
-<p>Users should generally need to register and log-in to access your service. Linking this service to an existing account, such as a Gmail, LinkedIn, or Facebook log-in, may help, though may not be appropriate for all use-cases. Requiring a credit card or ID card reduces risk further.</p>
-</section>
-<section id="constrain-user-input-and-limit-output-tokens">
-<h2>Constrain user input and limit output tokens<a class="headerlink" href="#constrain-user-input-and-limit-output-tokens" title="Link to this heading">#</a></h2>
-<p>Limiting the amount of text a user can input into the prompt helps avoid prompt injection. Limiting the number of output tokens helps reduce the chance of misuse.</p>
-<p>Narrowing the ranges of inputs or outputs, especially drawn from trusted sources, reduces the extent of misuse possible within an application.</p>
-<p>Allowing user inputs through validated dropdown fields (e.g., a list of movies on Wikipedia) can be more secure than allowing open-ended text inputs.</p>
-<p>Returning outputs from a validated set of materials on the backend, where possible, can be safer than returning novel generated content (for instance, routing a customer query to the best-matching existing customer support article, rather than attempting to answer the query from-scratch).</p>
-</section>
-<section id="allow-users-to-report-issues">
-<h2>Allow users to report issues<a class="headerlink" href="#allow-users-to-report-issues" title="Link to this heading">#</a></h2>
-<p>Users should generally have an easily-available method for reporting improper functionality or other concerns about application behavior (listed email address, ticket submission method, etc). This method should be monitored by a human and responded to as appropriate.</p>
-</section>
-<section id="understand-and-communicate-limitations">
-<h2>Understand and communicate limitations<a class="headerlink" href="#understand-and-communicate-limitations" title="Link to this heading">#</a></h2>
-<p>From hallucinating inaccurate information, to offensive outputs, to bias, and much more, language models may not be suitable for every use case without significant modifications. Consider whether the model is fit for your purpose, and evaluate the performance of the API on a wide range of potential inputs in order to identify cases where the API’s performance might drop. Consider your customer base and the range of inputs that they will be using, and ensure their expectations are calibrated appropriately.</p>
-<p>Safety and security are very important to us at OpenAI.</p>
-<p>If in the course of your development you do notice any safety or security issues with the API or anything else related to OpenAI, please submit these through our <a class="reference external" href="https://openai.com/security/disclosure/">Coordinated Vulnerability Disclosure Program</a>.</p>
-</section>
-<section id="end-user-ids">
-<h2>End-user IDs<a class="headerlink" href="#end-user-ids" title="Link to this heading">#</a></h2>
-<p>Sending end-user IDs in your requests can be a useful tool to help OpenAI monitor and detect abuse. This allows OpenAI to provide your team with more actionable feedback in the event that we detect any policy violations in your application.</p>
-<p>The IDs should be a string that uniquely identifies each user. We recommend hashing their username or email address, in order to avoid sending us any identifying information. If you offer a preview of your product to non-logged in users, you can send a session ID instead.</p>
-<p>You can include end-user IDs in your API requests via the <code class="docutils literal notranslate"><span class="pre">user</span></code> parameter as follows:</p>
-<section id="example-providing-a-user-identifier">
-<h3>Example: Providing a user identifier<a class="headerlink" href="#example-providing-a-user-identifier" title="Link to this heading">#</a></h3>
+<section id="uploading-files">
+<h2>Uploading files<a class="headerlink" href="#uploading-files" title="Link to this heading">#</a></h2>
+<p>In the example below, we first upload a PDF using the <a class="reference external" href="https://platform.openai.com/docs/api-reference/files">Files API</a>, then reference its file ID in an API request to the model.</p>
+<p>Upload a file to use in a response</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-  <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
-  <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;This is a test&quot;</span><span class="p">}</span>
-  <span class="p">],</span>
-  <span class="n">max_tokens</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-  <span class="n">user</span><span class="o">=</span><span class="s2">&quot;user_123456&quot;</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="n">purpose</span><span class="o">=</span><span class="s2">&quot;user_data&quot;</span>
 <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_file&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the first dragon in the book?&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
+<section id="base64-encoded-files">
+<h2>Base64-encoded files<a class="headerlink" href="#base64-encoded-files" title="Link to this heading">#</a></h2>
+<p>You can send PDF file inputs as Base64-encoded inputs as well.</p>
+<p>Base64 encode a file to use in a response</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">base64_string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_file&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_data&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:application/pdf;base64,</span><span class="si">{</span><span class="n">base64_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the first dragon in the book?&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="usage-considerations">
+<h2>Usage considerations<a class="headerlink" href="#usage-considerations" title="Link to this heading">#</a></h2>
+<p>Below are a few considerations to keep in mind while using PDF inputs.</p>
+<p><strong>Token usage</strong></p>
+<p>To help models understand PDF content, we put into the model’s context both extracted text and an image of each page—regardless of whether the page includes images. Before deploying your solution at scale, ensure you understand the pricing and token usage implications of using PDFs as input.</p>
+<p><strong>File size limitations</strong></p>
+<p>You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.</p>
+<p><strong>Supported models</strong></p>
+<p>Only models that support both text and image inputs, such as gpt-4o, gpt-4o-mini, or o1, can accept PDF files as input.</p>
+<p><strong>File upload purpose</strong></p>
+<p>You can upload these files to the Files API with any <a class="reference external" href="https://platform.openai.com/docs/api-reference/files/create">purpose</a>, but we recommend using the <code class="docutils literal notranslate"><span class="pre">user_data</span></code> purpose for files you plan to use as model inputs.</p>
 </section>
 </section>
 
@@ -477,20 +499,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="3_0_production.html"
+       href="1_6_streaming.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Production best practices</p>
+        <p class="prev-next-title">Streaming API responses</p>
       </div>
     </a>
     <a class="right-next"
-       href="3_2_prompt_caching.html"
+       href="2_0_agents_overview.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Prompt caching</p>
+        <p class="prev-next-title">Agents Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -510,18 +532,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-our-free-moderation-api">Use our free Moderation API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adversarial-testing">Adversarial testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#human-in-the-loop-hitl">Human in the loop (HITL)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt engineering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#know-your-customer-kyc">“Know your customer” (KYC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constrain-user-input-and-limit-output-tokens">Constrain user input and limit output tokens</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allow-users-to-report-issues">Allow users to report issues</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-and-communicate-limitations">Understand and communicate limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-ids">End-user IDs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-providing-a-user-identifier">Example: Providing a user identifier</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How it works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files">Uploading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base64-encoded-files">Base64-encoded files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-considerations">Usage considerations</a></li>
 </ul>
   </nav></div>
 

@@ -11,6 +11,9 @@ parts:
       - file: 1_2_prototype_to_production
       - file: 1_3_structured_outputs
       - file: 1_4_function_calling
+      - file: 1_5_conversational_state
+      - file: 1_6_streaming
+      - file: 1_7_file_inputs
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview
