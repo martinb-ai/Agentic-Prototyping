@@ -16,7 +16,12 @@ parts:
       - file: 2_2_guardrails
   - caption: Best Practices
     chapters:
-      - file: 3_0_production_best_practices
+      - file: 3_0_production
+      - file: 3_1_safety
+      - file: 3_2_prompt_caching
+      - file: 3_3_reasoning_models
+      - file: 3_4_accuracy_optimization
+      - file: 3_5_reproducibility
   - caption: Case Studies
     chapters:
       - file: 4_legal_qa
