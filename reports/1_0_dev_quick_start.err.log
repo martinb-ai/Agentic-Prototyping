@@ -30,7 +30,7 @@ response = client.responses.create(
     input="Write a one-sentence bedtime story about a unicorn."
 )
 
-print(response.output_text)
+#print(response.output_text)
 ------------------
 
 
@@ -41,7 +41,7 @@ print(response.output_text)
 [32m      2[39m [43m    [49m[43mmodel[49m[43m=[49m[33;43m"[39;49m[33;43mgpt-4.1[39;49m[33;43m"[39;49m[43m,[49m
 [32m      3[39m [43m    [49m[38;5;28;43minput[39;49m[43m=[49m[33;43m"[39;49m[33;43mWrite a one-sentence bedtime story about a unicorn.[39;49m[33;43m"[39;49m
 [32m      4[39m [43m)[49m
-[32m      6[39m [38;5;28mprint[39m(response.output_text)
+[32m      6[39m [38;5;66;03m#print(response.output_text)[39;00m
 
 [36mFile [39m[32mc:\Users\mbufi\AppData\Local\anaconda3\envs\agents\Lib\site-packages\openai\_utils\_utils.py:287[39m, in [36mrequired_args.<locals>.inner.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
 [32m    285[39m             msg = [33mf[39m[33m"[39m[33mMissing required argument: [39m[38;5;132;01m{[39;00mquote(missing[[32m0[39m])[38;5;132;01m}[39;00m[33m"[39m
