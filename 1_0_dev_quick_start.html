@@ -189,6 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_evals.html">Evaluating model performance</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
 <ul class="nav bd-sidenav">
@@ -417,7 +418,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Under a silver moon, a gentle unicorn named Luna tiptoed through a field of twinkling stars, softly singing dreams to every sleeping child.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Beneath a shimmer of moonlight, a gentle unicorn tiptoed through a field of glowing flowers, leaving trails of stardust to fill everyone’s dreams with magic.
 </pre></div>
 </div>
 </div>
@@ -449,7 +450,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the image, the animal on the left is a **wolf** (which is not a domesticated dog but is closely related to dogs genetically), and the animal on the right is a **Pug**, which is a breed of domestic dog.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the image, the animal on the left is a **wolf** (not a domesticated dog breed, but the ancestor of domestic dogs), and the animal on the right is a **Pug**, which is a breed of domestic dog.
 </pre></div>
 </div>
 </div>
@@ -493,20 +494,37 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This image is a diagram illustrating a **task delegation system**, often used to explain multi-agent frameworks or manager-worker architectures in computing and artificial intelligence.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This image is a flowchart diagram illustrating a **manager-agent architecture** for handling a translation request.
 
-Here&#39;s a breakdown of the components:
+### Here&#39;s what is depicted:
+1. **Input:**  
+   On the left, a request is made:  
+   - &quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot;
 
-- On the left, there is a box with the instruction: **&quot;Translate &#39;hello&#39; to Spanish, French and Italian for me!&quot;**
-- This instruction is sent to a central component labeled **Manager**.
-- The Manager splits this request into three separate **Tasks** (each represented by a dashed box labeled &quot;Task&quot;).
-- Each Task is then assigned to a different specialized **agent**:
-  - **Spanish agent**
-  - **French agent**
-  - **Italian agent**
-- Each agent is responsible for handling its specific language translation subtask.
+2. **Manager:**  
+   The request goes to a central **Manager** box, which represents a system or person delegating the task.
 
-The diagram shows how a complex request is broken down by a manager, distributed as tasks, and handled by specialized agents, with possible return flow to collect results. This is a common pattern for parallel processing, workflow systems, or multi-agent AI coordination.
+3. **Task Creation:**  
+   The manager divides the request into three specific **Tasks** (represented by dashed boxes):
+   - One for each target language (Spanish, French, Italian).
+
+4. **Agents:**  
+   Each task is then passed to a respective **Agent**:
+   - **Spanish agent** for translating to Spanish  
+   - **French agent** for translating to French  
+   - **Italian agent** for translating to Italian  
+
+5. **Process Flow:**  
+   Arrows indicate the flow of tasks:
+   - From the manager to the tasks
+   - From tasks to the agents  
+   - Back from agents after completing the translation tasks to the manager  
+   - Finally back to the requester with the results
+
+### Purpose:
+- The diagram visually explains how a manager can break a complex job (multi-language translation) into smaller subtasks and delegate them to specialized agents, eventually collecting the results to return a combined answer.
+
+This type of structure is often used in computer science for **multi-agent systems** or **task management frameworks**.
 </pre></div>
 </div>
 </div>
