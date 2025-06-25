@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Prototype to Production &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_2_prototype_to_production';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Agents Overview" href="2_0_agents_overview.html" />
+    <link rel="prev" title="Model Guide" href="1_1_model_selection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prototype to Production</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production_best_practices.html">Production best practices</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_2_prototype_to_production.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prototype to Production</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptation-decision-tree">Adaptation Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicating-model-selection-to-non-technical-stakeholders">Communicating Model Selection to Non-Technical Stakeholders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#price-and-utility-table-apr-2025">Price and Utility Table (Apr 2025)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-pattern-quick-sheet-token-vs-latency-deltas">Prompt-pattern Quick Sheet (Token vs Latency Deltas)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prototype-to-production">
+<h1>Prototype to Production<a class="headerlink" href="#prototype-to-production" title="Link to this heading">#</a></h1>
+<p>Transitioning a prototype to production requires careful planning and execution. This checklist highlights critical steps, drawing from our flagship use cases, to ensure your deployment is robust, efficient, and meets business goals.</p>
+<section id="tl-dr-matrix">
+<h2>🗂️ TL;DR Matrix<a class="headerlink" href="#tl-dr-matrix" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Checklist Area</p></th>
+<th class="head"><p>Key Focus / Actions</p></th>
+<th class="head"><p>Why it Matters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Define Success Criteria</p></td>
+<td><p>• Define measurable KPIs &amp; SLOs (accuracy, cost, latency)<br>• Ensure targets are measurable via logs</p></td>
+<td><p>Provides clear targets; proves value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Document Model Rationale</p></td>
+<td><p>• Select initial models deliberately based on trade-offs<br>• Document the “why” behind model choices</p></td>
+<td><p>Justifies choices; aids future updates</p></td>
+</tr>
+<tr class="row-even"><td><p>Robust Evaluation &amp; Testing</p></td>
+<td><p>• Build automated tests (“eval suite”) using a golden set<br>• Focus on factuality, hallucinations, tool errors<br>• Test tool reliability &amp; edge cases</p></td>
+<td><p>Ensures quality; prevents regressions before release</p></td>
+</tr>
+<tr class="row-odd"><td><p>Observability &amp; Cost</p></td>
+<td><p>• Implement essential logging for monitoring &amp; debugging<br>• Set cost guardrails (token limits, usage modes)</p></td>
+<td><p>Enables tuning; keeps spending within budget</p></td>
+</tr>
+<tr class="row-even"><td><p>Safety &amp; Compliance</p></td>
+<td><p>• Use safety mechanisms (moderation APIs, prompts)<br>• Enforce domain-specific compliance rules<br>• Mandate Human-in-the-Loop (HITL) for high-risk outputs</p></td>
+<td><p>Ensures responsible operation; meets requirements</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model Updates &amp; Versioning</p></td>
+<td><p>• Define version pinning strategy<br>• Implement A/B testing for new versions<br>• Create rollback procedures</p></td>
+<td><p>Maintains stability while allowing improvements</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Define Success Criteria Quantitatively</strong>: Move beyond “it works” to measurable targets before major development.</p>
+<ul class="simple">
+<li><p><strong>Set Key Performance Indicators (KPIs) &amp; SLOs</strong>: Define specific targets for business value (e.g., RAG accuracy &gt; 95%, OCR cost &lt; $X/page) and performance (e.g., P95 latency &lt; 1s, error rates).</p></li>
+<li><p><strong>Ensure Measurability</strong>: Confirm that all KPIs and SLOs can be directly measured from system logs (e.g., tracking total_tokens, critique_status).</p></li>
+</ul>
+</li>
+<li><p><strong>Document Initial Model Selection Rationale</strong>: Justify your starting model choices for future reference.</p>
+<ul class="simple">
+<li><p><strong>Choose Models Deliberately</strong>: Use the Model-Intro Matrix and use cases to select appropriate models for each task (e.g., o4-mini for speed/cost, gpt-4.1 for accuracy, o3 for depth).</p></li>
+<li><p><strong>Record the “Why”</strong>: Briefly document the reasoning behind your choices (cost, latency, capability trade-offs) in code comments or design docs so future teams understand the context.</p></li>
+</ul>
+</li>
+<li><p><strong>Implement Robust Evaluation &amp; Testing</strong>: Verify quality and prevent regressions before shipping changes.</p>
+<ul class="simple">
+<li><p><strong>Build an Automated Eval Suite</strong>: Create a repeatable test process using a “golden set” (50-100 diverse, expert-verified examples). Focus tests on factuality, hallucination rate, tool-error rate, and task-specific metrics.</p></li>
+<li><p><strong>Test Reliably</strong>: Rigorously test integrated tool reliability (success rate, error handling) and system behavior under load and with edge cases (malformed data, adversarial inputs).</p></li>
+</ul>
+</li>
+<li><p><strong>Establish Observability &amp; Cost Controls</strong>: Monitor performance and keep spending within budget.</p>
+<ul class="simple">
+<li><p><strong>Set Cost Guardrails</strong>: Prevent unexpected cost increases by defining max token limits per stage and considering operational modes (“Fast,” “Standard,” “Thorough”) to balance cost and performance.</p></li>
+<li><p><strong>Implement Essential Logging</strong>: Capture key operational data via structured logs for each processing stage to enable debugging and monitoring.</p></li>
+</ul>
+</li>
+<li><p><strong>Implement Safety &amp; Compliance Guardrails</strong>: Ensure responsible operation and meet requirements.</p>
+<ul class="simple">
+<li><p><strong>Use Safety Mechanisms</strong>: Employ tools like OpenAI’s moderation APIs, safety-focused system prompts, or sentinel models for checks, especially with user input or sensitive topics.</p></li>
+<li><p><strong>Enforce Compliance</strong>: Build in checks relevant to your specific industry and risks (e.g., legal constraints, lab safety).</p></li>
+<li><p><strong>Require Human-in-the-Loop (HITL)</strong>: Mandate human review for low-confidence outputs, high-risk scenarios, or critical decisions, ensuring the workflow flags these items clearly.</p></li>
+</ul>
+</li>
+<li><p><strong>Manage Model Updates and Versioning</strong>: Prepare for model evolution over time.</p>
+<ul class="simple">
+<li><p><strong>Version Pinning Strategy</strong>: Decide whether to pin to specific model versions for stability or automatically adopt new versions for improvements.</p></li>
+<li><p><strong>A/B Testing Framework</strong>: Establish a process to evaluate new model versions against your key metrics before full deployment.</p></li>
+<li><p><strong>Rollback Plan</strong>: Create a clear procedure for reverting to previous model versions if issues arise with updates.</p></li>
+<li><p><strong>Monitor Version Performance</strong>: Track metrics across model versions to identify performance trends and inform future selection decisions.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="adaptation-decision-tree">
+<h2>Adaptation Decision Tree<a class="headerlink" href="#adaptation-decision-tree" title="Link to this heading">#</a></h2>
+<p><img alt="Model Selection Flowchart" src="_images/model_selection_flowchart.png" /></p>
+</section>
+<section id="communicating-model-selection-to-non-technical-stakeholders">
+<h2>Communicating Model Selection to Non-Technical Stakeholders<a class="headerlink" href="#communicating-model-selection-to-non-technical-stakeholders" title="Link to this heading">#</a></h2>
+<p>When explaining your model choices to business stakeholders, focus on these key points:</p>
+<ul class="simple">
+<li><p><strong>Align with Business Outcomes</strong>: Explain how your model selection directly supports specific business goals (time savings, cost reduction, improved accuracy).</p></li>
+<li><p><strong>Translate Technical Metrics</strong>: Convert technical considerations into business impact:</p>
+<ul>
+<li><p>“This model reduces processing time from 5 seconds to 0.7 seconds, allowing us to handle customer inquiries 7x faster”</p></li>
+<li><p>“By using the mini variant, we can process 5x more documents within the same budget”</p></li>
+</ul>
+</li>
+<li><p><strong>Highlight Trade-offs</strong>: Present clear scenarios for different models:</p>
+<ul>
+<li><p>“Option A (GPT-4.1): Highest accuracy but higher cost - ideal for client-facing legal analysis”</p></li>
+<li><p>“Option B (GPT-4.1 mini): 90% of the accuracy at 30% of the cost - perfect for internal document processing”</p></li>
+</ul>
+</li>
+<li><p><strong>Use Concrete Examples</strong>: Demonstrate the practical difference in outputs between models to illustrate the value proposition of each option.</p></li>
+</ul>
+</section>
+<section id="price-and-utility-table-apr-2025">
+<h2>Price and Utility Table (Apr 2025)<a class="headerlink" href="#price-and-utility-table-apr-2025" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Context Window</p></th>
+<th class="head"><p>Input Price (per 1M tokens)</p></th>
+<th class="head"><p>Output Price (per 1M tokens)</p></th>
+<th class="head"><p>Best For</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPT-4.1</p></td>
+<td><p>1M</p></td>
+<td><p>$2.00</p></td>
+<td><p>$8.00</p></td>
+<td><p>Long-doc analytics, code review</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPT-4.1 mini</p></td>
+<td><p>1M</p></td>
+<td><p>$0.40</p></td>
+<td><p>$1.60</p></td>
+<td><p>Production agents, balanced cost/performance</p></td>
+</tr>
+<tr class="row-even"><td><p>GPT-4.1 nano</p></td>
+<td><p>1M</p></td>
+<td><p>$0.10</p></td>
+<td><p>$0.40</p></td>
+<td><p>High-throughput, cost-sensitive applications</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPT-4o</p></td>
+<td><p>128K</p></td>
+<td><p>$5.00</p></td>
+<td><p>$15.00</p></td>
+<td><p>Real-time voice/vision chat</p></td>
+</tr>
+<tr class="row-even"><td><p>GPT-4o mini</p></td>
+<td><p>128K</p></td>
+<td><p>$0.15</p></td>
+<td><p>$0.60</p></td>
+<td><p>Vision tasks, rapid analytics</p></td>
+</tr>
+<tr class="row-odd"><td><p>o3 (low)</p></td>
+<td><p>200K</p></td>
+<td><p>$10.00*</p></td>
+<td><p>$40.00*</p></td>
+<td><p>Bulk triage, catalog enrichment</p></td>
+</tr>
+<tr class="row-even"><td><p>o3 (med)</p></td>
+<td><p>200K</p></td>
+<td><p>$10.00*</p></td>
+<td><p>$40.00*</p></td>
+<td><p>Knowledge base Q&amp;A</p></td>
+</tr>
+<tr class="row-odd"><td><p>o3 (high)</p></td>
+<td><p>200K</p></td>
+<td><p>$10.00*</p></td>
+<td><p>$40.00*</p></td>
+<td><p>Multi-step reasoning, troubleshooting</p></td>
+</tr>
+<tr class="row-even"><td><p>o4-mini (low)</p></td>
+<td><p>200K</p></td>
+<td><p>$1.10*</p></td>
+<td><p>$4.40*</p></td>
+<td><p>Vision tasks, rapid analytics</p></td>
+</tr>
+<tr class="row-odd"><td><p>o4-mini (med)</p></td>
+<td><p>200K</p></td>
+<td><p>$1.10*</p></td>
+<td><p>$4.40*</p></td>
+<td><p>Balanced vision + reasoning</p></td>
+</tr>
+<tr class="row-even"><td><p>o4-mini (high)</p></td>
+<td><p>200K</p></td>
+<td><p>$1.10*</p></td>
+<td><p>$4.40*</p></td>
+<td><p>Deep reasoning with cost control</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Note: The low/med/high settings affect token usage rather than base pricing. Higher settings may use more tokens for deeper reasoning, increasing per-request cost and latency.</em></p>
+</section>
+<section id="prompt-pattern-quick-sheet-token-vs-latency-deltas">
+<h2>Prompt-pattern Quick Sheet (Token vs Latency Deltas)<a class="headerlink" href="#prompt-pattern-quick-sheet-token-vs-latency-deltas" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Prompt Pattern</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Token Impact</p></th>
+<th class="head"><p>Latency Impact</p></th>
+<th class="head"><p>Best Model Fit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Self-Critique</p></td>
+<td><p>Ask model to evaluate its own answer before finalizing</p></td>
+<td><p>+20-30% tokens</p></td>
+<td><p>+15-25% latency</p></td>
+<td><p>GPT-4.1, o3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chain-of-Thought (CoT)</p></td>
+<td><p>Explicitly instruct to “think step by step”</p></td>
+<td><p>+40-80% tokens</p></td>
+<td><p>+30-50% latency</p></td>
+<td><p>o3, o4-mini (high)</p></td>
+</tr>
+<tr class="row-even"><td><p>Structured Outputs</p></td>
+<td><p>Use JSON schema or pydantic models for consistent formatting</p></td>
+<td><p>+5-10% tokens</p></td>
+<td><p>+5-10% latency</p></td>
+<td><p>All models</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zero-Token Memory</p></td>
+<td><p>Store context in external DB rather than in conversation</p></td>
+<td><p>-70-90% tokens</p></td>
+<td><p>-5-10% latency</p></td>
+<td><p>GPT-4.1 family</p></td>
+</tr>
+<tr class="row-even"><td><p>Skeleton-Fill-In</p></td>
+<td><p>Provide template structure for model to complete</p></td>
+<td><p>-10-20% tokens</p></td>
+<td><p>-5-15% latency</p></td>
+<td><p>o4-mini, GPT-4.1 nano</p></td>
+</tr>
+<tr class="row-odd"><td><p>Self-Consistency</p></td>
+<td><p>Generate multiple answers and select most consistent</p></td>
+<td><p>+200-300% tokens</p></td>
+<td><p>+150-250% latency</p></td>
+<td><p>o3 (high)</p></td>
+</tr>
+<tr class="row-even"><td><p>Role-Playing</p></td>
+<td><p>Assign specific personas to model for specialized knowledge</p></td>
+<td><p>+5-15% tokens</p></td>
+<td><p>Neutral</p></td>
+<td><p>GPT-4o, o4-mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tournament Ranking</p></td>
+<td><p>Compare options pairwise rather than scoring individually</p></td>
+<td><p>+50-100% tokens</p></td>
+<td><p>+30-60% latency</p></td>
+<td><p>o3, o4-mini (high)</p></td>
+</tr>
+<tr class="row-even"><td><p>Tool-Calling Reflex</p></td>
+<td><p>Prompt model to call tools when uncertainty is detected</p></td>
+<td><p>+10-30% tokens</p></td>
+<td><p>+20-40% latency</p></td>
+<td><p>o3, GPT-4.1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_1_model_selection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Model Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_0_agents_overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agents Overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr-matrix">🗂️ TL;DR Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptation-decision-tree">Adaptation Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicating-model-selection-to-non-technical-stakeholders">Communicating Model Selection to Non-Technical Stakeholders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#price-and-utility-table-apr-2025">Price and Utility Table (Apr 2025)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-pattern-quick-sheet-token-vs-latency-deltas">Prompt-pattern Quick Sheet (Token vs Latency Deltas)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

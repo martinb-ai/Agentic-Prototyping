@@ -7,6 +7,8 @@ parts:
   - caption: Core Concepts
     chapters:
       - file: 1_0_dev_quick_start
+      - file: 1_1_model_selection
+      - file: 1_2_prototype_to_production
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview
