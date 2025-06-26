@@ -4,52 +4,65 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Core Concepts
+
+  - caption: Day 1 — Foundations (LLMs, Prompts, Agent Mindset)
     chapters:
       - file: 0_0_agent_prd
       - file: 1_0_dev_quick_start
       - file: 1_1_prompt_engineering
       - file: 1_2_model_selection
-      - file: 1_3_prototype_to_production
-      - file: 1_4_structured_outputs
-      - file: 1_5_function_calling
-      - file: 1_6_conversational_state
-      - file: 1_7_streaming
-      - file: 1_8_file_inputs
-      - file: 1_9_image_generation
-      - file: 1_10_text_to_speech
-      - file: 1_11_speech_to_text
-      - file: 1_12_embeddings
-      - file: 1_13_retrieval
-      - file: 1_14_evals
-      - file: 1_15_moderation
-  - caption: Agents
-    chapters:
       - file: 2_0_agents_overview
       - file: 2_1_agent_design_foundations
+      - file: 1_6_conversational_state
+
+  - caption: Day 2 — SDK, Agent Building, Tools & RAG
+    chapters:
       - file: 2_2_openai_agents
       - file: 2_3_quick_start
       - file: 2_4_building_agents
       - file: 2_5_running_agents
       - file: 2_6_tools
+      - file: 1_5_function_calling
+      - file: 1_12_embeddings
+      - file: 1_13_retrieval
+
+  - caption: Day 3 — Production Readiness (Safety, Guardrails, Observability)
+    chapters:
+      - file: 2_9_observability
+      - file: 1_15_moderation
+      - file: 3_1_safety
+      - file: 2_11_guardrails
+      - file: 3_2_prompt_caching
+      - file: 3_0_production
+      - file: 2_12_orchestration
       - file: 2_7_mcp
       - file: 2_8_handoffs
-      - file: 2_9_observability
-      - file: 2_10_context_management
-      - file: 2_11_guardrails
-      - file: 2_12_orchestration
-      - file: 2_13_models
+
+  - caption: Day 4 — Evaluation, Optimization, UI & Visualization
+    chapters:
+      - file: 1_14_evals
+      - file: 3_6_evaluation_design
+      - file: 3_4_accuracy_optimization
       - file: 2_14_visualization
       - file: 2_15_agent_output
-  - caption: Best Practices
+
+  - caption: Day 5 — Demo, Polish, and Roadmap
     chapters:
-      - file: 3_0_production
-      - file: 3_1_safety
-      - file: 3_2_prompt_caching
-      - file: 3_3_reasoning_models
-      - file: 3_4_accuracy_optimization
+      - file: 1_3_prototype_to_production
       - file: 3_5_reproducibility
-      - file: 3_6_evaluation_design
+
+  - caption: Reference & Advanced Topics (Optional)
+    chapters:
+      - file: 1_4_structured_outputs
+      - file: 1_7_streaming
+      - file: 1_8_file_inputs
+      - file: 1_9_image_generation
+      - file: 1_10_text_to_speech
+      - file: 1_11_speech_to_text
+      - file: 2_10_context_management
+      - file: 2_13_models
+      - file: 3_3_reasoning_models
+      
   - caption: Case Studies
     chapters:
       - file: 4_legal_qa
