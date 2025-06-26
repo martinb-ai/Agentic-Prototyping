@@ -1,6 +1,6 @@
 1. To update your online book, make changes to your book’s content on the main branch of your repository 
 jupyter-book build --all agenticprototyping/
-ghp-import -n -p -f agenticprototyping/_build/html 
+ghp-import -n -p -f agenticprototyping/_build/html
 
 
 https://jupyterbook.org/en/stable/start/publish.html

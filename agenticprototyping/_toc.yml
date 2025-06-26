@@ -14,7 +14,12 @@ parts:
       - file: 1_5_conversational_state
       - file: 1_6_streaming
       - file: 1_7_file_inputs
-      - file: 1_8_evals
+      - file: 1_8_image_generation
+      - file: 1_9_text_to_speech
+      - file: 1_10_speech_to_text
+      - file: 1_11_embeddings
+      - file: 1_12_retrieval
+      - file: 1_13_evals
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview
