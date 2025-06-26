@@ -16,14 +16,16 @@
 
 ---
 
-## **Day 2: SDK, Building, RAG & Tools**
+## **Day 2: SDK, Building, RAG, Tools & Visualization**
 
 - **Core Notebooks:**  
-  `2_2_openai_agents`, `2_3_quick_start`, `2_4_building_agents`, `2_5_running_agents`, `2_6_tools`, `1_5_function_calling`, `1_12_embeddings`, `1_13_retrieval`
+  `2_2_openai_agents`, `2_3_quick_start`, `2_4_building_agents`, `2_5_running_agents`, `2_6_tools`, `1_5_function_calling`, `1_12_embeddings`, `1_13_retrieval`, `2_14_visualization`, `2_15_agent_output`
 - **Activities:**  
   - SDK install & Hello World agent  
   - Add tools, function calling  
-  - Build RAG pipeline (embeddings, retrieval)
+  - Build RAG pipeline (embeddings, retrieval)  
+  - **Visualize agent structure and orchestration**
+  - **Review and analyze agent outputs**
 - **Optional:**  
   `1_4_structured_outputs`, `2_10_context_management`, `1_7_streaming`, `1_8_file_inputs`
 
@@ -42,15 +44,13 @@
 
 ---
 
-## **Day 4: Eval, Optimize, UI & Visualize**
+## **Day 4: Eval & Optimization**
 
 - **Core Notebooks:**  
-  `1_14_evals`, `3_6_evaluation_design`, `3_4_accuracy_optimization`, `2_14_visualization`, `2_15_agent_output`
+  `1_14_evals`, `3_6_evaluation_design`, `3_4_accuracy_optimization`
 - **Activities:**  
   - Run automated evals & benchmark  
   - Tweak prompts/RAG for accuracy  
-  - Visualize agent architecture  
-  - Review/log agent outputs
 - **Optional:**  
   All multimodal/extras: `1_9_image_generation`, `1_10_text_to_speech`, `1_11_speech_to_text`, `3_3_reasoning_models`
 
