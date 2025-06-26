@@ -6,7 +6,7 @@ root: intro
 parts:
   - caption: Core Concepts
     chapters:
-      - file: 1_0_agemt_prd
+      - file: 1_0_agent_prd
       - file: 1_0_dev_quick_start
       - file: 1_1_prompt_engineering
       - file: 1_2_model_selection
