@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tools &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2_6_tools';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model context protocol (MCP)" href="2_7_mcp.html" />
+    <link rel="prev" title="Running agents" href="2_5_running_agents.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_prompt_engineering.html">Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_image_generation.html">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_15_moderation.html">Moderation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_openai_agents.html">OpenAI Agents SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_quick_start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_4_building_agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_5_running_agents.html">Running agents</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_mcp.html">Model context protocol (MCP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_handoffs.html">Handoffs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_9_observability.html">Tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_10_context_management.html">Context management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_guardrails.html">Guardrails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_12_orchestration.html">Orchestrating multiple agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_13_models.html">Models</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2_6_tools.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hosted-tools">Hosted tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-tools">Function tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-function-tools">Custom function tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-argument-and-docstring-parsing">Automatic argument and docstring parsing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents-as-tools">Agents as tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-tool-agents">Customizing tool-agents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-output-extraction">Custom output extraction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-errors-in-function-tools">Handling errors in function tools</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tools">
+<h1>Tools<a class="headerlink" href="#tools" title="Link to this heading">#</a></h1>
+<p>Tools let agents take actions: things like fetching data, running code, calling external APIs, and even using a computer. There are three classes of tools in the Agent SDK:</p>
+<ul class="simple">
+<li><p>Hosted tools: these run on LLM servers alongside the AI models. OpenAI offers retrieval, web search and computer use as hosted tools.</p></li>
+<li><p>Function calling: these allow you to use any Python function as a tool.</p></li>
+<li><p>Agents as tools: this allows you to use an agent as a tool, allowing Agents to call other agents without handing off to them.</p></li>
+</ul>
+<section id="hosted-tools">
+<h2>Hosted tools<a class="headerlink" href="#hosted-tools" title="Link to this heading">#</a></h2>
+<p>OpenAI offers a few built-in tools when using the [<code class="docutils literal notranslate"><span class="pre">OpenAIResponsesModel</span></code>][agents.models.openai_responses.OpenAIResponsesModel]:</p>
+<ul class="simple">
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">WebSearchTool</span></code>][agents.tool.WebSearchTool] lets an agent search the web.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">FileSearchTool</span></code>][agents.tool.FileSearchTool] allows retrieving information from your OpenAI Vector Stores.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">ComputerTool</span></code>][agents.tool.ComputerTool] allows automating computer use tasks.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">CodeInterpreterTool</span></code>][agents.tool.CodeInterpreterTool] lets the LLM execute code in a sandboxed environment.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">HostedMCPTool</span></code>][agents.tool.HostedMCPTool] exposes a remote MCP server’s tools to the model.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">ImageGenerationTool</span></code>][agents.tool.ImageGenerationTool] generates images from a prompt.</p></li>
+<li><p>The [<code class="docutils literal notranslate"><span class="pre">LocalShellTool</span></code>][agents.tool.LocalShellTool] runs shell commands on your machine.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">FileSearchTool</span><span class="p">,</span> <span class="n">Runner</span><span class="p">,</span> <span class="n">WebSearchTool</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Assistant&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">WebSearchTool</span><span class="p">(),</span>
+        <span class="n">FileSearchTool</span><span class="p">(</span>
+            <span class="n">max_num_results</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">vector_store_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;VECTOR_STORE_ID&quot;</span><span class="p">],</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="s2">&quot;Which coffee shop should I go to, taking into account my preferences and the weather today in SF?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="function-tools">
+<h2>Function tools<a class="headerlink" href="#function-tools" title="Link to this heading">#</a></h2>
+<p>You can use any Python function as a tool. The Agents SDK will setup the tool automatically:</p>
+<ul class="simple">
+<li><p>The name of the tool will be the name of the Python function (or you can provide a name)</p></li>
+<li><p>Tool description will be taken from the docstring of the function (or you can provide a description)</p></li>
+<li><p>The schema for the function inputs is automatically created from the function’s arguments</p></li>
+<li><p>Descriptions for each input are taken from the docstring of the function, unless disabled</p></li>
+</ul>
+<p>We use Python’s <code class="docutils literal notranslate"><span class="pre">inspect</span></code> module to extract the function signature, along with <a class="reference external" href="https://mkdocstrings.github.io/griffe/"><code class="docutils literal notranslate"><span class="pre">griffe</span></code></a> to parse docstrings and <code class="docutils literal notranslate"><span class="pre">pydantic</span></code> for schema creation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">FunctionTool</span><span class="p">,</span> <span class="n">RunContextWrapper</span><span class="p">,</span> <span class="n">function_tool</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Location</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">long</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="nd">@function_tool</span>  <span class="c1"># (1)!</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_weather</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># (2)!</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch the weather for a given location.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        location: The location to fetch the weather for.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># In real life, we&#39;d fetch the weather from a weather API</span>
+    <span class="k">return</span> <span class="s2">&quot;sunny&quot;</span>
+
+
+<span class="nd">@function_tool</span><span class="p">(</span><span class="n">name_override</span><span class="o">=</span><span class="s2">&quot;fetch_data&quot;</span><span class="p">)</span>  <span class="c1"># (3)!</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">RunContextWrapper</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the contents of a file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: The path to the file to read.</span>
+<span class="sd">        directory: The directory to read the file from.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># In real life, we&#39;d read the file from the file system</span>
+    <span class="k">return</span> <span class="s2">&quot;&lt;file contents&gt;&quot;</span>
+
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Assistant&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">fetch_weather</span><span class="p">,</span> <span class="n">read_file</span><span class="p">],</span>  <span class="c1"># (4)!</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">agent</span><span class="o">.</span><span class="n">tools</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="n">FunctionTool</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">params_json_schema</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>You can use any Python types as arguments to your functions, and the function can be sync or async.</p></li>
+<li><p>Docstrings, if present, are used to capture descriptions and argument descriptions</p></li>
+<li><p>Functions can optionally take the <code class="docutils literal notranslate"><span class="pre">context</span></code> (must be the first argument). You can also set overrides, like the name of the tool, description, which docstring style to use, etc.</p></li>
+<li><p>You can pass the decorated functions to the list of tools.</p></li>
+</ol>
+<p>??? note “Expand to see output”</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+fetch_weather
+Fetch the weather for a given location.
+{
+&quot;$defs&quot;: {
+  &quot;Location&quot;: {
+    &quot;properties&quot;: {
+      &quot;lat&quot;: {
+        &quot;title&quot;: &quot;Lat&quot;,
+        &quot;type&quot;: &quot;number&quot;
+      },
+      &quot;long&quot;: {
+        &quot;title&quot;: &quot;Long&quot;,
+        &quot;type&quot;: &quot;number&quot;
+      }
+    },
+    &quot;required&quot;: [
+      &quot;lat&quot;,
+      &quot;long&quot;
+    ],
+    &quot;title&quot;: &quot;Location&quot;,
+    &quot;type&quot;: &quot;object&quot;
+  }
+},
+&quot;properties&quot;: {
+  &quot;location&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/Location&quot;,
+    &quot;description&quot;: &quot;The location to fetch the weather for.&quot;
+  }
+},
+&quot;required&quot;: [
+  &quot;location&quot;
+],
+&quot;title&quot;: &quot;fetch_weather_args&quot;,
+&quot;type&quot;: &quot;object&quot;
+}
+
+fetch_data
+Read the contents of a file.
+{
+&quot;properties&quot;: {
+  &quot;path&quot;: {
+    &quot;description&quot;: &quot;The path to the file to read.&quot;,
+    &quot;title&quot;: &quot;Path&quot;,
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;directory&quot;: {
+    &quot;anyOf&quot;: [
+      {
+        &quot;type&quot;: &quot;string&quot;
+      },
+      {
+        &quot;type&quot;: &quot;null&quot;
+      }
+    ],
+    &quot;default&quot;: null,
+    &quot;description&quot;: &quot;The directory to read the file from.&quot;,
+    &quot;title&quot;: &quot;Directory&quot;
+  }
+},
+&quot;required&quot;: [
+  &quot;path&quot;
+],
+&quot;title&quot;: &quot;fetch_data_args&quot;,
+&quot;type&quot;: &quot;object&quot;
+}
+```
+</pre></div>
+</div>
+<section id="custom-function-tools">
+<h3>Custom function tools<a class="headerlink" href="#custom-function-tools" title="Link to this heading">#</a></h3>
+<p>Sometimes, you don’t want to use a Python function as a tool. You can directly create a [<code class="docutils literal notranslate"><span class="pre">FunctionTool</span></code>][agents.tool.FunctionTool] if you prefer. You’ll need to provide:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params_json_schema</span></code>, which is the JSON schema for the arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_invoke_tool</span></code>, which is an async function that receives the context and the arguments as a JSON string, and must return the tool output as a string.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunContextWrapper</span><span class="p">,</span> <span class="n">FunctionTool</span>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_some_work</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;done&quot;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FunctionArgs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_function</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">RunContextWrapper</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">parsed</span> <span class="o">=</span> <span class="n">FunctionArgs</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">do_some_work</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parsed</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">parsed</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
+
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">FunctionTool</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;process_user&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Processes extracted user data&quot;</span><span class="p">,</span>
+    <span class="n">params_json_schema</span><span class="o">=</span><span class="n">FunctionArgs</span><span class="o">.</span><span class="n">model_json_schema</span><span class="p">(),</span>
+    <span class="n">on_invoke_tool</span><span class="o">=</span><span class="n">run_function</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="automatic-argument-and-docstring-parsing">
+<h3>Automatic argument and docstring parsing<a class="headerlink" href="#automatic-argument-and-docstring-parsing" title="Link to this heading">#</a></h3>
+<p>As mentioned before, we automatically parse the function signature to extract the schema for the tool, and we parse the docstring to extract descriptions for the tool and for individual arguments. Some notes on that:</p>
+<ol class="arabic simple">
+<li><p>The signature parsing is done via the <code class="docutils literal notranslate"><span class="pre">inspect</span></code> module. We use type annotations to understand the types for the arguments, and dynamically build a Pydantic model to represent the overall schema. It supports most types, including Python primitives, Pydantic models, TypedDicts, and more.</p></li>
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">griffe</span></code> to parse docstrings. Supported docstring formats are <code class="docutils literal notranslate"><span class="pre">google</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. We attempt to automatically detect the docstring format, but this is best-effort and you can explicitly set it when calling <code class="docutils literal notranslate"><span class="pre">function_tool</span></code>. You can also disable docstring parsing by setting <code class="docutils literal notranslate"><span class="pre">use_docstring_info</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ol>
+<p>The code for the schema extraction lives in [<code class="docutils literal notranslate"><span class="pre">agents.function_schema</span></code>][].</p>
+</section>
+</section>
+<section id="agents-as-tools">
+<h2>Agents as tools<a class="headerlink" href="#agents-as-tools" title="Link to this heading">#</a></h2>
+<p>In some workflows, you may want a central agent to orchestrate a network of specialized agents, instead of handing off control. You can do this by modeling agents as tools.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Runner</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="n">spanish_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Spanish agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You translate the user&#39;s message to Spanish&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">french_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;French agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You translate the user&#39;s message to French&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">orchestrator_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;orchestrator_agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;You are a translation agent. You use the tools given to you to translate.&quot;</span>
+        <span class="s2">&quot;If asked for multiple translations, you call the relevant tools.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">spanish_agent</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span>
+            <span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;translate_to_spanish&quot;</span><span class="p">,</span>
+            <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot;Translate the user&#39;s message to Spanish&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">french_agent</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span>
+            <span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;translate_to_french&quot;</span><span class="p">,</span>
+            <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot;Translate the user&#39;s message to French&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">orchestrator_agent</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Say &#39;Hello, how are you?&#39; in Spanish.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="customizing-tool-agents">
+<h3>Customizing tool-agents<a class="headerlink" href="#customizing-tool-agents" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">agent.as_tool</span></code> function is a convenience method to make it easy to turn an agent into a tool. It doesn’t support all configuration though; for example, you can’t set <code class="docutils literal notranslate"><span class="pre">max_turns</span></code>. For advanced use cases, use <code class="docutils literal notranslate"><span class="pre">Runner.run</span></code> directly in your tool implementation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@function_tool</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_my_agent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A tool that runs the agent with custom configs&quot;&quot;&quot;</span>
+
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;My agent&quot;</span><span class="p">,</span> <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">agent</span><span class="p">,</span>
+        <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+        <span class="n">max_turns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="o">=...</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-output-extraction">
+<h3>Custom output extraction<a class="headerlink" href="#custom-output-extraction" title="Link to this heading">#</a></h3>
+<p>In certain cases, you might want to modify the output of the tool-agents before returning it to the central agent. This may be useful if you want to:</p>
+<ul class="simple">
+<li><p>Extract a specific piece of information (e.g., a JSON payload) from the sub-agent’s chat history.</p></li>
+<li><p>Convert or reformat the agent’s final answer (e.g., transform Markdown into plain text or CSV).</p></li>
+<li><p>Validate the output or provide a fallback value when the agent’s response is missing or malformed.</p></li>
+</ul>
+<p>You can do this by supplying the <code class="docutils literal notranslate"><span class="pre">custom_output_extractor</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">as_tool</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract_json_payload</span><span class="p">(</span><span class="n">run_result</span><span class="p">:</span> <span class="n">RunResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># Scan the agent’s outputs in reverse order until we find a JSON-like message from a tool call.</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">run_result</span><span class="o">.</span><span class="n">new_items</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ToolCallOutputItem</span><span class="p">)</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="c1"># Fallback to an empty JSON object if nothing was found</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+
+
+<span class="n">json_tool</span> <span class="o">=</span> <span class="n">data_agent</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span>
+    <span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;get_data_json&quot;</span><span class="p">,</span>
+    <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot;Run the data agent and return only its JSON payload&quot;</span><span class="p">,</span>
+    <span class="n">custom_output_extractor</span><span class="o">=</span><span class="n">extract_json_payload</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="handling-errors-in-function-tools">
+<h2>Handling errors in function tools<a class="headerlink" href="#handling-errors-in-function-tools" title="Link to this heading">#</a></h2>
+<p>When you create a function tool via <code class="docutils literal notranslate"><span class="pre">&#64;function_tool</span></code>, you can pass a <code class="docutils literal notranslate"><span class="pre">failure_error_function</span></code>. This is a function that provides an error response to the LLM in case the tool call crashes.</p>
+<ul class="simple">
+<li><p>By default (i.e. if you don’t pass anything), it runs a <code class="docutils literal notranslate"><span class="pre">default_tool_error_function</span></code> which tells the LLM an error occurred.</p></li>
+<li><p>If you pass your own error function, it runs that instead, and sends the response to the LLM.</p></li>
+<li><p>If you explicitly pass <code class="docutils literal notranslate"><span class="pre">None</span></code>, then any tool call errors will be re-raised for you to handle. This could be a <code class="docutils literal notranslate"><span class="pre">ModelBehaviorError</span></code> if the model produced invalid JSON, or a <code class="docutils literal notranslate"><span class="pre">UserError</span></code> if your code crashed, etc.</p></li>
+</ul>
+<p>If you are manually creating a <code class="docutils literal notranslate"><span class="pre">FunctionTool</span></code> object, then you must handle errors inside the <code class="docutils literal notranslate"><span class="pre">on_invoke_tool</span></code> function.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_5_running_agents.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Running agents</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_7_mcp.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model context protocol (MCP)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hosted-tools">Hosted tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-tools">Function tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-function-tools">Custom function tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-argument-and-docstring-parsing">Automatic argument and docstring parsing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents-as-tools">Agents as tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-tool-agents">Customizing tool-agents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-output-extraction">Custom output extraction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-errors-in-function-tools">Handling errors in function tools</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

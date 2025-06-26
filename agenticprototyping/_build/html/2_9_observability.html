@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tracing &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2_9_observability';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Context management" href="2_10_context_management.html" />
+    <link rel="prev" title="Handoffs" href="2_8_handoffs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_prompt_engineering.html">Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_image_generation.html">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_15_moderation.html">Moderation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_openai_agents.html">OpenAI Agents SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_quick_start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_4_building_agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_5_running_agents.html">Running agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_6_tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_mcp.html">Model context protocol (MCP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_handoffs.html">Handoffs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_10_context_management.html">Context management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_guardrails.html">Guardrails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_12_orchestration.html">Orchestrating multiple agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_13_models.html">Models</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2_9_observability.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tracing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traces-and-spans">Traces and spans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-tracing">Default tracing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-level-traces">Higher level traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-traces">Creating traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-spans">Creating spans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitive-data">Sensitive data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-tracing-processors">Custom tracing processors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-tracing-processors-list">External tracing processors list</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tracing">
+<h1>Tracing<a class="headerlink" href="#tracing" title="Link to this heading">#</a></h1>
+<p>The Agents SDK includes built-in tracing, collecting a comprehensive record of events during an agent run: LLM generations, tool calls, handoffs, guardrails, and even custom events that occur. Using the <a class="reference external" href="https://platform.openai.com/traces">Traces dashboard</a>, you can debug, visualize, and monitor your workflows during development and in production.</p>
+<p>!!!note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Tracing is enabled by default. There are two ways to disable tracing:
+
+1. You can globally disable tracing by setting the env var `OPENAI_AGENTS_DISABLE_TRACING=1`
+2. You can disable tracing for a single run by setting [`agents.run.RunConfig.tracing_disabled`][] to `True`
+</pre></div>
+</div>
+<p><em><strong>For organizations operating under a Zero Data Retention (ZDR) policy using OpenAI’s APIs, tracing is unavailable.</strong></em></p>
+<section id="traces-and-spans">
+<h2>Traces and spans<a class="headerlink" href="#traces-and-spans" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Traces</strong> represent a single end-to-end operation of a “workflow”. They’re composed of Spans. Traces have the following properties:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">workflow_name</span></code>: This is the logical workflow or app. For example “Code generation” or “Customer service”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trace_id</span></code>: A unique ID for the trace. Automatically generated if you don’t pass one. Must have the format <code class="docutils literal notranslate"><span class="pre">trace_&lt;32_alphanumeric&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">group_id</span></code>: Optional group ID, to link multiple traces from the same conversation. For example, you might use a chat thread ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disabled</span></code>: If True, the trace will not be recorded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code>: Optional metadata for the trace.</p></li>
+</ul>
+</li>
+<li><p><strong>Spans</strong> represent operations that have a start and end time. Spans have:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">started_at</span></code> and <code class="docutils literal notranslate"><span class="pre">ended_at</span></code> timestamps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trace_id</span></code>, to represent the trace they belong to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parent_id</span></code>, which points to the parent Span of this Span (if any)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">span_data</span></code>, which is information about the Span. For example, <code class="docutils literal notranslate"><span class="pre">AgentSpanData</span></code> contains information about the Agent, <code class="docutils literal notranslate"><span class="pre">GenerationSpanData</span></code> contains information about the LLM generation, etc.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="default-tracing">
+<h2>Default tracing<a class="headerlink" href="#default-tracing" title="Link to this heading">#</a></h2>
+<p>By default, the SDK traces the following:</p>
+<ul class="simple">
+<li><p>The entire <code class="docutils literal notranslate"><span class="pre">Runner.{run,</span> <span class="pre">run_sync,</span> <span class="pre">run_streamed}()</span></code> is wrapped in a <code class="docutils literal notranslate"><span class="pre">trace()</span></code>.</p></li>
+<li><p>Each time an agent runs, it is wrapped in <code class="docutils literal notranslate"><span class="pre">agent_span()</span></code></p></li>
+<li><p>LLM generations are wrapped in <code class="docutils literal notranslate"><span class="pre">generation_span()</span></code></p></li>
+<li><p>Function tool calls are each wrapped in <code class="docutils literal notranslate"><span class="pre">function_span()</span></code></p></li>
+<li><p>Guardrails are wrapped in <code class="docutils literal notranslate"><span class="pre">guardrail_span()</span></code></p></li>
+<li><p>Handoffs are wrapped in <code class="docutils literal notranslate"><span class="pre">handoff_span()</span></code></p></li>
+<li><p>Audio inputs (speech-to-text) are wrapped in a <code class="docutils literal notranslate"><span class="pre">transcription_span()</span></code></p></li>
+<li><p>Audio outputs (text-to-speech) are wrapped in a <code class="docutils literal notranslate"><span class="pre">speech_span()</span></code></p></li>
+<li><p>Related audio spans may be parented under a <code class="docutils literal notranslate"><span class="pre">speech_group_span()</span></code></p></li>
+</ul>
+<p>By default, the trace is named “Agent trace”. You can set this name if you use <code class="docutils literal notranslate"><span class="pre">trace</span></code>, or you can can configure the name and other properties with the [<code class="docutils literal notranslate"><span class="pre">RunConfig</span></code>][agents.run.RunConfig].</p>
+<p>In addition, you can set up <a class="reference internal" href="#custom-tracing-processors"><span class="xref myst">custom trace processors</span></a> to push traces to other destinations (as a replacement, or secondary destination).</p>
+</section>
+<section id="higher-level-traces">
+<h2>Higher level traces<a class="headerlink" href="#higher-level-traces" title="Link to this heading">#</a></h2>
+<p>Sometimes, you might want multiple calls to <code class="docutils literal notranslate"><span class="pre">run()</span></code> to be part of a single trace. You can do this by wrapping the entire code in a <code class="docutils literal notranslate"><span class="pre">trace()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Runner</span><span class="p">,</span> <span class="n">trace</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Joke generator&quot;</span><span class="p">,</span> <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Tell funny jokes.&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Joke workflow&quot;</span><span class="p">):</span> <span class="c1"># (1)!</span>
+        <span class="n">first_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="s2">&quot;Tell me a joke&quot;</span><span class="p">)</span>
+        <span class="n">second_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Rate this joke: </span><span class="si">{</span><span class="n">first_result</span><span class="o">.</span><span class="n">final_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joke: </span><span class="si">{</span><span class="n">first_result</span><span class="o">.</span><span class="n">final_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rating: </span><span class="si">{</span><span class="n">second_result</span><span class="o">.</span><span class="n">final_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Because the two calls to <code class="docutils literal notranslate"><span class="pre">Runner.run</span></code> are wrapped in a <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">trace()</span></code>, the individual runs will be part of the overall trace rather than creating two traces.</p></li>
+</ol>
+</section>
+<section id="creating-traces">
+<h2>Creating traces<a class="headerlink" href="#creating-traces" title="Link to this heading">#</a></h2>
+<p>You can use the [<code class="docutils literal notranslate"><span class="pre">trace()</span></code>][agents.tracing.trace] function to create a trace. Traces need to be started and finished. You have two options to do so:</p>
+<ol class="arabic simple">
+<li><p><strong>Recommended</strong>: use the trace as a context manager, i.e. <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">trace(...)</span> <span class="pre">as</span> <span class="pre">my_trace</span></code>. This will automatically start and end the trace at the right time.</p></li>
+<li><p>You can also manually call [<code class="docutils literal notranslate"><span class="pre">trace.start()</span></code>][agents.tracing.Trace.start] and [<code class="docutils literal notranslate"><span class="pre">trace.finish()</span></code>][agents.tracing.Trace.finish].</p></li>
+</ol>
+<p>The current trace is tracked via a Python <a class="reference external" href="https://docs.python.org/3/library/contextvars.html"><code class="docutils literal notranslate"><span class="pre">contextvar</span></code></a>. This means that it works with concurrency automatically. If you manually start/end a trace, you’ll need to pass <code class="docutils literal notranslate"><span class="pre">mark_as_current</span></code> and <code class="docutils literal notranslate"><span class="pre">reset_current</span></code> to <code class="docutils literal notranslate"><span class="pre">start()</span></code>/<code class="docutils literal notranslate"><span class="pre">finish()</span></code> to update the current trace.</p>
+</section>
+<section id="creating-spans">
+<h2>Creating spans<a class="headerlink" href="#creating-spans" title="Link to this heading">#</a></h2>
+<p>You can use the various [<code class="docutils literal notranslate"><span class="pre">*_span()</span></code>][agents.tracing.create] methods to create a span. In general, you don’t need to manually create spans. A [<code class="docutils literal notranslate"><span class="pre">custom_span()</span></code>][agents.tracing.custom_span] function is available for tracking custom span information.</p>
+<p>Spans are automatically part of the current trace, and are nested under the nearest current span, which is tracked via a Python <a class="reference external" href="https://docs.python.org/3/library/contextvars.html"><code class="docutils literal notranslate"><span class="pre">contextvar</span></code></a>.</p>
+</section>
+<section id="sensitive-data">
+<h2>Sensitive data<a class="headerlink" href="#sensitive-data" title="Link to this heading">#</a></h2>
+<p>Certain spans may capture potentially sensitive data.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">generation_span()</span></code> stores the inputs/outputs of the LLM generation, and <code class="docutils literal notranslate"><span class="pre">function_span()</span></code> stores the inputs/outputs of function calls. These may contain sensitive data, so you can disable capturing that data via [<code class="docutils literal notranslate"><span class="pre">RunConfig.trace_include_sensitive_data</span></code>][agents.run.RunConfig.trace_include_sensitive_data].</p>
+<p>Similarly, Audio spans include base64-encoded PCM data for input and output audio by default. You can disable capturing this audio data by configuring [<code class="docutils literal notranslate"><span class="pre">VoicePipelineConfig.trace_include_sensitive_audio_data</span></code>][agents.voice.pipeline_config.VoicePipelineConfig.trace_include_sensitive_audio_data].</p>
+</section>
+<section id="custom-tracing-processors">
+<h2>Custom tracing processors<a class="headerlink" href="#custom-tracing-processors" title="Link to this heading">#</a></h2>
+<p>The high level architecture for tracing is:</p>
+<ul class="simple">
+<li><p>At initialization, we create a global [<code class="docutils literal notranslate"><span class="pre">TraceProvider</span></code>][agents.tracing.setup.TraceProvider], which is responsible for creating traces.</p></li>
+<li><p>We configure the <code class="docutils literal notranslate"><span class="pre">TraceProvider</span></code> with a [<code class="docutils literal notranslate"><span class="pre">BatchTraceProcessor</span></code>][agents.tracing.processors.BatchTraceProcessor] that sends traces/spans in batches to a [<code class="docutils literal notranslate"><span class="pre">BackendSpanExporter</span></code>][agents.tracing.processors.BackendSpanExporter], which exports the spans and traces to the OpenAI backend in batches.</p></li>
+</ul>
+<p>To customize this default setup, to send traces to alternative or additional backends or modifying exporter behavior, you have two options:</p>
+<ol class="arabic simple">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">add_trace_processor()</span></code>][agents.tracing.add_trace_processor] lets you add an <strong>additional</strong> trace processor that will receive traces and spans as they are ready. This lets you do your own processing in addition to sending traces to OpenAI’s backend.</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">set_trace_processors()</span></code>][agents.tracing.set_trace_processors] lets you <strong>replace</strong> the default processors with your own trace processors. This means traces will not be sent to the OpenAI backend unless you include a <code class="docutils literal notranslate"><span class="pre">TracingProcessor</span></code> that does so.</p></li>
+</ol>
+</section>
+<section id="external-tracing-processors-list">
+<h2>External tracing processors list<a class="headerlink" href="#external-tracing-processors-list" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://weave-docs.wandb.ai/guides/integrations/openai_agents">Weights &amp; Biases</a></p></li>
+<li><p><a class="reference external" href="https://docs.arize.com/phoenix/tracing/integrations-tracing/openai-agents-sdk">Arize-Phoenix</a></p></li>
+<li><p><a class="reference external" href="https://docs.futureagi.com/future-agi/products/observability/auto-instrumentation/openai_agents">Future AGI</a></p></li>
+<li><p><a class="reference external" href="https://mlflow.org/docs/latest/tracing/integrations/openai-agent">MLflow (self-hosted/OSS</a></p></li>
+<li><p><a class="reference external" href="https://docs.databricks.com/aws/en/mlflow/mlflow-tracing#-automatic-tracing">MLflow (Databricks hosted</a></p></li>
+<li><p><a class="reference external" href="https://braintrust.dev/docs/guides/traces/integrations#openai-agents-sdk">Braintrust</a></p></li>
+<li><p><a class="reference external" href="https://logfire.pydantic.dev/docs/integrations/llms/openai/#openai-agents">Pydantic Logfire</a></p></li>
+<li><p><a class="reference external" href="https://docs.agentops.ai/v1/integrations/agentssdk">AgentOps</a></p></li>
+<li><p><a class="reference external" href="https://docs.scorecard.io/docs/documentation/features/tracing#openai-agents-sdk-integration">Scorecard</a></p></li>
+<li><p><a class="reference external" href="https://docs.keywordsai.co/integration/development-frameworks/openai-agent">Keywords AI</a></p></li>
+<li><p><a class="reference external" href="https://docs.smith.langchain.com/observability/how_to_guides/trace_with_openai_agents_sdk">LangSmith</a></p></li>
+<li><p><a class="reference external" href="https://www.getmaxim.ai/docs/observe/integrations/openai-agents-sdk">Maxim AI</a></p></li>
+<li><p><a class="reference external" href="https://www.comet.com/docs/opik/tracing/integrations/openai_agents">Comet Opik</a></p></li>
+<li><p><a class="reference external" href="https://langfuse.com/docs/integrations/openaiagentssdk/openai-agents">Langfuse</a></p></li>
+<li><p><a class="reference external" href="https://docs.langtrace.ai/supported-integrations/llm-frameworks/openai-agents-sdk">Langtrace</a></p></li>
+<li><p><a class="reference external" href="https://github.com/monocle2ai/monocle">Okahu-Monocle</a></p></li>
+<li><p><a class="reference external" href="https://v2docs.galileo.ai/integrations/openai-agent-integration#openai-agent-integration">Galileo</a></p></li>
+<li><p><a class="reference external" href="https://portkey.ai/docs/integrations/agents/openai-agents">Portkey AI</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_8_handoffs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Handoffs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_10_context_management.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Context management</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traces-and-spans">Traces and spans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-tracing">Default tracing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-level-traces">Higher level traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-traces">Creating traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-spans">Creating spans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitive-data">Sensitive data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-tracing-processors">Custom tracing processors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-tracing-processors-list">External tracing processors list</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

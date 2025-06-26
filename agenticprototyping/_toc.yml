@@ -26,7 +26,20 @@ parts:
     chapters:
       - file: 2_0_agents_overview
       - file: 2_1_agent_design_foundations
-      - file: 2_2_guardrails
+      - file: 2_2_openai_agents
+      - file: 2_3_quick_start
+      - file: 2_4_building_agents
+      - file: 2_5_running_agents
+      - file: 2_6_tools
+      - file: 2_7_mcp
+      - file: 2_8_handoffs
+      - file: 2_9_observability
+      - file: 2_10_context_management
+      - file: 2_11_guardrails
+      - file: 2_12_orchestration
+      - file: 2_13_models
+      - file: 2_14_visualization
+      - file: 2_15_agent_output
   - caption: Best Practices
     chapters:
       - file: 3_0_production
