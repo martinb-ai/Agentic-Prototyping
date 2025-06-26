@@ -7,20 +7,21 @@ parts:
   - caption: Core Concepts
     chapters:
       - file: 1_0_dev_quick_start
-      - file: 1_1_model_selection
-      - file: 1_2_prototype_to_production
-      - file: 1_3_structured_outputs
-      - file: 1_4_function_calling
-      - file: 1_5_conversational_state
-      - file: 1_6_streaming
-      - file: 1_7_file_inputs
-      - file: 1_8_image_generation
-      - file: 1_9_text_to_speech
-      - file: 1_10_speech_to_text
-      - file: 1_11_embeddings
-      - file: 1_12_retrieval
-      - file: 1_13_evals
-      - file: 1_14_moderation
+      - file: 1_1_prompt_engineering
+      - file: 1_2_model_selection
+      - file: 1_3_prototype_to_production
+      - file: 1_4_structured_outputs
+      - file: 1_5_function_calling
+      - file: 1_6_conversational_state
+      - file: 1_7_streaming
+      - file: 1_8_file_inputs
+      - file: 1_9_image_generation
+      - file: 1_10_text_to_speech
+      - file: 1_11_speech_to_text
+      - file: 1_12_embeddings
+      - file: 1_13_retrieval
+      - file: 1_14_evals
+      - file: 1_15_moderation
   - caption: Agents
     chapters:
       - file: 2_0_agents_overview

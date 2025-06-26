@@ -1,0 +1,979 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Prompt Engineering &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_1_prompt_engineering';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model Guide" href="1_2_model_selection.html" />
+    <link rel="prev" title="Developer Quickstart" href="1_0_dev_quick_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_image_generation.html">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_15_moderation.html">Moderation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_1_prompt_engineering.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prompt Engineering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-model">Choosing a model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prompt engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-roles-and-instruction-following">Message roles and instruction following</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusable-prompts">Reusable prompts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-formatting-with-markdown-and-xml">Message formatting with Markdown and XML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-on-cost-and-latency-with-prompt-caching">Save on cost and latency with prompt caching</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#include-relevant-context-information">Include relevant context information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#planning-for-the-context-window">Planning for the context window</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-gpt-4-1-models">Prompting GPT-4.1 models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-4-1-prompting-best-practices">GPT-4.1 prompting best practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-agentic-workflows">Building agentic workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-prompt-reminders">System Prompt Reminders</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-calls">Tool Calls</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-generation">Diff Generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-long-context">Using long context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-context-size">Optimal Context Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiters">Delimiters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-organization">Prompt Organization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-for-chain-of-thought">Prompting for chain of thought</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-following">Instruction following</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-workflow">Recommended Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-failure-modes">Common Failure Modes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-reasoning-models">Prompting reasoning models</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering">
+<h1>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h1>
+<p>Learn how to prompt a model to generate text.</p>
+<p>With the OpenAI API, you can use a <code class="docutils literal notranslate"><span class="pre">large</span> <span class="pre">language</span> <span class="pre">model</span></code> to generate text from a prompt, as you might using <a class="reference external" href="https://chatgpt.com">ChatGPT</a>. Models can generate almost any kind of text response—like code, mathematical equations, structured JSON data, or human-like prose.</p>
+<p>Here’s a simple example using the <code class="docutils literal notranslate"><span class="pre">Responses</span> <span class="pre">API</span></code>:</p>
+<p><em>Generate text from a simple prompt</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Write a one-sentence bedtime story about a unicorn.&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An array of content generated by the model is in the <code class="docutils literal notranslate"><span class="pre">output</span></code> property of the response. In this simple example, we have just one output which looks like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;msg_67b73f697ba4819183a15cc17d011509&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output_text&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Under the soft glow of the moon, Luna the unicorn danced through fields of twinkling stardust, leaving trails of dreams for every child asleep.&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;annotations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>The <code class="docutils literal notranslate"><span class="pre">output</span></code> array often has more than one item in it!</strong> It can contain tool calls, data about reasoning tokens generated by <code class="docutils literal notranslate"><span class="pre">reasoning</span> <span class="pre">models</span></code>, and other items. It is not safe to assume that the model’s text output is present at <code class="docutils literal notranslate"><span class="pre">output[0].content[0].text</span></code>.</p>
+<p>Some of our official SDKs include an <code class="docutils literal notranslate"><span class="pre">output_text</span></code> property on model responses for convenience, which aggregates all text outputs from the model into a single string. This may be useful as a shortcut to access text output from the model.</p>
+<p>In addition to plain text, you can also have the model return structured data in JSON format - this feature is called <strong>Structured Outputs</strong></p>
+<section id="choosing-a-model">
+<h2>Choosing a model<a class="headerlink" href="#choosing-a-model" title="Link to this heading">#</a></h2>
+<p>A key choice to make when generating content through the API is which model you want to use - the <code class="docutils literal notranslate"><span class="pre">model</span></code> parameter of the code samples above. <a class="reference external" href="https://platform.openai.com/docs/models">You can find a full listing of available models here</a>. Here are a few factors to consider when choosing a model for text generation.</p>
+<ul class="simple">
+<li><p><strong>Reasoning models</strong> generate an internal chain of thought to analyze the input prompt, and excel at understanding complex tasks and multi-step planning. They are also generally slower and more expensive to use than GPT models.</p></li>
+<li><p><strong>GPT models</strong> are fast, cost-efficient, and highly intelligent, but benefit from more explicit instructions around how to accomplish tasks.</p></li>
+<li><p><strong>Large and small (mini or nano) models</strong> offer trade-offs for speed, cost, and intelligence. Large models are more effective at understanding prompts and solving problems across domains, while small models are generally faster and cheaper to use.</p></li>
+</ul>
+<p>When in doubt, <a class="reference external" href="https://platform.openai.com/docs/models/gpt-4.1"><code class="docutils literal notranslate"><span class="pre">gpt-4.1</span></code></a> offers a solid combination of intelligence, speed, and cost effectiveness.</p>
+</section>
+<section id="id1">
+<h2>Prompt engineering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>Prompt engineering</strong> is the process of writing effective instructions for a model, such that it consistently generates content that meets your requirements.</p>
+<p>Because the content generated from a model is non-deterministic, it is a combination of art and science to build a prompt that will generate content in the format you want. However, there are a number of techniques and best practices you can apply to consistently get good results from a model.</p>
+<p>Some prompt engineering techniques will work with every model, like using message roles. But different model types (like reasoning versus GPT models) might need to be prompted differently to produce the best results. Even different snapshots of models within the same family could produce different results. So as you are building more complex applications, we strongly recommend that you:</p>
+<ul class="simple">
+<li><p>Pin your production applications to specific <a class="reference external" href="https://platform.openai.com/docs/models">model snapshots</a> (like <code class="docutils literal notranslate"><span class="pre">gpt-4.1-2025-04-14</span></code> for example) to ensure consistent behavior.</p></li>
+<li><p>Build <code class="docutils literal notranslate"><span class="pre">evals</span></code> that will measure the behavior of your prompts, so that you can monitor the performance of your prompts as you iterate on them, or when you change and upgrade model versions.</p></li>
+</ul>
+<p>Now, let’s examine some tools and techniques available to you to construct prompts.</p>
+</section>
+<section id="message-roles-and-instruction-following">
+<h2>Message roles and instruction following<a class="headerlink" href="#message-roles-and-instruction-following" title="Link to this heading">#</a></h2>
+<p>You can provide instructions to the model with <a class="reference external" href="https://model-spec.openai.com/2025-02-12.html#chain_of_command">differing levels of authority</a> using the <code class="docutils literal notranslate"><span class="pre">instructions</span></code> API parameter or <strong>message roles</strong>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">instructions</span></code> parameter gives the model high-level instructions on how it should behave while generating a response, including tone, goals, and examples of correct responses. Any instructions provided this way will take priority over a prompt in the <code class="docutils literal notranslate"><span class="pre">input</span></code> parameter.</p>
+<p><strong>Generate text with instructions</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Talk like a pirate.&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Are semicolons optional in JavaScript?&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The example above is roughly equivalent to using the following input messages in the <code class="docutils literal notranslate"><span class="pre">input</span></code> array:</p>
+<p><strong>Generate text with messages using different roles</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;developer&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Talk like a pirate.&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Are semicolons optional in JavaScript?&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">instructions</span></code> parameter only applies to the current response generation request. If you are managing <code class="docutils literal notranslate"><span class="pre">conversation</span> <span class="pre">state</span></code> with the <code class="docutils literal notranslate"><span class="pre">previous_response_id</span></code> parameter, the <code class="docutils literal notranslate"><span class="pre">instructions</span></code> used on previous turns will not be present in the context.</p>
+<p>The <a class="reference external" href="https://model-spec.openai.com/2025-02-12.html#chain_of_command">OpenAI model spec</a> describes how our models give different levels of priority to messages with different roles.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>developer</p></th>
+<th class="head"><p>user</p></th>
+<th class="head"><p>assistant</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>developer messages are instructions provided by the application developer, prioritized ahead of user messages.</p></td>
+<td><p>user messages are instructions provided by an end user, prioritized behind developer messages.</p></td>
+<td><p>Messages generated by the model have the assistant role.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A multi-turn conversation may consist of several messages of these types, along with other content types provided by both you and the model.</p>
+<p>You could think about <code class="docutils literal notranslate"><span class="pre">developer</span></code> and <code class="docutils literal notranslate"><span class="pre">user</span></code> messages like a function and its arguments in a programming language.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">developer</span></code> messages provide the system’s rules and business logic, like a function definition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code> messages provide inputs and configuration to which the <code class="docutils literal notranslate"><span class="pre">developer</span></code> message instructions are applied, like arguments to a function.</p></li>
+</ul>
+</section>
+<section id="reusable-prompts">
+<h2>Reusable prompts<a class="headerlink" href="#reusable-prompts" title="Link to this heading">#</a></h2>
+<p>In the OpenAI dashboard, you can develop reusable <a class="reference internal" href="#/playground/prompts"><span class="xref myst">prompts</span></a> that you can use in API requests, rather than specifying the content of prompts in code. This way, you can more easily build and evaluate your prompts, and deploy improved versions of your prompts without changing your integration code.</p>
+<p>Here’s how it works:</p>
+<ol class="arabic simple">
+<li><p><strong>Create a reusable prompt</strong> in the <a class="reference external" href="https://platform.openai.com/playground/prompts?models=gpt-4.1">dashboard</a> with placeholders like <code class="docutils literal notranslate"><span class="pre">{{customer_name}}</span></code>.</p></li>
+<li><p><strong>Use the prompt</strong> in your API request with the <code class="docutils literal notranslate"><span class="pre">prompt</span></code> parameter. The prompt parameter object has three properties you can configure:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> — Unique identifier of your prompt, found in the dashboard</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code> — A specific version of your prompt (defaults to the “current” version as specified in the dashboard)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">variables</span></code> — A map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other Response input message types like <code class="docutils literal notranslate"><span class="pre">input_image</span></code> or <code class="docutils literal notranslate"><span class="pre">input_file</span></code>. <a class="reference external" href="https://platform.openai.com/docs/api-reference/responses/create">See the full API reference</a>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Generate text with a prompt template</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;pmpt_abc123&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;variables&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;customer_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;40oz juice box&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Prompt template with file input variable</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span><span class="o">,</span><span class="w"> </span><span class="nn">pathlib</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="c1"># Upload a PDF we will reference in the variables</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;draconomicon.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="n">purpose</span><span class="o">=</span><span class="s2">&quot;user_data&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;pmpt_abc123&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;variables&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;Dragons&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;reference_pdf&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_file&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="message-formatting-with-markdown-and-xml">
+<h2>Message formatting with Markdown and XML<a class="headerlink" href="#message-formatting-with-markdown-and-xml" title="Link to this heading">#</a></h2>
+<p>When writing <code class="docutils literal notranslate"><span class="pre">developer</span></code> and <code class="docutils literal notranslate"><span class="pre">user</span></code> messages, you can help the model understand logical boundaries of your prompt and context data using a combination of <a class="reference external" href="https://commonmark.org/help/">Markdown</a> formatting and <a class="reference external" href="https://www.w3.org/TR/xml/">XML tags</a>.</p>
+<p>Markdown headers and lists can be helpful to mark distinct sections of a prompt, and to communicate hierarchy to the model. They can also potentially make your prompts more readable during development. XML tags can help delineate where one piece of content (like a supporting document used for reference) begins and ends. XML attributes can also be used to define metadata about content in the prompt that can be referenced by your instructions.</p>
+<p>In general, a developer message will contain the following sections, usually in this order (though the exact optimal content and order may vary by which model you are using):</p>
+<ul class="simple">
+<li><p><strong>Identity:</strong> Describe the purpose, communication style, and high-level goals of the assistant.</p></li>
+<li><p><strong>Instructions:</strong> Provide guidance to the model on how to generate the response you want. What rules should it follow? What should the model do, and what should the model never do? This section could contain many subsections as relevant for your use case, like how the model should call custom <code class="docutils literal notranslate"><span class="pre">functions</span></code>.</p></li>
+<li><p><strong>Examples:</strong> Provide examples of possible inputs, along with the desired output from the model.</p></li>
+<li><p><strong>Context:</strong> Give the model any additional information it might need to generate a response, like private/proprietary data outside its training data, or any other data you know will be particularly relevant. This content is usually best positioned near the end of your prompt, as you may include different context for different generation requests.</p></li>
+</ul>
+<p>Below is an example of using Markdown and XML tags to construct a <code class="docutils literal notranslate"><span class="pre">developer</span></code> message with distinct sections and supporting examples.</p>
+<p>Example prompt: A developer message for code generation</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Identity
+
+You are coding assistant that helps enforce the use of snake case 
+variables in JavaScript code, and writing code that will run in 
+Internet Explorer version 6.
+
+# Instructions
+
+* When defining variables, use snake case names (e.g. my_variable) 
+  instead of camel case names (e.g. myVariable).
+* To support old browsers, declare variables using the older 
+  &quot;var&quot; keyword.
+* Do not give responses with Markdown formatting, just return 
+  the code as requested.
+
+# Examples
+
+&lt;user_query&gt;
+How do I declare a string variable for a first name?
+&lt;/user_query&gt;
+
+&lt;assistant_response&gt;
+var first_name = &quot;Anna&quot;;
+&lt;/assistant_response&gt;
+</pre></div>
+</div>
+<p>API request: Send a prompt to generate code through the API</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;prompt.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">instructions</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="n">instructions</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;How would I declare a variable for a last name?&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="save-on-cost-and-latency-with-prompt-caching">
+<h3>Save on cost and latency with prompt caching<a class="headerlink" href="#save-on-cost-and-latency-with-prompt-caching" title="Link to this heading">#</a></h3>
+<p>When constructing a message, you should try and keep content that you expect to use over and over in your API requests at the beginning of your prompt, <strong>and</strong> among the first API parameters you pass in the JSON request body to <a class="reference external" href="https://platform.openai.com/docs/api-reference/chat">Chat Completions</a> or <a class="reference external" href="https://platform.openai.com/docs/api-reference/responses">Responses</a>. This enables you to maximize cost and latency savings from <code class="docutils literal notranslate"><span class="pre">prompt</span> <span class="pre">caching</span></code>.</p>
+</section>
+</section>
+<section id="few-shot-learning">
+<h2>Few-shot learning<a class="headerlink" href="#few-shot-learning" title="Link to this heading">#</a></h2>
+<p>Few-shot learning lets you steer a large language model toward a new task by including a handful of input/output examples in the prompt, rather than <strong>fine-tuning</strong> the model. The model implicitly “picks up” the pattern from those examples and applies it to a prompt. When providing examples, try to show a diverse range of possible inputs with the desired outputs.</p>
+<p>Typically, you will provide examples as part of a <code class="docutils literal notranslate"><span class="pre">developer</span></code> message in your API request. Here’s an example <code class="docutils literal notranslate"><span class="pre">developer</span></code> message containing examples that show a model how to classify positive or negative customer service reviews.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Identity
+
+You are a helpful assistant that labels short product reviews as
+Positive, Negative, or Neutral.
+
+# Instructions
+
+* Only output a single word in your response with no additional formatting
+  or commentary.
+* Your response should only be one of the words &quot;Positive&quot;, &quot;Negative&quot;, or
+  &quot;Neutral&quot; depending on the sentiment of the product review you are given.
+
+# Examples
+
+&lt;product_review id=&quot;example-1&quot;&gt;
+I absolutely love this headphones — sound quality is amazing!
+&lt;/product_review&gt;
+
+&lt;assistant_response id=&quot;example-1&quot;&gt;
+Positive
+&lt;/assistant_response&gt;
+
+&lt;product_review id=&quot;example-2&quot;&gt;
+Battery life is okay, but the ear pads feel cheap.
+&lt;/product_review&gt;
+
+&lt;assistant_response id=&quot;example-2&quot;&gt;
+Neutral
+&lt;/assistant_response&gt;
+
+&lt;product_review id=&quot;example-3&quot;&gt;
+Terrible customer service, I&#39;ll never buy from them again.
+&lt;/product_review&gt;
+
+&lt;assistant_response id=&quot;example-3&quot;&gt;
+Negative
+&lt;/assistant_response&gt;
+</pre></div>
+</div>
+</section>
+<section id="include-relevant-context-information">
+<h2>Include relevant context information<a class="headerlink" href="#include-relevant-context-information" title="Link to this heading">#</a></h2>
+<p>It is often useful to include additional context information the model can use to generate a response within the prompt you give the model. There are a few common reasons why you might do this:</p>
+<ul class="simple">
+<li><p>To give the model access to proprietary data, or any other data outside the data set the model was trained on.</p></li>
+<li><p>To constrain the model’s response to a specific set of resources that you have determined will be most beneficial.</p></li>
+</ul>
+<p>The technique of adding additional relevant context to the model generation request is sometimes called <strong>retrieval-augmented generation (RAG)</strong>. You can add additional context to the prompt in many different ways, from querying a vector database and including the text you get back into a prompt, or by using OpenAI’s built-in <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">search</span> <span class="pre">tool</span></code> to generate content based on uploaded documents.</p>
+<section id="planning-for-the-context-window">
+<h3>Planning for the context window<a class="headerlink" href="#planning-for-the-context-window" title="Link to this heading">#</a></h3>
+<p>Models can only handle so much data within the context they consider during a generation request. This memory limit is called a <strong>context window</strong>, which is defined in terms of <a class="reference external" href="https://blogs.nvidia.com/blog/ai-tokens-explained">tokens</a> (chunks of data you pass in, from text to images).</p>
+<p>Models have different context window sizes from the low 100k range up to one million tokens for newer GPT-4.1 models. Refer to the model docs for specific context window sizes per model.</p>
+</section>
+</section>
+<section id="prompting-gpt-4-1-models">
+<h2>Prompting GPT-4.1 models<a class="headerlink" href="#prompting-gpt-4-1-models" title="Link to this heading">#</a></h2>
+<p>GPT models like <a class="reference external" href="https://platform.openai.com/docs/models/gpt-4.1"><code class="docutils literal notranslate"><span class="pre">gpt-4.1</span></code></a> benefit from precise instructions that explicitly provide the logic and data required to complete the task in the prompt. GPT-4.1 in particular is highly steerable and responsive to well-specified prompts. To get the most out of GPT-4.1, refer to the prompting guide in the cookbook.</p>
+<p><a class="reference external" href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide">GPT-4.1 prompting guide: Get the most out of prompting GPT-4.1 with the tips and tricks in this prompting guide, extracted from real-world use cases and practical experience.</a></p>
+<section id="gpt-4-1-prompting-best-practices">
+<h3>GPT-4.1 prompting best practices<a class="headerlink" href="#gpt-4-1-prompting-best-practices" title="Link to this heading">#</a></h3>
+<p>While the <a class="reference external" href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide">cookbook</a> has the best and most comprehensive guidance for prompting this model, here are a few best practices to keep in mind.</p>
+</section>
+</section>
+<section id="building-agentic-workflows">
+<h2>Building agentic workflows<a class="headerlink" href="#building-agentic-workflows" title="Link to this heading">#</a></h2>
+<section id="system-prompt-reminders">
+<h3>System Prompt Reminders<a class="headerlink" href="#system-prompt-reminders" title="Link to this heading">#</a></h3>
+<p>In order to best utilize the agentic capabilities of GPT-4.1, we recommend including three key types of reminders in all agent prompts for persistence, tool calling, and planning. As a whole, we find that these three instructions transform the model’s behavior from chatbot-like into a much more “eager” agent, driving the interaction forward autonomously and independently. Here are a few examples:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>## PERSISTENCE
+You are an agent - please keep going until the user&#39;s query is completely
+resolved, before ending your turn and yielding back to the user. Only
+terminate your turn when you are sure that the problem is solved.
+
+## TOOL CALLING
+If you are not sure about file content or codebase structure pertaining to
+the user&#39;s request, use your tools to read files and gather the relevant
+information: do NOT guess or make up an answer.
+
+## PLANNING
+You MUST plan extensively before each function call, and reflect
+extensively on the outcomes of the previous function calls. DO NOT do this
+entire process by making function calls only, as this can impair your
+ability to solve the problem and think insightfully.
+</pre></div>
+</div>
+<section id="tool-calls">
+<h4>Tool Calls<a class="headerlink" href="#tool-calls" title="Link to this heading">#</a></h4>
+<p>Compared to previous models, GPT-4.1 has undergone more training on effectively utilizing tools passed as arguments in an OpenAI API request. We encourage developers to exclusively use the tools field of API requests to pass tools for best understanding and performance, rather than manually injecting tool descriptions into the system prompt and writing a separate parser for tool calls, as some have reported doing in the past.</p>
+</section>
+<section id="diff-generation">
+<h4>Diff Generation<a class="headerlink" href="#diff-generation" title="Link to this heading">#</a></h4>
+<p>Correct diffs are critical for coding applications, so we’ve significantly improved performance at this task for GPT-4.1. In our cookbook, we open-source a recommended diff format on which GPT-4.1 has been extensively trained. That said, the model should generalize to any well-specified format.</p>
+</section>
+</section>
+</section>
+<section id="using-long-context">
+<h2>Using long context<a class="headerlink" href="#using-long-context" title="Link to this heading">#</a></h2>
+<p>GPT-4.1 has a performant 1M token input context window, and will be useful for a variety of long context tasks, including structured document parsing, re-ranking, selecting relevant information while ignoring irrelevant context, and performing multi-hop reasoning using context.</p>
+<section id="optimal-context-size">
+<h3>Optimal Context Size<a class="headerlink" href="#optimal-context-size" title="Link to this heading">#</a></h3>
+<p>We show perfect performance at needle-in-a-haystack evals up to our full context size, and we’ve observed very strong performance at complex tasks with a mix of relevant and irrelevant code and documents in the range of hundreds of thousands of tokens.</p>
+</section>
+<section id="delimiters">
+<h3>Delimiters<a class="headerlink" href="#delimiters" title="Link to this heading">#</a></h3>
+<p>We tested a variety of delimiters for separating context provided to the model against our long context evals. Briefly, XML and the format demonstrated by Lee et al. (<a class="reference external" href="https://arxiv.org/pdf/2406.13121">ref</a>) tend to perform well, while JSON performed worse for this task. See our cookbook for prompt examples.</p>
+</section>
+<section id="prompt-organization">
+<h3>Prompt Organization<a class="headerlink" href="#prompt-organization" title="Link to this heading">#</a></h3>
+<p>Especially in long context usage, placement of instructions and context can substantially impact performance. In our experiments, we found that it was optimal to put critical instructions, including the user query, at both the top and the bottom of the prompt; this elicited marginally better performance from the model than putting them only at the top, and much better performance than only at the bottom.</p>
+</section>
+</section>
+<section id="prompting-for-chain-of-thought">
+<h2>Prompting for chain of thought<a class="headerlink" href="#prompting-for-chain-of-thought" title="Link to this heading">#</a></h2>
+<p>As mentioned above, GPT-4.1 isn’t a reasoning model, but prompting the model to think step by step (called “chain of thought”) can be an effective way for a model to break down problems into more manageable pieces. The model has been trained to perform well at agentic reasoning and real-world problem solving, so it shouldn’t require much prompting to do well.</p>
+<p>We recommend starting with this basic chain-of-thought instruction at the end of your prompt:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>First, think carefully step by step about what documents are needed to answer the query. Then, print out the TITLE and ID of each document. Then, format the IDs into a list.
+</pre></div>
+</div>
+<p>From there, you should improve your CoT prompt by auditing failures in your particular examples and evals, and addressing systematic planning and reasoning errors with more explicit instructions. See our cookbook for a prompt example demonstrating a more opinionated reasoning strategy.</p>
+</section>
+<section id="instruction-following">
+<h2>Instruction following<a class="headerlink" href="#instruction-following" title="Link to this heading">#</a></h2>
+<p>GPT-4.1 exhibits outstanding instruction-following performance, which developers can leverage to precisely shape and control the outputs for their particular use cases. However, since the model follows instructions more literally than its predecessors, may need to provide more explicit specification around what to do or not do, and existing prompts optimized for other models may not immediately work with this model.</p>
+<section id="recommended-workflow">
+<h3>Recommended Workflow<a class="headerlink" href="#recommended-workflow" title="Link to this heading">#</a></h3>
+<p>Here is our recommended workflow for developing and debugging instructions in prompts:</p>
+<ul class="simple">
+<li><p>Start with an overall “Response Rules” or “Instructions” section with high-level guidance and bullet points.</p></li>
+<li><p>If you’d like to change a more specific behavior, add a section containing more details for that category, like <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Sample</span> <span class="pre">Phrases</span></code>.</p></li>
+<li><p>If there are specific steps you’d like the model to follow in its workflow, add an ordered list and instruct the model to follow these steps.</p></li>
+<li><p>If behavior still isn’t working as expected, check for conflicting, underspecified, or incorrect instructions and examples. If there are conflicting instructions, GPT-4.1 tends to follow the one closer to the end of the prompt.</p></li>
+<li><p>Add examples that demonstrate desired behavior; ensure that any important behavior demonstrated in your examples are also cited in your rules.</p></li>
+<li><p>It’s generally not necessary to use all-caps or other incentives like bribes or tips, but developers can experiment with this for extra emphasis if so desired.</p></li>
+</ul>
+</section>
+<section id="common-failure-modes">
+<h3>Common Failure Modes<a class="headerlink" href="#common-failure-modes" title="Link to this heading">#</a></h3>
+<p>These failure modes are not unique to GPT-4.1, but we share them here for general awareness and ease of debugging.</p>
+<ul class="simple">
+<li><p>Instructing a model to always follow a specific behavior can occasionally induce adverse effects. For instance, if told “you must call a tool before responding to the user,” models may hallucinate tool inputs or call the tool with null values if they do not have enough information. Adding “if you don’t have enough information to call the tool, ask the user for the information you need” should mitigate this.</p></li>
+<li><p>When provided sample phrases, models can use those quotes verbatim and start to sound repetitive to users. Ensure you instruct the model to vary them as necessary.</p></li>
+<li><p>Without specific instructions, some models can be eager to provide additional prose to explain their decisions, or output more formatting in responses than may be desired. Provide instructions and potentially examples to help mitigate.</p></li>
+</ul>
+<p>See our cookbook for an example customer service prompt that demonstrates these principles.</p>
+</section>
+</section>
+<section id="prompting-reasoning-models">
+<h2>Prompting reasoning models<a class="headerlink" href="#prompting-reasoning-models" title="Link to this heading">#</a></h2>
+<p>There are some differences to consider when prompting a <code class="docutils literal notranslate"><span class="pre">reasoning</span> <span class="pre">model</span></code> versus prompting a <code class="docutils literal notranslate"><span class="pre">GPT</span></code> model. Generally speaking, reasoning models will provide better results on tasks with only high-level guidance. This differs from GPT models, which benefit from very precise instructions.</p>
+<p>You could think about the difference between reasoning and GPT models like this.</p>
+<ul class="simple">
+<li><p>A reasoning model is like a senior co-worker. You can give them a goal to achieve and trust them to work out the details.</p></li>
+<li><p>A GPT model is like a junior coworker. They’ll perform best with explicit instructions to create a specific output.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_0_dev_quick_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Developer Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_2_model_selection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-model">Choosing a model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Prompt engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-roles-and-instruction-following">Message roles and instruction following</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusable-prompts">Reusable prompts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-formatting-with-markdown-and-xml">Message formatting with Markdown and XML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-on-cost-and-latency-with-prompt-caching">Save on cost and latency with prompt caching</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#few-shot-learning">Few-shot learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#include-relevant-context-information">Include relevant context information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#planning-for-the-context-window">Planning for the context window</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-gpt-4-1-models">Prompting GPT-4.1 models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-4-1-prompting-best-practices">GPT-4.1 prompting best practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-agentic-workflows">Building agentic workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-prompt-reminders">System Prompt Reminders</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-calls">Tool Calls</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-generation">Diff Generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-long-context">Using long context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-context-size">Optimal Context Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiters">Delimiters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-organization">Prompt Organization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-for-chain-of-thought">Prompting for chain of thought</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-following">Instruction following</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-workflow">Recommended Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-failure-modes">Common Failure Modes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting-reasoning-models">Prompting reasoning models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
