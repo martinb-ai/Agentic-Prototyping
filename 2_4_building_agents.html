@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Agents &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2_4_building_agents';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running agents" href="2_5_running_agents.html" />
+    <link rel="prev" title="Quickstart" href="2_3_quick_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_prompt_engineering.html">Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_image_generation.html">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_15_moderation.html">Moderation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_openai_agents.html">OpenAI Agents SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_quick_start.html">Quickstart</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_5_running_agents.html">Running agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_6_tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_mcp.html">Model context protocol (MCP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_handoffs.html">Handoffs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_9_observability.html">Tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_10_context_management.html">Context management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_guardrails.html">Guardrails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_12_orchestration.html">Orchestrating multiple agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_13_models.html">Models</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2_4_building_agents.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Agents</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-configuration">Basic configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-types">Output types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-instructions">Dynamic instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-events-hooks">Lifecycle events (hooks)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardrails">Guardrails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-copying-agents">Cloning/copying agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-tool-use">Forcing tool use</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="agents">
+<h1>Agents<a class="headerlink" href="#agents" title="Link to this heading">#</a></h1>
+<p>Agents are the core building block in your apps. An agent is a large language model (LLM), configured with instructions and tools.</p>
+<section id="basic-configuration">
+<h2>Basic configuration<a class="headerlink" href="#basic-configuration" title="Link to this heading">#</a></h2>
+<p>The most common properties of an agent you’ll configure are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">instructions</span></code>: also known as a developer message or system prompt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: which LLM to use, and optional <code class="docutils literal notranslate"><span class="pre">model_settings</span></code> to configure model tuning parameters like temperature, top_p, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tools</span></code>: Tools that the agent can use to achieve its tasks.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">ModelSettings</span><span class="p">,</span> <span class="n">function_tool</span>
+
+<span class="nd">@function_tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The weather in </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2"> is sunny&quot;</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Haiku agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Always respond in haiku form&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;o3-mini&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">get_weather</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading">#</a></h2>
+<p>Agents are generic on their <code class="docutils literal notranslate"><span class="pre">context</span></code> type. Context is a dependency-injection tool: it’s an object you create and pass to <code class="docutils literal notranslate"><span class="pre">Runner.run()</span></code>, that is passed to every agent, tool, handoff etc, and it serves as a grab bag of dependencies and state for the agent run. You can provide any Python object as the context.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserContext</span><span class="p">:</span>
+    <span class="n">uid</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">is_pro_user</span><span class="p">:</span> <span class="nb">bool</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_purchases</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Purchase</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="o">...</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">[</span><span class="n">UserContext</span><span class="p">](</span>
+    <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="output-types">
+<h2>Output types<a class="headerlink" href="#output-types" title="Link to this heading">#</a></h2>
+<p>By default, agents produce plain text (i.e. <code class="docutils literal notranslate"><span class="pre">str</span></code>) outputs. If you want the agent to produce a particular type of output, you can use the <code class="docutils literal notranslate"><span class="pre">output_type</span></code> parameter. A common choice is to use <a class="reference external" href="https://docs.pydantic.dev/">Pydantic</a> objects, but we support any type that can be wrapped in a Pydantic <a class="reference external" href="https://docs.pydantic.dev/latest/api/type_adapter/">TypeAdapter</a> - dataclasses, lists, TypedDict, etc.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CalendarEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Calendar extractor&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Extract calendar events from text&quot;</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="n">CalendarEvent</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>!!! note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>When you pass an `output_type`, that tells the model to use [structured outputs](https://platform.openai.com/docs/guides/structured-outputs) instead of regular plain text responses.
+</pre></div>
+</div>
+</section>
+<section id="handoffs">
+<h2>Handoffs<a class="headerlink" href="#handoffs" title="Link to this heading">#</a></h2>
+<p>Handoffs are sub-agents that the agent can delegate to. You provide a list of handoffs, and the agent can choose to delegate to them if relevant. This is a powerful pattern that allows orchestrating modular, specialized agents that excel at a single task. Read more in the <a class="reference internal" href="#handoffs.md"><span class="xref myst">handoffs</span></a> documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span>
+
+<span class="n">booking_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">refund_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">triage_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Triage agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Help the user with their questions.&quot;</span>
+        <span class="s2">&quot;If they ask about booking, handoff to the booking agent.&quot;</span>
+        <span class="s2">&quot;If they ask about refunds, handoff to the refund agent.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">handoffs</span><span class="o">=</span><span class="p">[</span><span class="n">booking_agent</span><span class="p">,</span> <span class="n">refund_agent</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-instructions">
+<h2>Dynamic instructions<a class="headerlink" href="#dynamic-instructions" title="Link to this heading">#</a></h2>
+<p>In most cases, you can provide instructions when you create the agent. However, you can also provide dynamic instructions via a function. The function will receive the agent and context, and must return the prompt. Both regular and <code class="docutils literal notranslate"><span class="pre">async</span></code> functions are accepted.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dynamic_instructions</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">:</span> <span class="n">RunContextWrapper</span><span class="p">[</span><span class="n">UserContext</span><span class="p">],</span> <span class="n">agent</span><span class="p">:</span> <span class="n">Agent</span><span class="p">[</span><span class="n">UserContext</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The user&#39;s name is </span><span class="si">{</span><span class="n">context</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. Help them with their questions.&quot;</span>
+
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">[</span><span class="n">UserContext</span><span class="p">](</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Triage agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="n">dynamic_instructions</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="lifecycle-events-hooks">
+<h2>Lifecycle events (hooks)<a class="headerlink" href="#lifecycle-events-hooks" title="Link to this heading">#</a></h2>
+<p>Sometimes, you want to observe the lifecycle of an agent. For example, you may want to log events, or pre-fetch data when certain events occur. You can hook into the agent lifecycle with the <code class="docutils literal notranslate"><span class="pre">hooks</span></code> property. Subclass the [<code class="docutils literal notranslate"><span class="pre">AgentHooks</span></code>][agents.lifecycle.AgentHooks] class, and override the methods you’re interested in.</p>
+</section>
+<section id="guardrails">
+<h2>Guardrails<a class="headerlink" href="#guardrails" title="Link to this heading">#</a></h2>
+<p>Guardrails allow you to run checks/validations on user input, in parallel to the agent running. For example, you could screen the user’s input for relevance. Read more in the <a class="reference internal" href="#guardrails.md"><span class="xref myst">guardrails</span></a> documentation.</p>
+</section>
+<section id="cloning-copying-agents">
+<h2>Cloning/copying agents<a class="headerlink" href="#cloning-copying-agents" title="Link to this heading">#</a></h2>
+<p>By using the <code class="docutils literal notranslate"><span class="pre">clone()</span></code> method on an agent, you can duplicate an Agent, and optionally change any properties you like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pirate_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pirate&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Write like a pirate&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;o3-mini&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">robot_agent</span> <span class="o">=</span> <span class="n">pirate_agent</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Robot&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Write like a robot&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="forcing-tool-use">
+<h2>Forcing tool use<a class="headerlink" href="#forcing-tool-use" title="Link to this heading">#</a></h2>
+<p>Supplying a list of tools doesn’t always mean the LLM will use a tool. You can force tool use by setting [<code class="docutils literal notranslate"><span class="pre">ModelSettings.tool_choice</span></code>][agents.model_settings.ModelSettings.tool_choice]. Valid values are:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>, which allows the LLM to decide whether or not to use a tool.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code>, which requires the LLM to use a tool (but it can intelligently decide which tool).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>, which requires the LLM to <em>not</em> use a tool.</p></li>
+<li><p>Setting a specific string e.g. <code class="docutils literal notranslate"><span class="pre">my_tool</span></code>, which requires the LLM to use that specific tool.</p></li>
+</ol>
+<p>!!! note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>To prevent infinite loops, the framework automatically resets `tool_choice` to &quot;auto&quot; after a tool call. This behavior is configurable via [`agent.reset_tool_choice`][agents.agent.Agent.reset_tool_choice]. The infinite loop is because tool results are sent to the LLM, which then generates another tool call because of `tool_choice`, ad infinitum.
+
+If you want the Agent to completely stop after a tool call (rather than continuing with auto mode), you can set [`Agent.tool_use_behavior=&quot;stop_on_first_tool&quot;`] which will directly use the tool output as the final response without further LLM processing.
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_3_quick_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_5_running_agents.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Running agents</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-configuration">Basic configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-types">Output types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-instructions">Dynamic instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-events-hooks">Lifecycle events (hooks)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardrails">Guardrails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-copying-agents">Cloning/copying agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-tool-use">Forcing tool use</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

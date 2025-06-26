@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quickstart &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2_3_quick_start';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Agents" href="2_4_building_agents.html" />
+    <link rel="prev" title="OpenAI Agents SDK" href="2_2_openai_agents.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_prompt_engineering.html">Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_8_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_image_generation.html">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_15_moderation.html">Moderation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_openai_agents.html">OpenAI Agents SDK</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_4_building_agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_5_running_agents.html">Running agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_6_tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_mcp.html">Model context protocol (MCP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_handoffs.html">Handoffs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_9_observability.html">Tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_10_context_management.html">Context management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_guardrails.html">Guardrails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_12_orchestration.html">Orchestrating multiple agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_13_models.html">Models</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2_3_quick_start.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quickstart</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-project-and-virtual-environment">Create a project and virtual environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-the-virtual-environment">Activate the virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-agents-sdk">Install the Agents SDK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-an-openai-api-key">Set an OpenAI API key</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-first-agent">Create your first agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-few-more-agents">Add a few more agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-your-handoffs">Define your handoffs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-agent-orchestration">Run the agent orchestration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-guardrail">Add a guardrail</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together">Put it all together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-your-traces">View your traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h1>
+<section id="create-a-project-and-virtual-environment">
+<h2>Create a project and virtual environment<a class="headerlink" href="#create-a-project-and-virtual-environment" title="Link to this heading">#</a></h2>
+<p>You’ll only need to do this once.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>my_project
+<span class="nb">cd</span><span class="w"> </span>my_project
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</pre></div>
+</div>
+<section id="activate-the-virtual-environment">
+<h3>Activate the virtual environment<a class="headerlink" href="#activate-the-virtual-environment" title="Link to this heading">#</a></h3>
+<p>Do this every time you start a new terminal session.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="install-the-agents-sdk">
+<h3>Install the Agents SDK<a class="headerlink" href="#install-the-agents-sdk" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openai-agents<span class="w"> </span><span class="c1"># or `uv add openai-agents`, etc</span>
+</pre></div>
+</div>
+</section>
+<section id="set-an-openai-api-key">
+<h3>Set an OpenAI API key<a class="headerlink" href="#set-an-openai-api-key" title="Link to this heading">#</a></h3>
+<p>If you don’t have one, follow <a class="reference external" href="https://platform.openai.com/docs/quickstart#create-and-export-an-api-key">these instructions</a> to create an OpenAI API key.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-your-first-agent">
+<h2>Create your first agent<a class="headerlink" href="#create-your-first-agent" title="Link to this heading">#</a></h2>
+<p>Agents are defined with instructions, a name, and optional config (such as <code class="docutils literal notranslate"><span class="pre">model_config</span></code>)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Math Tutor&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You provide help with math problems. Explain your reasoning at each step and include examples&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="add-a-few-more-agents">
+<h2>Add a few more agents<a class="headerlink" href="#add-a-few-more-agents" title="Link to this heading">#</a></h2>
+<p>Additional agents can be defined in the same way. <code class="docutils literal notranslate"><span class="pre">handoff_descriptions</span></code> provide additional context for determining handoff routing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span>
+
+<span class="n">history_tutor_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;History Tutor&quot;</span><span class="p">,</span>
+    <span class="n">handoff_description</span><span class="o">=</span><span class="s2">&quot;Specialist agent for historical questions&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You provide assistance with historical queries. Explain important events and context clearly.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">math_tutor_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Math Tutor&quot;</span><span class="p">,</span>
+    <span class="n">handoff_description</span><span class="o">=</span><span class="s2">&quot;Specialist agent for math questions&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You provide help with math problems. Explain your reasoning at each step and include examples&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="define-your-handoffs">
+<h2>Define your handoffs<a class="headerlink" href="#define-your-handoffs" title="Link to this heading">#</a></h2>
+<p>On each agent, you can define an inventory of outgoing handoff options that the agent can choose from to decide how to make progress on their task.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">triage_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Triage Agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You determine which agent to use based on the user&#39;s homework question&quot;</span><span class="p">,</span>
+    <span class="n">handoffs</span><span class="o">=</span><span class="p">[</span><span class="n">history_tutor_agent</span><span class="p">,</span> <span class="n">math_tutor_agent</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="run-the-agent-orchestration">
+<h2>Run the agent orchestration<a class="headerlink" href="#run-the-agent-orchestration" title="Link to this heading">#</a></h2>
+<p>Let’s check that the workflow runs and the triage agent correctly routes between the two specialist agents.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Runner</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">triage_agent</span><span class="p">,</span> <span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="add-a-guardrail">
+<h2>Add a guardrail<a class="headerlink" href="#add-a-guardrail" title="Link to this heading">#</a></h2>
+<p>You can define custom guardrails to run on the input or output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">GuardrailFunctionOutput</span><span class="p">,</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Runner</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HomeworkOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">is_homework</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">reasoning</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="n">guardrail_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Guardrail check&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Check if the user is asking about homework.&quot;</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="n">HomeworkOutput</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">homework_guardrail</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">guardrail_agent</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">context</span><span class="p">)</span>
+    <span class="n">final_output</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">final_output_as</span><span class="p">(</span><span class="n">HomeworkOutput</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GuardrailFunctionOutput</span><span class="p">(</span>
+        <span class="n">output_info</span><span class="o">=</span><span class="n">final_output</span><span class="p">,</span>
+        <span class="n">tripwire_triggered</span><span class="o">=</span><span class="ow">not</span> <span class="n">final_output</span><span class="o">.</span><span class="n">is_homework</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="put-it-all-together">
+<h2>Put it all together<a class="headerlink" href="#put-it-all-together" title="Link to this heading">#</a></h2>
+<p>Let’s put it all together and run the entire workflow, using handoffs and the input guardrail.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">InputGuardrail</span><span class="p">,</span> <span class="n">GuardrailFunctionOutput</span><span class="p">,</span> <span class="n">Runner</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HomeworkOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">is_homework</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">reasoning</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="n">guardrail_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Guardrail check&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Check if the user is asking about homework.&quot;</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="n">HomeworkOutput</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">math_tutor_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Math Tutor&quot;</span><span class="p">,</span>
+    <span class="n">handoff_description</span><span class="o">=</span><span class="s2">&quot;Specialist agent for math questions&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You provide help with math problems. Explain your reasoning at each step and include examples&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">history_tutor_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;History Tutor&quot;</span><span class="p">,</span>
+    <span class="n">handoff_description</span><span class="o">=</span><span class="s2">&quot;Specialist agent for historical questions&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You provide assistance with historical queries. Explain important events and context clearly.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">homework_guardrail</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">guardrail_agent</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">context</span><span class="p">)</span>
+    <span class="n">final_output</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">final_output_as</span><span class="p">(</span><span class="n">HomeworkOutput</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GuardrailFunctionOutput</span><span class="p">(</span>
+        <span class="n">output_info</span><span class="o">=</span><span class="n">final_output</span><span class="p">,</span>
+        <span class="n">tripwire_triggered</span><span class="o">=</span><span class="ow">not</span> <span class="n">final_output</span><span class="o">.</span><span class="n">is_homework</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">triage_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Triage Agent&quot;</span><span class="p">,</span>
+    <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;You determine which agent to use based on the user&#39;s homework question&quot;</span><span class="p">,</span>
+    <span class="n">handoffs</span><span class="o">=</span><span class="p">[</span><span class="n">history_tutor_agent</span><span class="p">,</span> <span class="n">math_tutor_agent</span><span class="p">],</span>
+    <span class="n">input_guardrails</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">InputGuardrail</span><span class="p">(</span><span class="n">guardrail_function</span><span class="o">=</span><span class="n">homework_guardrail</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">triage_agent</span><span class="p">,</span> <span class="s2">&quot;who was the first president of the united states?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">triage_agent</span><span class="p">,</span> <span class="s2">&quot;what is life&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="view-your-traces">
+<h2>View your traces<a class="headerlink" href="#view-your-traces" title="Link to this heading">#</a></h2>
+<p>To review what happened during your agent run, navigate to the <a class="reference external" href="https://platform.openai.com/traces">Trace viewer in the OpenAI Dashboard</a> to view traces of your agent runs.</p>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Learn how to build more complex agentic flows:</p>
+<ul class="simple">
+<li><p>Learn about how to configure <a class="reference internal" href="#agents.md"><span class="xref myst">Agents</span></a>.</p></li>
+<li><p>Learn about <a class="reference internal" href="#running_agents.md"><span class="xref myst">running agents</span></a>.</p></li>
+<li><p>Learn about <a class="reference internal" href="#tools.md"><span class="xref myst">tools</span></a>, <a class="reference internal" href="#guardrails.md"><span class="xref myst">guardrails</span></a> and <a class="reference internal" href="#models/index.md"><span class="xref myst">models</span></a>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_2_openai_agents.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">OpenAI Agents SDK</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_4_building_agents.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agents</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-project-and-virtual-environment">Create a project and virtual environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-the-virtual-environment">Activate the virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-agents-sdk">Install the Agents SDK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-an-openai-api-key">Set an OpenAI API key</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-first-agent">Create your first agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-few-more-agents">Add a few more agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-your-handoffs">Define your handoffs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-agent-orchestration">Run the agent orchestration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-guardrail">Add a guardrail</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together">Put it all together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-your-traces">View your traces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
