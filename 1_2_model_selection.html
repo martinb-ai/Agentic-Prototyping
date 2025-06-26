@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Markdown Files &#8212; Agentic Prototyping</title>
+    <title>Model Guide &#8212; Agentic Prototyping</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_2_model_selection';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Prototype to Production" href="1_3_prototype_to_production.html" />
+    <link rel="prev" title="Prompt Engineering" href="1_1_prompt_engineering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,10 +180,10 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_1_prompt_engineering.html">Prompt Engineering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_2_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Model Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_3_prototype_to_production.html">Prototype to Production</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_4_structured_outputs.html">Structured Outputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
@@ -273,7 +273,7 @@
       
       
       
-      <li><a href="_sources/markdown.md" target="_blank"
+      <li><a href="_sources/1_2_model_selection.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -357,7 +357,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Markdown Files</h1>
+    <h1>Model Guide</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -367,10 +367,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelintro-matrix">Model‑Intro Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evolution-at-a-glance">Model Evolution at a Glance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-differences-o-series-vs-gpt-models">Fundamental Differences: “o-series” vs “GPT” Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-model-evolution">OpenAI Model Evolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-characteristics">Key Characteristics</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -382,59 +387,73 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="model-guide">
+<h1>Model Guide<a class="headerlink" href="#model-guide" title="Link to this heading">#</a></h1>
+<section id="modelintro-matrix">
+<h2>Model‑Intro Matrix<a class="headerlink" href="#modelintro-matrix" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Core strength</p></th>
+<th class="head"><p>Ideal first reach‑for</p></th>
+<th class="head"><p>Watch‑outs</p></th>
+<th class="head"><p>Escalate / Downgrade path</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPT‑4o</p></td>
+<td><p>Real‑time voice / vision chat</p></td>
+<td><p>Live multimodal agents</p></td>
+<td><p>Slightly below 4.1 on text SOTA (state-of-the-art)</p></td>
+<td><p>Need deep reasoning → o4‑mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPT‑4.1</p></td>
+<td><p>1 M‑token text accuracy king</p></td>
+<td><p>Long‑doc analytics, code review</p></td>
+<td><p>Cannot natively reason; higher cost than minis</p></td>
+<td><p>Tight budget → 4.1‑mini / nano</p></td>
+</tr>
+<tr class="row-even"><td><p>o3</p></td>
+<td><p>Deep tool‑using agent</p></td>
+<td><p>High‑stakes, multi‑step reasoning</p></td>
+<td><p>Latency &amp; price</p></td>
+<td><p>Cost/latency → o4‑mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>o4‑mini</p></td>
+<td><p>Cheap, fast reasoning</p></td>
+<td><p>High‑volume “good‑enough” logic</p></td>
+<td><p>Depth ceiling vs o3</p></td>
+<td><p>Accuracy critical → o3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(Full price and utility table → Section 6.1)</p>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <span class="xref std std-doc">markdown-notebooks</span>.</p>
+<section id="model-evolution-at-a-glance">
+<h2>Model Evolution at a Glance<a class="headerlink" href="#model-evolution-at-a-glance" title="Link to this heading">#</a></h2>
+<p>OpenAI’s model lineup has evolved to address specialized needs across different dimensions. These diagrams showcase the current model families and their relationships.</p>
+<section id="fundamental-differences-o-series-vs-gpt-models">
+<h3>Fundamental Differences: “o-series” vs “GPT” Models<a class="headerlink" href="#fundamental-differences-o-series-vs-gpt-models" title="Link to this heading">#</a></h3>
+<p>OpenAI offers two distinct model families, each with unique strengths:</p>
+<ul class="simple">
+<li><p><strong>GPT Models (4o, 4.1):</strong> Optimized for general-purpose tasks with excellent instruction following. GPT-4.1 excels with long contexts (1M tokens) while GPT-4o has variants for realtime speech, text-to-speech, and speech-to-text. GPT-4.1 also comes in a mini, and nano variant, while GPT-4o has a mini variant. These variants are cheaper and faster than their full-size counterparts.</p></li>
+<li><p><strong>o-series Models (o3, o4-mini):</strong> Specialized for deep reasoning and step-by-step problem solving. These models excel at complex, multi-stage tasks requiring logical thinking and tool use. Choose these when accuracy and reasoning depth are paramount. These models also have an optional <code class="docutils literal notranslate"><span class="pre">reasoning_effort</span></code> parameter (that can be set to low, medium, or high), which allows users to control the amount of tokens used for reasoning.</p></li>
+</ul>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HdHPK14</a><span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
+<section id="openai-model-evolution">
+<h3>OpenAI Model Evolution<a class="headerlink" href="#openai-model-evolution" title="Link to this heading">#</a></h3>
+<p><img alt="OpenAI Model Evolution" src="_images/model_selection.png" /></p>
+<section id="key-characteristics">
+<h4>Key Characteristics<a class="headerlink" href="#key-characteristics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>GPT-4.1 Family:</strong> Optimized for long context processing with 1M token context window.</p></li>
+<li><p><strong>o3:</strong> Specialized for deep multi-step reasoning.</p></li>
+<li><p><strong>o4-mini:</strong> Combines reasoning capabilities with vision at lower cost.</p></li>
+</ul>
+<p>Each model excels in different scenarios, with complementary strengths that can be combined for complex workflows.</p>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+</section>
 </section>
 </section>
 
@@ -468,6 +487,24 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="1_1_prompt_engineering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Prompt Engineering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_3_prototype_to_production.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Prototype to Production</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -484,10 +521,15 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelintro-matrix">Model‑Intro Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evolution-at-a-glance">Model Evolution at a Glance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-differences-o-series-vs-gpt-models">Fundamental Differences: “o-series” vs “GPT” Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-model-evolution">OpenAI Model Evolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-characteristics">Key Characteristics</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
