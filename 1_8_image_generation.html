@@ -1,0 +1,1234 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Image generation &#8212; Agentic Prototyping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_8_image_generation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Text to speech" href="1_9_text_to_speech.html" />
+    <link rel="prev" title="File inputs" href="1_7_file_inputs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ITRGLogoLightBlue.png" class="logo__image only-light" alt="Agentic Prototyping - Home"/>
+    <script>document.write(`<img src="_static/ITRGLogoLightBlue.png" class="logo__image only-dark" alt="Agentic Prototyping - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Agentic Prototyping
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_0_dev_quick_start.html">Developer Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_1_model_selection.html">Model Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_prototype_to_production.html">Prototype to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_3_structured_outputs.html">Structured Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_4_function_calling.html">Function calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_5_conversational_state.html">Conversation state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_streaming.html">Streaming API responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_7_file_inputs.html">File inputs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Image generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_9_text_to_speech.html">Text to speech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_10_speech_to_text.html">Speech to text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_11_embeddings.html">Vector embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_12_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_13_evals.html">Evaluating model performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_0_agents_overview.html">Agents Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_guardrails.html">Guardrails</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Best Practices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_0_production.html">Production best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_1_safety.html">Safety Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_prompt_caching.html">Prompt caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_reasoning_models.html">Reasoning Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_5_reproducibility.html">Advanced usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4_pharma_rd.html">Use Case: AI Co-Scientist for Pharma R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_insurance_claims.html">Use Case: Insurance Claim Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_financial_portfolio_analysis.html">Use Case: Financial Portfolio Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_8_image_generation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Image generation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-api">Image API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#responses-api">Responses API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-api">Choosing the right API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison">Model comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-images">Generate Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-image-generation">Multi-turn image generation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming">Streaming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revised-prompt">Revised prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-images">Edit Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-image-using-image-references">Create a new image using image references</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-an-image-using-a-mask-inpainting">Edit an image using a mask (inpainting)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-requirements">Mask requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customize-image-output">Customize Image Output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size-and-quality-options">Size and quality options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-format">Output format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency">Transparency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-moderation">Content Moderation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-models">Supported models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-and-latency">Cost and latency</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="image-generation">
+<h1>Image generation<a class="headerlink" href="#image-generation" title="Link to this heading">#</a></h1>
+<p>Learn how to generate or edit images.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The OpenAI API lets you generate and edit images from text prompts, using the GPT Image or DALL·E models. You can access image generation capabilities through two APIs:</p>
+<section id="image-api">
+<h3>Image API<a class="headerlink" href="#image-api" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://platform.openai.com/docs/api-reference/images">Image API</a> provides three endpoints, each with distinct capabilities:</p>
+<ul class="simple">
+<li><p><strong>Generations</strong>: <a class="reference internal" href="#generate-images"><span class="xref myst">Generate images</span></a> from scratch based on a text prompt</p></li>
+<li><p><strong>Edits</strong>: <a class="reference internal" href="#edit-images"><span class="xref myst">Modify existing images</span></a> using a new prompt, either partially or entirely</p></li>
+<li><p><strong>Variations</strong>: <a class="reference internal" href="#image-variations"><span class="xref myst">Generate variations</span></a> of an existing image (available with DALL·E 2 only)</p></li>
+</ul>
+<p>This API supports <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code> as well as <code class="docutils literal notranslate"><span class="pre">dall-e-2</span></code> and <code class="docutils literal notranslate"><span class="pre">dall-e-3</span></code>.</p>
+</section>
+<section id="responses-api">
+<h3>Responses API<a class="headerlink" href="#responses-api" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Responses</span> <span class="pre">API</span></code> allows you to generate images as part of conversations or multi-step flows. It supports image generation as a <code class="docutils literal notranslate"><span class="pre">built-in</span> <span class="pre">tool</span></code>, and accepts image inputs and outputs within context.</p>
+<p>Compared to the Image API, it adds:</p>
+<ul class="simple">
+<li><p><strong>Multi-turn editing</strong>: Iteratively make high fidelity edits to images with prompting</p></li>
+<li><p><strong>Streaming</strong>: Display partial images as the final output is being generated to improve perceived latency</p></li>
+<li><p><strong>Flexible inputs</strong>: Accept image <a class="reference external" href="https://platform.openai.com/docs/api-reference/files">File</a> IDs as input images, not just bytes</p></li>
+</ul>
+<p>The image generation tool in responses only supports <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code>. For a list of mainline models that support calling this tool, refer to the <code class="docutils literal notranslate"><span class="pre">supported</span> <span class="pre">models</span></code> below.</p>
+</section>
+<section id="choosing-the-right-api">
+<h3>Choosing the right API<a class="headerlink" href="#choosing-the-right-api" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If you only need to generate or edit a single image from one prompt, the Image API is your best choice.</p></li>
+<li><p>If you want to build conversational, editable image experiences with GPT Image or display partial images during generation, go with the Responses API.</p></li>
+</ul>
+<p>Both APIs let you <a class="reference internal" href="#customize-image-output"><span class="xref myst">customize output</span></a> — adjust quality, size, format, compression, and enable transparent backgrounds.</p>
+</section>
+<section id="model-comparison">
+<h3>Model comparison<a class="headerlink" href="#model-comparison" title="Link to this heading">#</a></h3>
+<p>Our latest and most advanced model for image generation is <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code>, a natively multimodal language model.</p>
+<p>We recommend this model for its high-quality image generation and ability to use world knowledge in image creation. However, you can also use specialized image generation models—DALL·E 2 and DALL·E 3—with the Image API.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Endpoints</p></th>
+<th class="head"><p>Use case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DALL·E 2</p></td>
+<td><p>Image API: Generations, Edits, Variations</p></td>
+<td><p>Lower cost, concurrent requests, inpainting (image editing with a mask)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DALL·E 3</p></td>
+<td><p>Image API: Generations only</p></td>
+<td><p>Higher image quality than DALL·E 2, support for larger resolutions</p></td>
+</tr>
+<tr class="row-even"><td><p>GPT Image</p></td>
+<td><p>Image API: Generations, Edits – Responses API support coming soon</p></td>
+<td><p>Superior instruction following, text rendering, detailed editing, real-world knowledge</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This guide focuses on GPT Image, but you can also switch to the docs for <a class="reference internal" href="#/docs/guides/image-generation?image-generation-model=dall-e-2"><span class="xref myst">DALL·E 2</span></a> and <a class="reference internal" href="#/docs/guides/image-generation?image-generation-model=dall-e-3"><span class="xref myst">DALL·E 3</span></a>.</p>
+<p>To ensure this model is used responsibly, you may need to complete the <a class="reference external" href="https://help.openai.com/en/articles/10910291-api-organization-verification">API Organization Verification</a> from your <a class="reference external" href="https://platform.openai.com/settings/organization/general">developer console</a> before using <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code>.</p>
+<p><img alt="a vet with a baby otter" src="https://cdn.openai.com/API/docs/images/otter.png" /></p>
+</section>
+</section>
+<section id="generate-images">
+<h2>Generate Images<a class="headerlink" href="#generate-images" title="Link to this heading">#</a></h2>
+<p>You can use the <a class="reference external" href="https://platform.openai.com/docs/api-reference/images/create">image generation endpoint</a> to create images based on text prompts, or the <code class="docutils literal notranslate"><span class="pre">image</span> <span class="pre">generation</span> <span class="pre">tool</span></code> in the Responses API to generate images as part of a conversation.</p>
+<p>To learn more about customizing the output (size, quality, format, transparency), refer to the <a class="reference internal" href="#customize-image-output"><span class="xref myst">customize image output</span></a> section below.</p>
+<p>You can set the <code class="docutils literal notranslate"><span class="pre">n</span></code> parameter to generate multiple images at once in a single request (by default, the API returns a single image).</p>
+<p><strong>Responses API</strong></p>
+<p>Generate an image</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span> 
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Generate an image of gray tabby cat hugging an otter with an orange scarf&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="c1"># Save the image to a file</span>
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+    
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;otter.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Image API</strong></p>
+<p>Generate an image</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A children&#39;s book drawing of a veterinarian using a stethoscope to </span>
+<span class="s2">listen to the heartbeat of a baby otter.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-image-1&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span>
+<span class="p">)</span>
+
+<span class="n">image_base64</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">b64_json</span>
+<span class="n">image_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">)</span>
+
+<span class="c1"># Save the image to a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;otter.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="multi-turn-image-generation">
+<h3>Multi-turn image generation<a class="headerlink" href="#multi-turn-image-generation" title="Link to this heading">#</a></h3>
+<p>With the Responses API, you can build multi-turn conversations involving image generation either by providing image generation calls outputs within context (you can also just use the image ID), or by using the <a class="reference internal" href="#/docs/guides/conversation-state?api-mode=responses#openai-apis-for-conversation-state"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">previous_response_id</span></code> parameter</span></a>. This makes it easy to iterate on images across multiple turns—refining prompts, applying new instructions, and evolving the visual output as the conversation progresses.</p>
+<p><strong>Using previous response ID</strong></p>
+<p>Multi-turn image generation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Generate an image of gray tabby cat hugging an otter with an orange scarf&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cat_and_otter.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+
+<span class="c1"># Follow up</span>
+
+<span class="n">response_fwup</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="n">previous_response_id</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Now make it look realistic&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="n">image_data_fwup</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response_fwup</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data_fwup</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data_fwup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cat_and_otter_realistic.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Using image ID</strong></p>
+<p>Multi-turn image generation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Generate an image of gray tabby cat hugging an otter with an orange scarf&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="n">image_generation_calls</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">output</span><span class="o">.</span><span class="n">result</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">image_generation_calls</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cat_and_otter.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+
+<span class="c1"># Follow up</span>
+
+<span class="n">response_fwup</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Now make it look realistic&quot;</span><span class="p">}],</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation_call&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">image_generation_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="n">image_data_fwup</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response_fwup</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data_fwup</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data_fwup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cat_and_otter_realistic.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="result">
+<h4>Result<a class="headerlink" href="#result" title="Link to this heading">#</a></h4>
+<p>|”Generate an image of gray tabby cat hugging an otter with an orange scarf”|<img alt="Cat and Otter" src="_images/cat_and_otter.png" />|
+|”Now make it look realistic”|<img alt="Cat and Otter Realistic" src="_images/cat_and_otter_realistic.png" />|</p>
+</section>
+</section>
+<section id="streaming">
+<h3>Streaming<a class="headerlink" href="#streaming" title="Link to this heading">#</a></h3>
+<p>The Responses API also supports streaming image generation. This allows you to stream partial images as they are generated, providing a more interactive experience.</p>
+<p>You can adjust the <code class="docutils literal notranslate"><span class="pre">partial_images</span></code> parameter to receive 1-3 partial images.</p>
+</section>
+<section id="revised-prompt">
+<h3>Revised prompt<a class="headerlink" href="#revised-prompt" title="Link to this heading">#</a></h3>
+<p>When using the image generation tool in the Responses API, the mainline model (e.g. <code class="docutils literal notranslate"><span class="pre">gpt-4.1</span></code>) will automatically revise your prompt for improved performance.</p>
+<p>You can access the revised prompt in the <code class="docutils literal notranslate"><span class="pre">revised_prompt</span></code> field of the image generation call:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ig_123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image_generation_call&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;revised_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A gray tabby cat hugging an otter. The otter is wearing an orange scarf. Both animals are cute and friendly, depicted in a warm, heartwarming style.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="edit-images">
+<h2>Edit Images<a class="headerlink" href="#edit-images" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#/docs/api-reference/images/createEdit"><span class="xref myst">image edits</span></a> endpoint lets you:</p>
+<ul class="simple">
+<li><p>Edit existing images</p></li>
+<li><p>Generate new images using other images as a reference</p></li>
+<li><p>Edit parts of an image by uploading an image and mask indicating which areas should be replaced (a process known as <strong>inpainting</strong>)</p></li>
+</ul>
+<section id="create-a-new-image-using-image-references">
+<h3>Create a new image using image references<a class="headerlink" href="#create-a-new-image-using-image-references" title="Link to this heading">#</a></h3>
+<p>You can use one or more images as a reference to generate a new image.</p>
+<p>In this example, we’ll use 4 input images to generate a new image of a gift basket containing the items in the reference images.</p>
+<p><a class="reference external" href="https://cdn.openai.com/API/docs/images/body-lotion.png"><img alt="Body Lotion" src="https://cdn.openai.com/API/docs/images/body-lotion.png" /></a><a class="reference external" href="https://cdn.openai.com/API/docs/images/soap.png"><img alt="Soap" src="https://cdn.openai.com/API/docs/images/soap.png" /></a><a class="reference external" href="https://cdn.openai.com/API/docs/images/incense-kit.png"><img alt="Incense Kit" src="https://cdn.openai.com/API/docs/images/incense-kit.png" /></a><a class="reference external" href="https://cdn.openai.com/API/docs/images/bath-bomb.png"><img alt="Bath Bomb" src="https://cdn.openai.com/API/docs/images/bath-bomb.png" /></a></p>
+<p><img alt="Bath Gift Set" src="https://cdn.openai.com/API/docs/images/bath-set-result.png" /></p>
+<p>Responses API</p>
+<p>With the Responses API, you can provide input images in 2 different ways:</p>
+<ul class="simple">
+<li><p>By providing an image as a Base64-encoded data URL</p></li>
+<li><p>By providing a file ID (created with the <code class="docutils literal notranslate"><span class="pre">Files</span> <span class="pre">API</span></code></p></li>
+</ul>
+<p>We’re actively working on supporting fully qualified URLs to image files as input as well.</p>
+<p><strong>Create a File</strong></p>
+<p>Edit an image</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_content</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">file</span><span class="o">=</span><span class="n">file_content</span><span class="p">,</span>
+        <span class="n">purpose</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">id</span>
+</pre></div>
+</div>
+<p><strong>Create a base64 encoded image</strong></p>
+<p>Edit an image</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encode_image</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">base64_image</span>
+</pre></div>
+</div>
+<p><strong>Edit an image</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Generate a photorealistic image of a gift basket on a white background </span>
+<span class="s2">labeled &#39;Relax &amp; Unwind&#39; with a ribbon and handwriting-like font, </span>
+<span class="s2">containing all the items in the reference pictures.&quot;&quot;&quot;</span>
+
+<span class="n">base64_image1</span> <span class="o">=</span> <span class="n">encode_image</span><span class="p">(</span><span class="s2">&quot;body-lotion.png&quot;</span><span class="p">)</span>
+<span class="n">base64_image2</span> <span class="o">=</span> <span class="n">encode_image</span><span class="p">(</span><span class="s2">&quot;soap.png&quot;</span><span class="p">)</span>
+<span class="n">file_id1</span> <span class="o">=</span> <span class="n">create_file</span><span class="p">(</span><span class="s2">&quot;body-lotion.png&quot;</span><span class="p">)</span>
+<span class="n">file_id2</span> <span class="o">=</span> <span class="n">create_file</span><span class="p">(</span><span class="s2">&quot;incense-kit.png&quot;</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file_id1</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file_id2</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">}],</span>
+<span class="p">)</span>
+
+<span class="n">image_generation_calls</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">output</span><span class="o">.</span><span class="n">result</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">image_generation_calls</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;gift-basket.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Image API</p>
+<p><strong>Edit an image</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Generate a photorealistic image of a gift basket on a white background </span>
+<span class="s2">labeled &#39;Relax &amp; Unwind&#39; with a ribbon and handwriting-like font, </span>
+<span class="s2">containing all the items in the reference pictures.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">edit</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-image-1&quot;</span><span class="p">,</span>
+    <span class="n">image</span><span class="o">=</span><span class="p">[</span>
+        <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;body-lotion.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+        <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;bath-bomb.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+        <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;incense-kit.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+        <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;soap.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span>
+<span class="p">)</span>
+
+<span class="n">image_base64</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">b64_json</span>
+<span class="n">image_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">)</span>
+
+<span class="c1"># Save the image to a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;gift-basket.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="edit-an-image-using-a-mask-inpainting">
+<h3>Edit an image using a mask (inpainting)<a class="headerlink" href="#edit-an-image-using-a-mask-inpainting" title="Link to this heading">#</a></h3>
+<p>You can provide a mask to indicate which part of the image should be edited.</p>
+<p>When using a mask with GPT Image, additional instructions are sent to the model to help guide the editing process accordingly.</p>
+<p>Unlike with DALL·E 2, masking with GPT Image is entirely prompt-based. This means the model uses the mask as guidance, but may not follow its exact shape with complete precision.</p>
+<p>If you provide multiple input images, the mask will be applied to the first image.</p>
+<p>Responses API</p>
+<p><strong>Edit an image with a mask</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">fileId</span> <span class="o">=</span> <span class="n">create_file</span><span class="p">(</span><span class="s2">&quot;sunlit_lounge.png&quot;</span><span class="p">)</span>
+<span class="n">maskId</span> <span class="o">=</span> <span class="n">create_file</span><span class="p">(</span><span class="s2">&quot;mask.png&quot;</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_text&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;generate an image of the same sunlit indoor lounge area with a pool but the pool should contain a flamingo&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_image&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">fileId</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quality&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;input_image_mask&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">maskId</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lounge.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Image API</p>
+<p><strong>Edit an image with a mask</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">edit</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-image-1&quot;</span><span class="p">,</span>
+    <span class="n">image</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sunlit_lounge.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="n">mask</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mask.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;A sunlit indoor lounge area with a pool containing a flamingo&quot;</span>
+<span class="p">)</span>
+
+<span class="n">image_base64</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">b64_json</span>
+<span class="n">image_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">)</span>
+
+<span class="c1"># Save the image to a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;composition.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Image</p></th>
+<th class="head"><p>Mask</p></th>
+<th class="head"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Sunlit lounge" src="_images/sunlit_lounge.png" /></p></td>
+<td><p><img alt="Mask" src="_images/mask.png" /></p></td>
+<td><p><img alt="Result" src="_images/sunlit_lounge_result.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Prompt: a sunlit indoor lounge area with a pool containing a flamingo</p>
+<section id="mask-requirements">
+<h4>Mask requirements<a class="headerlink" href="#mask-requirements" title="Link to this heading">#</a></h4>
+<p>The image to edit and mask must be of the same format and size (less than 50MB in size).</p>
+<p>The mask image must also contain an alpha channel. If you’re using an image editing tool to create the mask, make sure to save the mask with an alpha channel.</p>
+<p>Add an alpha channel to a black and white mask</p>
+<p>You can modify a black and white image programmatically to add an alpha channel.</p>
+<p>Add an alpha channel to a black and white mask</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="c1"># 1. Load your black &amp; white mask as a grayscale image</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path_mask</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Convert it to RGBA so it has space for an alpha channel</span>
+<span class="n">mask_rgba</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Then use the mask itself to fill that alpha channel</span>
+<span class="n">mask_rgba</span><span class="o">.</span><span class="n">putalpha</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="c1"># 4. Convert the mask into bytes</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+<span class="n">mask_rgba</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
+<span class="n">mask_bytes</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+<span class="c1"># 5. Save the resulting file</span>
+<span class="n">img_path_mask_alpha</span> <span class="o">=</span> <span class="s2">&quot;mask_alpha.png&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img_path_mask_alpha</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mask_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="customize-image-output">
+<h2>Customize Image Output<a class="headerlink" href="#customize-image-output" title="Link to this heading">#</a></h2>
+<p>You can configure the following output options:</p>
+<ul class="simple">
+<li><p><strong>Size</strong>: Image dimensions (e.g., <code class="docutils literal notranslate"><span class="pre">1024x1024</span></code>, <code class="docutils literal notranslate"><span class="pre">1024x1536</span></code>)</p></li>
+<li><p><strong>Quality</strong>: Rendering quality (e.g. <code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>)</p></li>
+<li><p><strong>Format</strong>: File output format</p></li>
+<li><p><strong>Compression</strong>: Compression level (0-100%) for JPEG and WebP formats</p></li>
+<li><p><strong>Background</strong>: Transparent or opaque</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">quality</span></code>, and <code class="docutils literal notranslate"><span class="pre">background</span></code> support the <code class="docutils literal notranslate"><span class="pre">auto</span></code> option, where the model will automatically select the best option based on the prompt.</p>
+<section id="size-and-quality-options">
+<h3>Size and quality options<a class="headerlink" href="#size-and-quality-options" title="Link to this heading">#</a></h3>
+<p>Square images with standard quality are the fastest to generate. The default size is 1024x1024 pixels.</p>
+<p>| Available sizes | 1024x1024 (square)<br>1536x1024 (landscape)<br>1024x1536 (portrait)<br>auto (default) |
+| Quality options | low<br>medium<br>high<br>auto (default) |</p>
+</section>
+<section id="output-format">
+<h3>Output format<a class="headerlink" href="#output-format" title="Link to this heading">#</a></h3>
+<p>The Image API returns base64-encoded image data. The default format is <code class="docutils literal notranslate"><span class="pre">png</span></code>, but you can also request <code class="docutils literal notranslate"><span class="pre">jpeg</span></code> or <code class="docutils literal notranslate"><span class="pre">webp</span></code>.</p>
+<p>If using <code class="docutils literal notranslate"><span class="pre">jpeg</span></code> or <code class="docutils literal notranslate"><span class="pre">webp</span></code>, you can also specify the <code class="docutils literal notranslate"><span class="pre">output_compression</span></code> parameter to control the compression level (0-100%). For example, <code class="docutils literal notranslate"><span class="pre">output_compression=50</span></code> will compress the image by 50%.</p>
+<blockquote>
+<div><p>Using <code class="docutils literal notranslate"><span class="pre">jpeg</span></code> is faster than <code class="docutils literal notranslate"><span class="pre">png</span></code>, so you should prioritize this format if latency is a concern.</p>
+</div></blockquote>
+</section>
+<section id="transparency">
+<h3>Transparency<a class="headerlink" href="#transparency" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code> model supports transparent backgrounds. To enable transparency, set the <code class="docutils literal notranslate"><span class="pre">background</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">transparent</span></code>.</p>
+<p>It is only supported with the <code class="docutils literal notranslate"><span class="pre">png</span></code> and <code class="docutils literal notranslate"><span class="pre">webp</span></code> output formats.</p>
+<p>Transparency works best when setting the quality to <code class="docutils literal notranslate"><span class="pre">medium</span></code> or <code class="docutils literal notranslate"><span class="pre">high</span></code>.</p>
+<p>Responses API</p>
+<p><strong>Generate an image with a transparent background</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-mini&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Draw a 2D pixel art style sprite sheet of a tabby gray cat&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_generation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;background&quot;</span><span class="p">:</span> <span class="s2">&quot;transparent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quality&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">image_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">result</span>
+    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">output</span>
+    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;image_generation_call&quot;</span>
+<span class="p">]</span>
+
+<span class="k">if</span> <span class="n">image_data</span><span class="p">:</span>
+    <span class="n">image_base64</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sprite.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Image API</p>
+<p>Generate an image with a transparent background</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-image-1&quot;</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Draw a 2D pixel art style sprite sheet of a tabby gray cat&quot;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s2">&quot;transparent&quot;</span><span class="p">,</span>
+    <span class="n">quality</span><span class="o">=</span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">image_base64</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;b64_json&quot;</span><span class="p">]</span>
+<span class="n">image_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">image_base64</span><span class="p">)</span>
+
+<span class="c1"># Save the image to a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sprite.png&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h2>
+<p>The GPT Image 1 model is a powerful and versatile image generation model, but it still has some limitations to be aware of:</p>
+<ul class="simple">
+<li><p><strong>Latency:</strong> Complex prompts may take up to 2 minutes to process.</p></li>
+<li><p><strong>Text Rendering:</strong> Although significantly improved over the DALL·E series, the model can still struggle with precise text placement and clarity.</p></li>
+<li><p><strong>Consistency:</strong> While capable of producing consistent imagery, the model may occasionally struggle to maintain visual consistency for recurring characters or brand elements across multiple generations.</p></li>
+<li><p><strong>Composition Control:</strong> Despite improved instruction following, the model may have difficulty placing elements precisely in structured or layout-sensitive compositions.</p></li>
+</ul>
+<section id="content-moderation">
+<h3>Content Moderation<a class="headerlink" href="#content-moderation" title="Link to this heading">#</a></h3>
+<p>All prompts and generated images are filtered in accordance with our <a class="reference external" href="https://labs.openai.com/policies/content-policy">content policy</a>.</p>
+<p>For image generation using <code class="docutils literal notranslate"><span class="pre">gpt-image-1</span></code>, you can control moderation strictness with the <code class="docutils literal notranslate"><span class="pre">moderation</span></code> parameter. This parameter supports two values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> (default): Standard filtering that seeks to limit creating certain categories of potentially age-inappropriate content.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">low</span></code>: Less restrictive filtering.</p></li>
+</ul>
+</section>
+<section id="supported-models">
+<h3>Supported models<a class="headerlink" href="#supported-models" title="Link to this heading">#</a></h3>
+<p>When using image generation in the Responses API, the models that support calling this tool are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4o</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4o-mini</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4.1-mini</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4.1-nano</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">o3</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="cost-and-latency">
+<h2>Cost and latency<a class="headerlink" href="#cost-and-latency" title="Link to this heading">#</a></h2>
+<p>This model generates images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image—larger image sizes and higher quality settings result in more tokens.</p>
+<p>The number of tokens generated depends on image dimensions and quality:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quality</p></th>
+<th class="head"><p>Square (1024×1024)</p></th>
+<th class="head"><p>Portrait (1024×1536)</p></th>
+<th class="head"><p>Landscape (1536×1024)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Low</p></td>
+<td><p>272 tokens</p></td>
+<td><p>408 tokens</p></td>
+<td><p>400 tokens</p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium</p></td>
+<td><p>1056 tokens</p></td>
+<td><p>1584 tokens</p></td>
+<td><p>1568 tokens</p></td>
+</tr>
+<tr class="row-even"><td><p>High</p></td>
+<td><p>4160 tokens</p></td>
+<td><p>6240 tokens</p></td>
+<td><p>6208 tokens</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that you will also need to account for <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">tokens</span></code>: text tokens for the prompt and image tokens for the input images if editing images.</p>
+<p>So the final cost is the sum of:</p>
+<ul class="simple">
+<li><p>input text tokens</p></li>
+<li><p>input image tokens if using the edits endpoint</p></li>
+<li><p>image output tokens</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_7_file_inputs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">File inputs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_9_text_to_speech.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Text to speech</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-api">Image API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#responses-api">Responses API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-api">Choosing the right API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison">Model comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-images">Generate Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-image-generation">Multi-turn image generation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming">Streaming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revised-prompt">Revised prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-images">Edit Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-image-using-image-references">Create a new image using image references</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-an-image-using-a-mask-inpainting">Edit an image using a mask (inpainting)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-requirements">Mask requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customize-image-output">Customize Image Output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size-and-quality-options">Size and quality options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-format">Output format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency">Transparency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-moderation">Content Moderation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-models">Supported models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-and-latency">Cost and latency</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
