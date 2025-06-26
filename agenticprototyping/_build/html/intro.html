@@ -195,7 +195,7 @@
 <li class="toctree-l1"><a class="reference internal" href="2_1_agent_design_foundations.html">Agent Design Foundations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_6_conversational_state.html">Conversation state</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 2 — SDK, Agent Building, Tools &amp; RAG</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 2 — SDK, Agent Building, Tools, RAG &amp; Visualization</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="2_2_openai_agents.html">OpenAI Agents SDK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_3_quick_start.html">Quickstart</a></li>
@@ -205,6 +205,8 @@
 <li class="toctree-l1"><a class="reference internal" href="1_5_function_calling.html">Function calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_12_embeddings.html">Vector embeddings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_13_retrieval.html">Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 3 — Production Readiness (Safety, Guardrails, Observability)</span></p>
 <ul class="nav bd-sidenav">
@@ -218,13 +220,11 @@
 <li class="toctree-l1"><a class="reference internal" href="2_7_mcp.html">Model context protocol (MCP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_8_handoffs.html">Handoffs</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 4 — Evaluation, Optimization, UI &amp; Visualization</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 4 — Evaluation &amp; Optimization</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_14_evals.html">Evaluating model performance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_6_evaluation_design.html">Evals design best practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_4_accuracy_optimization.html">Optimizing LLM Accuracy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_14_visualization.html">Agent Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_15_agent_output.html">Agent Output (Results)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 5 — Demo, Polish, and Roadmap</span></p>
 <ul class="nav bd-sidenav">
@@ -398,9 +398,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-1-foundations-llms-prompts-agent-mindset"><strong>Day 1: Foundations (LLMs, Prompts, Agent Mindset)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-sdk-building-rag-tools"><strong>Day 2: SDK, Building, RAG &amp; Tools</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-sdk-building-rag-tools-visualization"><strong>Day 2: SDK, Building, RAG, Tools &amp; Visualization</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-3-production-readiness-safety-guardrails-observability"><strong>Day 3: Production Readiness (Safety, Guardrails, Observability)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-4-eval-optimize-ui-visualize"><strong>Day 4: Eval, Optimize, UI &amp; Visualize</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-4-eval-optimization"><strong>Day 4: Eval &amp; Optimization</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-5-demo-polish-and-roadmap"><strong>Day 5: Demo, Polish, and Roadmap</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-for-all-days"><strong>References (for all days):</strong></a></li>
 </ul>
@@ -436,16 +436,18 @@ document.write(`
 </ul>
 </section>
 <hr class="docutils" />
-<section id="day-2-sdk-building-rag-tools">
-<h2><strong>Day 2: SDK, Building, RAG &amp; Tools</strong><a class="headerlink" href="#day-2-sdk-building-rag-tools" title="Link to this heading">#</a></h2>
+<section id="day-2-sdk-building-rag-tools-visualization">
+<h2><strong>Day 2: SDK, Building, RAG, Tools &amp; Visualization</strong><a class="headerlink" href="#day-2-sdk-building-rag-tools-visualization" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Core Notebooks:</strong><br />
-<code class="docutils literal notranslate"><span class="pre">2_2_openai_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_3_quick_start</span></code>, <code class="docutils literal notranslate"><span class="pre">2_4_building_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_5_running_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_6_tools</span></code>, <code class="docutils literal notranslate"><span class="pre">1_5_function_calling</span></code>, <code class="docutils literal notranslate"><span class="pre">1_12_embeddings</span></code>, <code class="docutils literal notranslate"><span class="pre">1_13_retrieval</span></code></p></li>
+<code class="docutils literal notranslate"><span class="pre">2_2_openai_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_3_quick_start</span></code>, <code class="docutils literal notranslate"><span class="pre">2_4_building_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_5_running_agents</span></code>, <code class="docutils literal notranslate"><span class="pre">2_6_tools</span></code>, <code class="docutils literal notranslate"><span class="pre">1_5_function_calling</span></code>, <code class="docutils literal notranslate"><span class="pre">1_12_embeddings</span></code>, <code class="docutils literal notranslate"><span class="pre">1_13_retrieval</span></code>, <code class="docutils literal notranslate"><span class="pre">2_14_visualization</span></code>, <code class="docutils literal notranslate"><span class="pre">2_15_agent_output</span></code></p></li>
 <li><p><strong>Activities:</strong></p>
 <ul>
 <li><p>SDK install &amp; Hello World agent</p></li>
 <li><p>Add tools, function calling</p></li>
 <li><p>Build RAG pipeline (embeddings, retrieval)</p></li>
+<li><p><strong>Visualize agent structure and orchestration</strong></p></li>
+<li><p><strong>Review and analyze agent outputs</strong></p></li>
 </ul>
 </li>
 <li><p><strong>Optional:</strong><br />
@@ -470,17 +472,15 @@ document.write(`
 </ul>
 </section>
 <hr class="docutils" />
-<section id="day-4-eval-optimize-ui-visualize">
-<h2><strong>Day 4: Eval, Optimize, UI &amp; Visualize</strong><a class="headerlink" href="#day-4-eval-optimize-ui-visualize" title="Link to this heading">#</a></h2>
+<section id="day-4-eval-optimization">
+<h2><strong>Day 4: Eval &amp; Optimization</strong><a class="headerlink" href="#day-4-eval-optimization" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Core Notebooks:</strong><br />
-<code class="docutils literal notranslate"><span class="pre">1_14_evals</span></code>, <code class="docutils literal notranslate"><span class="pre">3_6_evaluation_design</span></code>, <code class="docutils literal notranslate"><span class="pre">3_4_accuracy_optimization</span></code>, <code class="docutils literal notranslate"><span class="pre">2_14_visualization</span></code>, <code class="docutils literal notranslate"><span class="pre">2_15_agent_output</span></code></p></li>
+<code class="docutils literal notranslate"><span class="pre">1_14_evals</span></code>, <code class="docutils literal notranslate"><span class="pre">3_6_evaluation_design</span></code>, <code class="docutils literal notranslate"><span class="pre">3_4_accuracy_optimization</span></code></p></li>
 <li><p><strong>Activities:</strong></p>
 <ul>
 <li><p>Run automated evals &amp; benchmark</p></li>
 <li><p>Tweak prompts/RAG for accuracy</p></li>
-<li><p>Visualize agent architecture</p></li>
-<li><p>Review/log agent outputs</p></li>
 </ul>
 </li>
 <li><p><strong>Optional:</strong><br />
@@ -582,9 +582,9 @@ Case studies (<code class="docutils literal notranslate"><span class="pre">4_leg
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-1-foundations-llms-prompts-agent-mindset"><strong>Day 1: Foundations (LLMs, Prompts, Agent Mindset)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-sdk-building-rag-tools"><strong>Day 2: SDK, Building, RAG &amp; Tools</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-sdk-building-rag-tools-visualization"><strong>Day 2: SDK, Building, RAG, Tools &amp; Visualization</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-3-production-readiness-safety-guardrails-observability"><strong>Day 3: Production Readiness (Safety, Guardrails, Observability)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-4-eval-optimize-ui-visualize"><strong>Day 4: Eval, Optimize, UI &amp; Visualize</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-4-eval-optimization"><strong>Day 4: Eval &amp; Optimization</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-5-demo-polish-and-roadmap"><strong>Day 5: Demo, Polish, and Roadmap</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-for-all-days"><strong>References (for all days):</strong></a></li>
 </ul>

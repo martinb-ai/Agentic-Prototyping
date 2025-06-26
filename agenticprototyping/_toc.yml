@@ -15,7 +15,7 @@ parts:
       - file: 2_1_agent_design_foundations
       - file: 1_6_conversational_state
 
-  - caption: Day 2 — SDK, Agent Building, Tools & RAG
+  - caption: Day 2 — SDK, Agent Building, Tools, RAG & Visualization
     chapters:
       - file: 2_2_openai_agents
       - file: 2_3_quick_start
@@ -25,6 +25,8 @@ parts:
       - file: 1_5_function_calling
       - file: 1_12_embeddings
       - file: 1_13_retrieval
+      - file: 2_14_visualization
+      - file: 2_15_agent_output
 
   - caption: Day 3 — Production Readiness (Safety, Guardrails, Observability)
     chapters:
@@ -38,13 +40,11 @@ parts:
       - file: 2_7_mcp
       - file: 2_8_handoffs
 
-  - caption: Day 4 — Evaluation, Optimization, UI & Visualization
+  - caption: Day 4 — Evaluation & Optimization
     chapters:
       - file: 1_14_evals
       - file: 3_6_evaluation_design
       - file: 3_4_accuracy_optimization
-      - file: 2_14_visualization
-      - file: 2_15_agent_output
 
   - caption: Day 5 — Demo, Polish, and Roadmap
     chapters:
