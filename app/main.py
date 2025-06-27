@@ -1,6 +1,6 @@
 import streamlit as st
 from openai import OpenAI
-from agents import get_triage_agent
+from agent_definitions import get_triage_agent
 from tools import get_tools
 from data import load_data
 from config import AppConfig
