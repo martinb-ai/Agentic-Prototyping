@@ -1,0 +1,54 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Day 1 — Foundations (LLMs, Prompts, Agent Mindset)
+    chapters:
+      - file: 0_0_agent_prd
+      - file: 1_0_dev_quick_start
+      - file: 1_1_prompt_engineering
+      - file: 1_2_model_selection
+      - file: 2_0_agents_overview
+      - file: 2_1_agent_design_foundations
+
+  - caption: Day 2 — Building Agents - From Single to Multi-Agent
+    chapters:
+      - file: 2_2_openai_agents
+      - file: 2_3_quick_start
+      - file: 2_4_building_agents
+      - file: 2_5_running_agents
+      - file: 1_6_conversational_state
+      - file: 1_5_function_calling
+      - file: 2_6_tools
+      - file: 2_8_handoffs
+      - file: 2_12_orchestration
+      - file: 2_7_mcp
+      - file: 2_14_visualization
+      - file: 2_15_agent_output
+
+  - caption: Day 3 — Production Readiness - RAG, Safety & Observability
+    chapters:
+      - file: 1_12_embeddings
+      - file: 1_13_retrieval
+      - file: 3_0_production
+      - file: 3_1_safety
+      - file: 1_15_moderation
+      - file: 2_11_guardrails
+      - file: 2_9_observability
+      - file: 3_2_prompt_caching
+
+  - caption: Day 4 — Evaluation & Optimization
+    chapters:
+      - file: 1_14_evals
+      - file: 3_6_evaluation_design
+      - file: 3_4_accuracy_optimization
+
+  - caption: Day 5 — Demo, Polish, and Roadmap
+    chapters:
+      - file: 1_3_prototype_to_production
+      - file: 3_5_reproducibility
+      - file: 4_financial_portfolio_analysis
+      - file: 4_insurance_claims
+      - file: 4_pharma_rd
